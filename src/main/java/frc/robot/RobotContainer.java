@@ -7,14 +7,18 @@ package frc.robot;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 
-import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Rotation2d;
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.util.FieldZones;
+import frc.robot.util.LocalizationState;
+import frc.robot.util.LocalizationUtil;
+import frc.robot.util.PointsOfInterest;
 
 public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
@@ -74,5 +78,28 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     /* First put the drivetrain into auto run mode, then run the auto */
     return runAuto;
+  }
+
+  /***** Begin Team Logic *****/
+
+  private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.SPEAKER, new Rotation2d(), 0.0, new Rotation2d(), 0.0);
+  public static LocalizationState getLocalizationState() {
+    return localizationState;
+  }
+  public void updateLocalizationState() {
+    final Alliance alliance = drivetrain.getAlliance();
+    final PointsOfInterest poi = PointsOfInterest.get(alliance);
+    final Translation2d robot = drivetrain.getState().Pose.getTranslation();
+    localizationState = new LocalizationState(
+      FieldZones.getZoneFromPose(alliance, robot),
+      LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
+      robot.getDistance(poi.PASS_TARGET),
+      LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
+      robot.getDistance(poi.SPEAKER)
+    );
+  }
+  public void robotPeriodic() {
+    drivetrain.updatePoseFromVision();
+    updateLocalizationState();
   }
 }

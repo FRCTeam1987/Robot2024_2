@@ -16,6 +16,7 @@ import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -25,6 +26,8 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import frc.robot.Constants;
+import frc.robot.LimelightHelpers;
 import frc.robot.generated.TunerConstants;
 
 /**
@@ -173,7 +176,54 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                         allianceColor == Alliance.Red ? RedAlliancePerspectiveRotation
                                 : BlueAlliancePerspectiveRotation);
                 hasAppliedOperatorPerspective = true;
+                setAlliance(allianceColor);
             });
+        }
+    }
+
+    /***** Begin Team Logic *****/
+
+    private Alliance alliance = Alliance.Red;
+    public Alliance getAlliance() {
+        return alliance;
+    }
+    public void setAlliance(final Alliance newAlliance) {
+        alliance = newAlliance;
+    }
+
+    private boolean shouldUpdatePoseFromVision = true;
+    public boolean shouldUpdatePoseFromVision() {
+        return shouldUpdatePoseFromVision;
+    }
+    public void setShouldUpdatePoseFromVision(final boolean shouldUpdate) {
+        shouldUpdatePoseFromVision = shouldUpdate;
+    }
+    public void updatePoseFromVision() {
+        final double yaw = getState().Pose.getRotation().getDegrees();
+        for (String limelightName : Constants.Vision.LL3GS) {
+            LimelightHelpers.SetRobotOrientation(limelightName, yaw, 0, 0, 0, 0, 0);
+        }
+        if (!shouldUpdatePoseFromVision()) {
+            return;
+        }
+        final ChassisSpeeds chassisSpeeds = getCurrentRobotChassisSpeeds();
+        if (Math.abs(getPigeon2().getRate()) > 540 || (Math.abs(chassisSpeeds.vxMetersPerSecond) > 2.0 || Math.abs(chassisSpeeds.vyMetersPerSecond) > 2.0)) {
+            return;
+        }
+        for (String limelightName : Constants.Vision.LL3GS) {
+            LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(limelightName);
+            if (mt2.tagCount == 0) {
+                break;
+            }
+            addVisionMeasurement(
+                mt2.pose,
+                mt2.timestampSeconds,
+                VecBuilder.fill(
+                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist / 2.0),
+                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist / 2.0),
+                    9999999
+                )
+            );
         }
     }
 }

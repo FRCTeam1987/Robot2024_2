@@ -15,8 +15,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  private final boolean UseLimelight = false;
-
   @Override
   public void robotInit() {
     m_robotContainer = new RobotContainer();
@@ -25,24 +23,8 @@ public class Robot extends TimedRobot {
   }
   @Override
   public void robotPeriodic() {
+    m_robotContainer.robotPeriodic();
     CommandScheduler.getInstance().run();
-
-    /**
-     * This example of adding Limelight is very simple and may not be sufficient for on-field use.
-     * Users typically need to provide a standard deviation that scales with the distance to target
-     * and changes with number of tags available.
-     *
-     * This example is sufficient to show that vision integration is possible, though exact implementation
-     * of how to use vision should be tuned per-robot and to the team's specification.
-     */
-    if (UseLimelight) {
-      var lastResult = LimelightHelpers.getLatestResults("limelight");
-      Pose2d llPose = lastResult.getBotPose2d_wpiBlue();
-
-      if (lastResult.valid) {
-        m_robotContainer.drivetrain.addVisionMeasurement(llPose, Timer.getFPGATimestamp());
-      }
-    }
   }
 
   @Override
