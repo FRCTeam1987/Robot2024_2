@@ -13,8 +13,20 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.defaultStates.Default;
+import frc.robot.commands.defaultStates.DefaultCandles;
+import frc.robot.commands.logic.RobotState;
 import frc.robot.generated.TunerConstants;
+import frc.robot.subsystems.AmpSensors;
+import frc.robot.subsystems.Candles;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
+import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Intake;
+import frc.robot.subsystems.PoopMonitor;
+import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.Vision;
+import frc.robot.subsystems.Wrist;
+import frc.robot.util.Controls;
 import frc.robot.util.FieldZones;
 import frc.robot.util.LocalizationState;
 import frc.robot.util.LocalizationUtil;
@@ -24,9 +36,21 @@ public class RobotContainer {
   private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
   private double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
-  /* Setting up bindings for necessary control of the swerve drive platform */
-  private final CommandXboxController joystick = new CommandXboxController(0); // My joystick
-  public final CommandSwerveDrivetrain drivetrain = TunerConstants.DriveTrain; // My drivetrain
+  private static final CommandXboxController DRIVER_CONTROLLER = new CommandXboxController(0); // My joystick
+  private static final CommandXboxController CODRIVER_CONTROLLER = new CommandXboxController(1); // My joystick
+
+  public static final CommandSwerveDrivetrain DRIVETRAIN = TunerConstants.DriveTrain; // My drivetrain
+
+  public static RobotState STATE = RobotState.DEFAULT;
+
+  public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID, Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
+  public static Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID, Constants.IDs.CANBUS_ATTACHED);
+  public static Intake INTAKE = new Intake(Constants.IDs.INTAKE_BOTTOM_ID, Constants.IDs.INTAKE_TOP_ID, Constants.IDs.CANBUS_ATTACHED);
+  public static Wrist WRIST = new Wrist(Constants.IDs.WRIST_ID, Constants.IDs.CANBUS_ATTACHED);
+  public static AmpSensors AMP_SENSORS = new AmpSensors(Constants.IDs.PROXIMITY_SENSOR_LEFT_ID, Constants.IDs.PROXIMITY_SENSOR_RIGHT_ID);
+  public static Candles CANDLES = new Candles(Constants.IDs.LEFT_CANDLE, Constants.IDs.RIGHT_CANDLE, Constants.IDs.CANBUS_ATTACHED);
+  public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME, Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
+  public static PoopMonitor POOP_MONITOR = new PoopMonitor();
 
   private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -37,42 +61,14 @@ public class RobotContainer {
   private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
 
   /* Path follower */
-  private Command runAuto = drivetrain.getAutoPath("Tests");
+  private Command runAuto = DRIVETRAIN.getAutoPath("Tests");
 
   private final Telemetry logger = new Telemetry(MaxSpeed);
 
-  private void configureBindings() {
-    drivetrain.setDefaultCommand( // Drivetrain will execute this command periodically
-        drivetrain.applyRequest(() -> drive.withVelocityX(-joystick.getLeftY() * MaxSpeed) // Drive forward with
-                                                                                           // negative Y (forward)
-            .withVelocityY(-joystick.getLeftX() * MaxSpeed) // Drive left with negative X (left)
-            .withRotationalRate(-joystick.getRightX() * MaxAngularRate) // Drive counterclockwise with negative X (left)
-        ).ignoringDisable(true));
-
-    joystick.a().whileTrue(drivetrain.applyRequest(() -> brake));
-    joystick.b().whileTrue(drivetrain
-        .applyRequest(() -> point.withModuleDirection(new Rotation2d(-joystick.getLeftY(), -joystick.getLeftX()))));
-
-    // reset the field-centric heading on left bumper press
-    joystick.leftBumper().onTrue(drivetrain.runOnce(() -> drivetrain.seedFieldRelative()));
-
-    joystick.pov(0).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(0.5).withVelocityY(0)));
-    joystick.pov(180).whileTrue(drivetrain.applyRequest(() -> forwardStraight.withVelocityX(-0.5).withVelocityY(0)));
-
-    drivetrain.registerTelemetry(logger::telemeterize);
-
-
-    /* Bindings for drivetrain characterization */
-    /* These bindings require multiple buttons pushed to swap between quastatic and dynamic */
-    /* Back/Start select dynamic/quasistatic, Y/X select forward/reverse direction */
-    joystick.back().and(joystick.y()).whileTrue(drivetrain.sysIdDynamic(Direction.kForward));
-    joystick.back().and(joystick.x()).whileTrue(drivetrain.sysIdDynamic(Direction.kReverse));
-    joystick.start().and(joystick.y()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kForward));
-    joystick.start().and(joystick.x()).whileTrue(drivetrain.sysIdQuasistatic(Direction.kReverse));
-  }
-
   public RobotContainer() {
-    configureBindings();
+    Controls.configureDriverController();
+    Controls.configureCoDriverController();
+    CANDLES.setDefaultCommand(new DefaultCandles());
   }
 
   public Command getAutonomousCommand() {
@@ -87,9 +83,9 @@ public class RobotContainer {
     return localizationState;
   }
   public void updateLocalizationState() {
-    final Alliance alliance = drivetrain.getAlliance();
+    final Alliance alliance = DRIVETRAIN.getAlliance();
     final PointsOfInterest poi = PointsOfInterest.get(alliance);
-    final Translation2d robot = drivetrain.getState().Pose.getTranslation();
+    final Translation2d robot = DRIVETRAIN.getState().Pose.getTranslation();
     localizationState = new LocalizationState(
       FieldZones.getZoneFromPose(alliance, robot),
       LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
@@ -98,8 +94,19 @@ public class RobotContainer {
       robot.getDistance(poi.SPEAKER)
     );
   }
+
   public void robotPeriodic() {
-    drivetrain.updatePoseFromVision();
+    DRIVETRAIN.updatePoseFromVision();
     updateLocalizationState();
+
+    
+  }
+
+  public RobotState getRobotState() {
+    return STATE;
+  }
+
+  public RobotState setRobotState(RobotState STATE) {
+    return RobotContainer.STATE = STATE;
   }
 }

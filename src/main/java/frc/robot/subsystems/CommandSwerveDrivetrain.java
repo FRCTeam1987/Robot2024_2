@@ -200,7 +200,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     }
     public void updatePoseFromVision() {
         final double yaw = getState().Pose.getRotation().getDegrees();
-        for (String limelightName : Constants.Vision.LL3GS) {
+        for (String limelightName : Constants.Limelight.LL3GS) {
             LimelightHelpers.SetRobotOrientation(limelightName, yaw, 0, 0, 0, 0, 0);
         }
         if (!shouldUpdatePoseFromVision()) {
@@ -210,7 +210,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         if (Math.abs(getPigeon2().getRate()) > 540 || (Math.abs(chassisSpeeds.vxMetersPerSecond) > 2.0 || Math.abs(chassisSpeeds.vyMetersPerSecond) > 2.0)) {
             return;
         }
-        for (String limelightName : Constants.Vision.LL3GS) {
+        for (String limelightName : Constants.Limelight.LL3GS) {
             LimelightHelpers.PoseEstimate mt2 = LimelightHelpers.getBotPoseEstimate_wpiBlue_MegaTag2(limelightName);
             if (mt2.tagCount == 0) {
                 break;
