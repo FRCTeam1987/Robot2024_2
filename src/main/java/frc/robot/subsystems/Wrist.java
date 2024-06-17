@@ -93,6 +93,10 @@ public class Wrist extends SubsystemBase {
     }
   }
 
+  public void setDegrees(double degrees) {
+    setDegrees(degrees, 0);
+  }
+
   public void stop() {
     WRIST_MOTOR.set(0);
   }

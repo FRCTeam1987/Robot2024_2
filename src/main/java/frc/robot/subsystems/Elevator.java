@@ -79,6 +79,10 @@ public class Elevator extends SubsystemBase {
     }
   }
 
+  public void setLengthInches(double length) {
+    setLengthInches(length, 0);
+  }
+
   public double getLengthInches() {
     return ELEVATOR_LEADER.getRotorPosition().getValueAsDouble()
         * Constants.Elevator.CONVERSION_FACTOR_TICKS_TO_INCHES;

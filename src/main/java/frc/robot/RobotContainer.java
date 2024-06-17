@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
+import frc.robot.commands.auto.AutoState;
 import frc.robot.commands.defaultStates.Default;
 import frc.robot.commands.defaultStates.DefaultCandles;
 import frc.robot.commands.logic.RobotState;
@@ -33,8 +34,8 @@ import frc.robot.util.LocalizationUtil;
 import frc.robot.util.PointsOfInterest;
 
 public class RobotContainer {
-  private double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
-  private double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
+  public static double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
+  public static double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
   private static final CommandXboxController DRIVER_CONTROLLER = new CommandXboxController(0); // My joystick
   private static final CommandXboxController CODRIVER_CONTROLLER = new CommandXboxController(1); // My joystick
@@ -78,7 +79,14 @@ public class RobotContainer {
 
   /***** Begin Team Logic *****/
 
-  private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.SPEAKER, new Rotation2d(), 0.0, new Rotation2d(), 0.0);
+  private static AutoState autoState = AutoState.DEFAULT;
+  public static AutoState getAutoState() {
+    return autoState;
+  }
+  public static void setAutoState(final AutoState newState) {
+    autoState = newState;
+  }
+  private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.ALLIANCE_WING, new Rotation2d(), 0.0, new Rotation2d(), 0.0);
   public static LocalizationState getLocalizationState() {
     return localizationState;
   }
@@ -87,7 +95,7 @@ public class RobotContainer {
     final PointsOfInterest poi = PointsOfInterest.get(alliance);
     final Translation2d robot = DRIVETRAIN.getState().Pose.getTranslation();
     localizationState = new LocalizationState(
-      FieldZones.getZoneFromPose(alliance, robot),
+      FieldZones.getZoneFromTranslation(alliance, robot),
       LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
       robot.getDistance(poi.PASS_TARGET),
       LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
@@ -98,8 +106,6 @@ public class RobotContainer {
   public void robotPeriodic() {
     DRIVETRAIN.updatePoseFromVision();
     updateLocalizationState();
-
-    
   }
 
   public RobotState getRobotState() {

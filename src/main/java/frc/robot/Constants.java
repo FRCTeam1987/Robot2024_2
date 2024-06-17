@@ -7,6 +7,9 @@ package frc.robot;
 import java.util.Arrays;
 import java.util.List;
 
+import frc.robot.util.InterpolatingDouble;
+import frc.robot.util.InterpolatingTreeMap;
+
 /** Add your docs here. */
 public class Constants {
 
@@ -130,5 +133,71 @@ public class Constants {
     public static final double SPIN_RATIO = 0.66; // 0.85
     public static final double ANTI_SPIN_RATIO = 1.34; // 0.85
     public static final int SHOOTER_AMP_RPM = 550;
+  }
+
+  public static class Intake {
+    public static final double INTAKE_COLLECT_VOLTS = -6; // 6
+    public static final double INTAKE_COLLECT_VOLTS_MANUAL = -8; // 6 //-9
+    public static final double INTAKE_RPM = -5000;
+  }
+
+  public static final InterpolatingTreeMap<
+          InterpolatingDouble,
+          InterpolatingDouble> // TODO Update Limelight Constants with new position
+      DISTANCE_TO_LOB_RPM = // (Meters, Wrist Degrees)
+      new InterpolatingTreeMap<>();
+  public static final InterpolatingTreeMap<
+          InterpolatingDouble,
+          InterpolatingDouble> // TODO Update Limelight Constants with new position
+      DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER = // (Meters, Wrist Degrees)
+      new InterpolatingTreeMap<>();
+
+  static {
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(2.334), new InterpolatingDouble(35.50));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(2.40), new InterpolatingDouble(35.10));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(2.50), new InterpolatingDouble(34.23));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(2.69), new InterpolatingDouble(32.87));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(2.87), new InterpolatingDouble(31.69));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(3.03), new InterpolatingDouble(30.24));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(3.207), new InterpolatingDouble(28.86));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(3.388),
+        new InterpolatingDouble(28.21)); // Closer values may require a slower shooter RPM Speed
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(3.70), new InterpolatingDouble(27.08));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(4.03), new InterpolatingDouble(25.63));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(4.23), new InterpolatingDouble(25.07));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(4.46), new InterpolatingDouble(24.65));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(4.69), new InterpolatingDouble(24.35));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(4.99), new InterpolatingDouble(23.21));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(5.21), new InterpolatingDouble(22.81));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(5.40), new InterpolatingDouble(22.92));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(5.69), new InterpolatingDouble(21.63));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(5.89), new InterpolatingDouble(21.47));
+    DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
+        new InterpolatingDouble(6.15), new InterpolatingDouble(21.45));
+
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 1.15));
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 1.15));
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 1.15));
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 1.15));
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 1.15));
+    DISTANCE_TO_LOB_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 1.15));
   }
 }

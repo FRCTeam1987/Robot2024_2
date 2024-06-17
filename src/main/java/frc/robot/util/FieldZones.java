@@ -10,10 +10,9 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 /** Adds your docs here. */
 public class FieldZones {
   public enum Zone {
-    AMP,
+    ALLIANCE_WING,
     NEUTRAL_WING,
-    OPPONENT_WING,
-    SPEAKER
+    OPPONENT_WING
   }
 
   private static final double X_MIN = 0.0;
@@ -31,34 +30,29 @@ public class FieldZones {
   public static final RectanglePoseArea WING_NEUTRAL = new RectanglePoseArea(new Translation2d(6.0, 0.0), new Translation2d(10.75, 8.0));
   public static final RectanglePoseArea WING_RED = new RectanglePoseArea(new Translation2d(RED_WING_LINE_X,Y_MIN),new Translation2d(LocalizationUtil.FIELD_LENGTH, LocalizationUtil.FIELD_WIDTH));
 
-  public static Zone getZoneFromPose(final Alliance alliance, final Translation2d translation) {
+  public static Zone getZoneFromTranslation(final Alliance alliance, final Translation2d translation) {
+    final double x = translation.getX();
     if (alliance == Alliance.Red) {
-      if (AMP_RED.isTranslationWithinArea(translation)) {
-        return Zone.AMP;
+      if (x > RED_WING_LINE_X) {
+        return Zone.ALLIANCE_WING;
       }
-      if (SPEAKER_RED.isTranslationWithinArea(translation) || WING_RED.isTranslationWithinArea(translation)) {
-        return Zone.SPEAKER;
-      }
-      if (WING_NEUTRAL.isTranslationWithinArea(translation)) {
+      if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
         return Zone.NEUTRAL_WING;
       }
-      if (WING_BLUE.isTranslationWithinArea(translation)) {
+      if (x < BLUE_WING_LINE_X) {
         return Zone.OPPONENT_WING;
       }
     } else {
-      if (AMP_BLUE.isTranslationWithinArea(translation)) {
-        return Zone.AMP;
+      if (x < BLUE_WING_LINE_X) {
+        return Zone.ALLIANCE_WING;
       }
-      if (SPEAKER_BLUE.isTranslationWithinArea(translation) || WING_BLUE.isTranslationWithinArea(translation)) {
-        return Zone.SPEAKER;
-      }
-      if (WING_NEUTRAL.isTranslationWithinArea(translation)) {
+      if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
         return Zone.NEUTRAL_WING;
       }
-      if (WING_RED.isTranslationWithinArea(translation)) {
+      if (x > RED_WING_LINE_X) {
         return Zone.OPPONENT_WING;
       }
     }
-    return Zone.SPEAKER;
+    return Zone.ALLIANCE_WING;
   }
 }
