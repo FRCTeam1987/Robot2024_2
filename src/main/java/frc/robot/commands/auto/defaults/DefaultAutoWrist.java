@@ -8,7 +8,7 @@ import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.util.FieldZones;
+import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.Util;
 
 import static frc.robot.RobotContainer.WRIST;
