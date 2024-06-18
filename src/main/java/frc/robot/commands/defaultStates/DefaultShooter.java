@@ -1,9 +1,13 @@
 package frc.robot.commands.defaultStates;
 
+import static frc.robot.RobotContainer.SHOOTER;
+
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.util.FieldZones;
 
 public class DefaultShooter extends Command{
   public DefaultShooter() {
@@ -18,18 +22,23 @@ public class DefaultShooter extends Command{
   public void execute() {
     switch(RobotContainer.STATE) {
         case COLLECTING:
+        SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
             break;
         case COLLECT_PREP:
-            break;
-        case DEFAULT:
             break;
         case POOPING:
             break;
         case POOP_PREP:
             break;
         case SHOOTING:
+        SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
             break;
         case SHOOT_PREP:
+            break;
+        case DEFAULT:
+            if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
+                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+            }
             break;
         default:
             break;

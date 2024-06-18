@@ -2,7 +2,8 @@ package frc.robot.util;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.statechangers.StateShootNote;
+import frc.robot.commands.statechangers.IntakeNoteState;
+import frc.robot.commands.statechangers.ShootNoteState;
 import frc.robot.commands.stateless.SwerveCommand;
 
 public class Controls extends RobotContainer {
@@ -19,7 +20,9 @@ public class Controls extends RobotContainer {
     );
     DRIVER_CONTROLLER
       .rightBumper()
-        .onTrue(new StateShootNote());
+        .onTrue(new ShootNoteState());
+    DRIVER_CONTROLLER
+    .leftBumper().onTrue(new IntakeNoteState());
   }
 
   public static void configureCoDriverController() {
