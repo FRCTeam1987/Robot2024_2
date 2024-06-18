@@ -81,6 +81,10 @@ public class Constants {
     public static final double WRIST_MIN_DEG = 7;
     public static final double WRIST_MAX_DEG = 120; // temp 115;
 
+    public static final double MAX_SHOOT_DEG = 35.0;
+    public static final double COLLECT_DEG = 26.0;
+    public static final double POOP_DEG = 26.0;
+
     public static final double WRIST_MAX_ROT = 3;
     public static final double WRIST_MIN_ROT = 0;
 

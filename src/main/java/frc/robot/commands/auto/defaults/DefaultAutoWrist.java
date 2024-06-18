@@ -6,13 +6,17 @@ package frc.robot.commands.auto.defaults;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.util.FieldZones;
 import frc.robot.util.Util;
+
+import static frc.robot.RobotContainer.WRIST;
 
 public class DefaultAutoWrist extends Command {
   /** Creates a new DefaultAutoWrist. */
   public DefaultAutoWrist() {
-    addRequirements(RobotContainer.WRIST);
+    addRequirements(WRIST);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -20,27 +24,18 @@ public class DefaultAutoWrist extends Command {
   public void execute() {
     switch (RobotContainer.getAutoState()) {
       case COLLECTING:
-        double poseX = RobotContainer.DRIVETRAIN.getState().Pose.getX();
-        if (poseX < 6.0 || poseX > 16.56 - 6.0) {
-          RobotContainer.WRIST.setDegrees(MathUtil.clamp(Util.getInterpolatedWristAngleSpeaker(), 10.0, 35.0));
+        if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
+          WRIST.setDegrees(MathUtil.clamp(Util.getInterpolatedWristAngleSpeaker(), Constants.Wrist.WRIST_MIN_DEG, Constants.Wrist.MAX_SHOOT_DEG));
         } else {
-          RobotContainer.WRIST.setDegrees(26);
+          WRIST.setDegrees(Constants.Wrist.COLLECT_DEG);
         }
         break;
+      case POOP_PREP:
       case POOPING:
-        RobotContainer.WRIST.setDegrees(22);
+        WRIST.setDegrees(Constants.Wrist.POOP_DEG);
         break;
-      case SHOOT_PREP:
-      case SHOOTING:
-      case DEFAULT:
       default:
-        RobotContainer.WRIST.setDegrees(MathUtil.clamp(Util.getInterpolatedWristAngleSpeaker(), 10.0, 35.0));
+        WRIST.setDegrees(MathUtil.clamp(Util.getInterpolatedWristAngleSpeaker(), Constants.Wrist.WRIST_MIN_DEG, Constants.Wrist.MAX_SHOOT_DEG));
     }
-  }
-
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
   }
 }
