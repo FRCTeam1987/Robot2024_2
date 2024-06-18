@@ -4,7 +4,7 @@
 
 package frc.robot.commands.auto.actions;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
 import frc.robot.RobotContainer;
 
@@ -16,7 +16,7 @@ public class AutoCollectNote extends ParallelDeadlineGroup {
   public AutoCollectNote(final double initialVelocity) {
     super(new IntakeNoteSequenceAuto());
     addCommands(
-      new InstantCommand(() -> RobotContainer.WRIST.enableWristLockdown())
+      new InstCmd(() -> RobotContainer.WRIST.enableWristLockdown())
         .andThen(new DriveToNote(initialVelocity))
         .finallyDo(() -> RobotContainer.WRIST.disableWristLockdown())
     );

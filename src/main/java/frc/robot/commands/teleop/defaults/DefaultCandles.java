@@ -1,4 +1,4 @@
-package frc.robot.commands.defaultStates;
+package frc.robot.commands.teleop.defaults;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;

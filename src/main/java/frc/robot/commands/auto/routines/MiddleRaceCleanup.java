@@ -7,7 +7,7 @@ package frc.robot.commands.auto.routines;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathPlannerPath;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
@@ -47,7 +47,7 @@ public class MiddleRaceCleanup extends SequentialCommandGroup {
       new ShootSubwooferFirstHalf(),
       new ParallelCommandGroup(
         new SequentialCommandGroup(
-          new InstantCommand(() -> {
+          new InstCmd(() -> {
             drivetrain.seedFieldRelative(step1.getPreviewStartingHolonomicPose());
           }),
           AutoBuilder.followPath(step1),

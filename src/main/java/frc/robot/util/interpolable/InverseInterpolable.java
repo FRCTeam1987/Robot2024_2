@@ -1,4 +1,4 @@
-package frc.robot.util;
+package frc.robot.util.interpolable;
 
 // From Team 254
 // https://github.com/Team254/FRC-2019-Public/blob/f99f09a15a2c8e7b5df868ec3a4a81105dc88112/src/main/java/com/team254/lib/util/InverseInterpolable.java

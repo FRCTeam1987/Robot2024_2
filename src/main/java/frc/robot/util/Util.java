@@ -21,9 +21,10 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.AutoState;
+import frc.robot.util.interpolable.InterpolatingDouble;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 
@@ -123,7 +124,7 @@ public class Util {
           Rotation2d.fromDegrees(-150));
 
   public static Command PathFindToAutoSourceCloseShot() {
-    return new InstantCommand(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
+    return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
         .andThen(
             new ConditionalCommand(
                 Util.pathfindToPose(BLUE_AUTO_SOURCE_CLOSE_SHOT),
@@ -140,7 +141,7 @@ public class Util {
           Rotation2d.fromDegrees(-144.5));
 
   public static Command PathFindToAutoSourceShot() {
-    return new InstantCommand(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
+    return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
         .andThen(
             new ConditionalCommand(
                 Util.pathfindToPose(BLUE_AUTO_SOURCE_SHOOTING_POSE),
@@ -157,7 +158,7 @@ public class Util {
           Rotation2d.fromDegrees(-178.0));
 
   public static Command PathFindToAutoMadtownShot() {
-    return new InstantCommand(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
+    return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
         .andThen(
             new ConditionalCommand(
                 Util.pathfindToPose(BLUE_AUTO_MADTOWN_SHOOTING_POSE),

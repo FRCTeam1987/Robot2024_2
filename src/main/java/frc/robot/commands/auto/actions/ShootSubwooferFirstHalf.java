@@ -4,7 +4,7 @@
 
 package frc.robot.commands.auto.actions;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
@@ -16,7 +16,7 @@ public class ShootSubwooferFirstHalf extends SequentialCommandGroup {
   /** Creates a new ShootTrap. */
   public ShootSubwooferFirstHalf() {
     addCommands(
-      new InstantCommand(() -> {
+      new InstCmd(() -> {
           RobotContainer.WRIST.setDegrees(52);
           RobotContainer.ELEVATOR.setLengthInches(6.5);
           RobotContainer.SHOOTER.setRPMShoot(2000); // 2750
@@ -29,7 +29,7 @@ public class ShootSubwooferFirstHalf extends SequentialCommandGroup {
         RobotContainer.WRIST.isAtSetpoint() &&
         RobotContainer.SHOOTER.isShooterAtSetpoint()
       ),
-      new InstantCommand(() -> RobotContainer.SHOOTER.setFeederVoltage(7.5), RobotContainer.SHOOTER),
+      new InstCmd(() -> RobotContainer.SHOOTER.setFeederVoltage(7.5), RobotContainer.SHOOTER),
       new WaitUntilCommand(() -> !RobotContainer.SHOOTER.isCenterBroken())
     );
   }

@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
-import frc.robot.util.InterpolatingDouble;
-import frc.robot.util.InterpolatingTreeMap;
+import frc.robot.util.interpolable.InterpolatingDouble;
+import frc.robot.util.interpolable.InterpolatingTreeMap;
 
 /** Add your docs here. */
 public class Constants {

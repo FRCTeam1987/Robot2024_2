@@ -1,4 +1,4 @@
-package frc.robot.commands.defaultStates;
+package frc.robot.commands.teleop.defaults;
 
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 

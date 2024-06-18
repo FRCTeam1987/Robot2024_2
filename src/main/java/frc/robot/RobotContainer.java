@@ -13,9 +13,9 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.auto.AutoState;
-import frc.robot.commands.defaultStates.DefaultCandles;
 import frc.robot.commands.logic.RobotState;
 import frc.robot.commands.logic.ScoreMode;
+import frc.robot.commands.teleop.defaults.DefaultCandles;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AmpSensors;
 import frc.robot.subsystems.Candles;
@@ -26,11 +26,11 @@ import frc.robot.subsystems.PoopMonitor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Wrist;
-import frc.robot.util.Controls;
-import frc.robot.util.FieldZones;
-import frc.robot.util.LocalizationState;
-import frc.robot.util.LocalizationUtil;
-import frc.robot.util.PointsOfInterest;
+import frc.robot.util.extensions.Controls;
+import frc.robot.util.zoning.FieldZones;
+import frc.robot.util.zoning.LocalizationState;
+import frc.robot.util.zoning.LocalizationUtil;
+import frc.robot.util.zoning.PointsOfInterest;
 
 public class RobotContainer {
   public static double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed

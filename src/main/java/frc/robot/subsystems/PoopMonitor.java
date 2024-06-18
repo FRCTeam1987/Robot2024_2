@@ -5,7 +5,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
@@ -31,15 +31,15 @@ public class PoopMonitor extends SubsystemBase {
   }
 
   public Command StartPoopMonitorCommand() {
-    return new InstantCommand(() -> startMonitor());
+    return new InstCmd(() -> startMonitor());
   }
 
   public Command StopPoopMonitorCommand() {
-    return new InstantCommand(() -> stopMonitor());
+    return new InstCmd(() -> stopMonitor());
   }
 
   public Command ResetPoopMonitorCommand() {
-    return new InstantCommand(() -> resetPooped());
+    return new InstCmd(() -> resetPooped());
   }
 
   /** Creates a new PoopMonitor. */

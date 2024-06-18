@@ -9,7 +9,7 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.AutoState;
 import frc.robot.subsystems.Shooter;
-import frc.robot.util.FieldZones;
+import frc.robot.util.zoning.FieldZones;
 
 public class DefaultAutoShooter extends Command {
 

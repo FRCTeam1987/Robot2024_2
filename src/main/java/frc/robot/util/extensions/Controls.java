@@ -1,10 +1,10 @@
-package frc.robot.util;
+package frc.robot.util.extensions;
 
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.statechangers.IntakeNoteState;
-import frc.robot.commands.statechangers.ShootNoteState;
-import frc.robot.commands.stateless.SwerveCommand;
+import frc.robot.commands.teleop.stated.IntakeNoteState;
+import frc.robot.commands.teleop.stated.ShootNoteState;
+import frc.robot.commands.teleop.stateless.SwerveCommand;
 
 public class Controls extends RobotContainer {
     

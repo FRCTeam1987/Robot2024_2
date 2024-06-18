@@ -1,4 +1,4 @@
-package frc.robot.commands.defaultStates;
+package frc.robot.commands.teleop.defaults;
 
 import static frc.robot.RobotContainer.*;
 
@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.logic.ScoreMode;
-import frc.robot.util.FieldZones;
+import frc.robot.util.zoning.FieldZones;
 
 public class DefaultShooter extends Command{
   public DefaultShooter() {

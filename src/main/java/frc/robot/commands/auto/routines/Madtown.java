@@ -7,7 +7,7 @@ package frc.robot.commands.auto.routines;
 import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -53,7 +53,7 @@ public class Madtown extends ParallelCommandGroup {
                     .withTimeout(1.0)
                     .andThen(Util.PathFindToAutoSourceCloseShot())
                     .andThen(new AutoAimAndShoot()),
-                new InstantCommand(),
+                new InstCmd(),
                 () -> INITIAL_WAS_INTERRUPTED),
             new RotateUntilNote(isBlue),
             new AutoCollectNote(2.5),

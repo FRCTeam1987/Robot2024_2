@@ -4,7 +4,7 @@
 
 package frc.robot.commands.auto.actions;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import frc.robot.util.InstCmd;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
@@ -21,14 +21,14 @@ public class IntakeNoteSequenceAuto extends SequentialCommandGroup {
   /** Creates a new IntakeNoteSequence. */
   public IntakeNoteSequenceAuto() {
     addCommands(
-      new InstantCommand(() -> {
+      new InstCmd(() -> {
         RobotContainer.setAutoState(AutoState.COLLECTING);
         RobotContainer.INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
         RobotContainer.ELEVATOR.goHome();
       },
       RobotContainer.INTAKE),
       new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
-      new InstantCommand(() -> {
+      new InstCmd(() -> {
         RobotContainer.SHOOTER.stopFeeder();
         RobotContainer.setAutoState(AutoState.DEFAULT);
         RobotContainer.INTAKE.stopBoth();

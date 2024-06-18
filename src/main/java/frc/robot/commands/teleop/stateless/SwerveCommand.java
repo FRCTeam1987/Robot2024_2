@@ -1,4 +1,4 @@
-package frc.robot.commands.stateless;
+package frc.robot.commands.teleop.stateless;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import edu.wpi.first.math.controller.PIDController;
