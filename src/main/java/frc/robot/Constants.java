@@ -119,11 +119,11 @@ public class Constants {
   public static class Shooter {
     public static final double FEEDER_FEEDFWD_VOLTS = 4; // 6 // 4
     public static final double FEEDER_FEEDFWD_VOLTS_AGRESSIVE = 6; // 6 // 4
-    public static final double FEEDER_SHOOT_VOLTS = 8; // 4
+    public static final double FEEDER_SHOOT_VOLTS = 10.0; // 4
     public static final double FEEDER_RETRACT_VOLTS = -2;
-    public static final double FEEDER_AUTO_VOLTS = 8.0;
 
     public static final double SHOOTER_RPM = 4500;
+    public static final double SHOOTER_POOP_RPM = 750;
     public static final double SHOOTER_RPM_CLOSERANGE = 3500; // NEEDS to be smaller
     public static final double SHOOTER_LOB_RPM = 3000; // NEEDS to be smaller
     public static final double SHOOTER_IDLE_SHOOTING_RPM = 3000; // NEEDS to be smaller
@@ -133,6 +133,8 @@ public class Constants {
     public static final double SPIN_RATIO = 0.66; // 0.85
     public static final double ANTI_SPIN_RATIO = 1.34; // 0.85
     public static final int SHOOTER_AMP_RPM = 550;
+
+    public static final double SHOT_DEBOUNCE_TIME = 0.08;
   }
 
   public static class Intake {

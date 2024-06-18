@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.auto;
+package frc.robot.commands.auto.routines;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -13,6 +13,11 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
+import frc.robot.commands.auto.actions.AutoAimAndShoot;
+import frc.robot.commands.auto.actions.AutoCollectNote;
+import frc.robot.commands.auto.actions.RotateUntilNote;
+import frc.robot.commands.auto.defaults.DefaultAutoShooter;
+import frc.robot.commands.auto.defaults.DefaultAutoWrist;
 import frc.robot.util.Util;
 import java.util.function.BooleanSupplier;
 
@@ -47,21 +52,21 @@ public class Madtown extends ParallelCommandGroup {
                     // have time in 15 seconds
                     .withTimeout(1.0)
                     .andThen(Util.PathFindToAutoSourceCloseShot())
-                    .andThen(new AutoAimAndShoot(RobotContainer.DRIVETRAIN, RobotContainer.SHOOTER)),
+                    .andThen(new AutoAimAndShoot()),
                 new InstantCommand(),
                 () -> INITIAL_WAS_INTERRUPTED),
             new RotateUntilNote(isBlue),
             new AutoCollectNote(2.5),
             Util.PathFindToAutoMadtownShot(),
-            new AutoAimAndShoot(RobotContainer.DRIVETRAIN, RobotContainer.SHOOTER),
+            new AutoAimAndShoot(),
             // new InstantShoot(RobotContainer.SHOOTER),
             new RotateUntilNote(isBlue),
             new AutoCollectNote(2.75),
             Util.PathFindToAutoMadtownShot(),
-            new AutoAimAndShoot(RobotContainer.DRIVETRAIN, RobotContainer.SHOOTER)
+            new AutoAimAndShoot()
             // new InstantShoot(RobotContainer.SHOOTER)
             ),
-        new AutoAimLockWrist(RobotContainer.WRIST, RobotContainer::getAutoState),
-        new AutoIdleShooter(RobotContainer.SHOOTER, RobotContainer::getAutoState));
+        new DefaultAutoWrist(),
+        new DefaultAutoShooter());
   }
 }

@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.auto;
+package frc.robot.commands.auto.actions;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
@@ -11,13 +11,11 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.util.Util;
 import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class PointAtSpeaker extends Command {
-  private final CommandSwerveDrivetrain drivetrain;
   private final SwerveRequest.FieldCentric drive =
       new SwerveRequest.FieldCentric()
           .withDeadband(RobotContainer.MaxSpeed * 0.1)
@@ -32,11 +30,9 @@ public class PointAtSpeaker extends Command {
   double rotationRate = 0;
 
   public PointAtSpeaker(
-      CommandSwerveDrivetrain drivetrain,
       DoubleSupplier velocityXSupplier,
       DoubleSupplier velocityYSupplier) {
     this(
-        drivetrain,
         velocityXSupplier,
         velocityYSupplier,
         () -> false,
@@ -44,12 +40,10 @@ public class PointAtSpeaker extends Command {
   }
 
   public PointAtSpeaker(
-      CommandSwerveDrivetrain drivetrain,
       DoubleSupplier velocityXSupplier,
       DoubleSupplier velocityYSupplier,
       BooleanSupplier shouldLob,
       BooleanSupplier shouldStop) {
-    this.drivetrain = drivetrain;
     this.velocityXSupplier = velocityXSupplier;
     this.velocityYSupplier = velocityYSupplier;
     this.shouldLob = shouldLob;
@@ -57,7 +51,7 @@ public class PointAtSpeaker extends Command {
     THETA_CONTROLLER = new PIDController(0.13, 0.01, 0.0); // (0.183, 0.1, 0.0013)
     THETA_CONTROLLER.enableContinuousInput(-180.0, 180.0);
     THETA_CONTROLLER.setTolerance(0.01, 0.01);
-    addRequirements(drivetrain);
+    addRequirements(RobotContainer.DRIVETRAIN);
   }
 
   @Override
@@ -69,21 +63,14 @@ public class PointAtSpeaker extends Command {
 
   @Override
   public void execute() {
-    // Pose2d current = drivetrain.getPose();
-    Pose2d pose = drivetrain.getPose();
+    Pose2d pose = RobotContainer.DRIVETRAIN.getPose();
     desiredRotation =
         shouldLob.getAsBoolean()
             ? Util.getRotationToAllianceLob(pose).getDegrees()
             : Util.getRotationToAllianceSpeaker(pose).getDegrees();
     double rotationRate =
         THETA_CONTROLLER.calculate(pose.getRotation().getDegrees(), desiredRotation);
-    // System.out.println(
-    //     "Current Angle: "
-    //         + drivetrain.getPose().getRotation().getDegrees()
-    //         + " | Desired Angle: "
-    //         + desiredRotation);
-    // System.out.println("Rotation Rate: " + rotationRate);
-    drivetrain.setControl(
+    RobotContainer.DRIVETRAIN.setControl(
         drive
             .withVelocityX(
                 Util.squareValue(velocityXSupplier.getAsDouble())
@@ -111,7 +98,7 @@ public class PointAtSpeaker extends Command {
             .withVelocityY(0.0) // Drive left with negative X (left)
             .withRotationalRate(0.0); // Drive counterclockwise with negative X (left)
 
-    drivetrain.setControl(driveRequest);
+    RobotContainer.DRIVETRAIN.setControl(driveRequest);
     if (interrupted) {}
   }
 }

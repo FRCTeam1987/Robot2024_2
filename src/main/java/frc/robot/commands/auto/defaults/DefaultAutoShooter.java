@@ -2,33 +2,23 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands.auto;
+package frc.robot.commands.auto.defaults;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.RobotContainer;
 import frc.robot.Constants;
+import frc.robot.RobotContainer;
+import frc.robot.commands.auto.AutoState;
 import frc.robot.subsystems.Shooter;
-import java.util.function.Supplier;
+import frc.robot.util.FieldZones;
 
-public class AutoIdleShooter extends Command {
+public class DefaultAutoShooter extends Command {
 
-  private static final double POOP_RPM = 750;
-
-  /** Creates a new IdleShooter. */
   private final Shooter shooter;
 
-  private final Supplier<AutoState> autoStateSupplier;
-
-  // private final Debouncer validShotDebouncer;
-
-  public AutoIdleShooter(Shooter shooter) {
-    this(shooter, () -> null);
-  }
-
-  public AutoIdleShooter(final Shooter shooter, final Supplier<AutoState> autoStateSupplier) {
-    addRequirements(shooter);
-    this.shooter = shooter;
-    this.autoStateSupplier = autoStateSupplier;
+  /** Creates a new DefaultAutoShooter. */
+  public DefaultAutoShooter() {
+    this.shooter = RobotContainer.SHOOTER;
+    addRequirements(this.shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -38,14 +28,7 @@ public class AutoIdleShooter extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    // if (shooter.isCenterBroken()) {
-    //   RobotContainer.aimAtTargetAuto = true;
-    // } else {
-    //   RobotContainer.aimAtTargetAuto = false;
-    // }
-    // if (shooter.isCenterBroken() &&
-    // validShotDebouncer.calculate(Util.isValidShot(SPEAKER_LIMELIGHT))) {
-    final AutoState state = autoStateSupplier.get();
+    final AutoState state = RobotContainer.getAutoState();
     switch (state) {
       case COLLECTING:
         if (shooter.isCenterBroken()) {
@@ -54,19 +37,19 @@ public class AutoIdleShooter extends Command {
           shooter.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
         }
         final double poseX = RobotContainer.DRIVETRAIN.getPose().getX();
-        if (poseX < 6.0 || poseX > 16.56 - 6.0) {
+        if (poseX < FieldZones.BLUE_WING_LINE_X || poseX > FieldZones.RED_WING_LINE_X) {
           shooter.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         } else {
-          shooter.setRPMShootNoSpin(POOP_RPM);
+          shooter.setRPMShootNoSpin(Constants.Shooter.SHOOTER_POOP_RPM);
         }
         break;
       case POOP_PREP:
         shooter.stopFeeder();
-        shooter.setRPMShootNoSpin(POOP_RPM);
+        shooter.setRPMShootNoSpin(Constants.Shooter.SHOOTER_POOP_RPM);
         break;
       case POOPING:
         shooter.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
-        shooter.setRPMShootNoSpin(POOP_RPM);
+        shooter.setRPMShootNoSpin(Constants.Shooter.SHOOTER_POOP_RPM);
         break;
       case SHOOT_PREP:
         if (shooter.isRearBroken() && !shooter.isCenterBroken()) {
@@ -77,7 +60,7 @@ public class AutoIdleShooter extends Command {
         shooter.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         break;
       case SHOOTING:
-        shooter.setFeederVoltage(Constants.Shooter.FEEDER_AUTO_VOLTS + 2.0);
+        shooter.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
         shooter.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         break;
       default:

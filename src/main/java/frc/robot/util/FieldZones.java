@@ -15,10 +15,10 @@ public class FieldZones {
     OPPONENT_WING
   }
 
-  private static final double X_MIN = 0.0;
-  private static final double Y_MIN = 0.0;
-  private static final double BLUE_WING_LINE_X = 5.85;
-  private static final double RED_WING_LINE_X = 10.72;
+  public static final double X_MIN = 0.0;
+  public static final double Y_MIN = 0.0;
+  public static final double BLUE_WING_LINE_X = 5.85;
+  public static final double RED_WING_LINE_X = 10.72;
 
   public static final RectanglePoseArea AMP_BLUE = new RectanglePoseArea(new Translation2d(X_MIN, 6.0 ), new Translation2d(4.7, LocalizationUtil.FIELD_WIDTH));
   public static final RectanglePoseArea AMP_RED = new RectanglePoseArea(new Translation2d(LocalizationUtil.blueFlipToRed(AMP_BLUE.getMaxX()), AMP_BLUE.getMinY()), new Translation2d(LocalizationUtil.FIELD_LENGTH, LocalizationUtil.FIELD_WIDTH));
