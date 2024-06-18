@@ -22,7 +22,7 @@ public class Controls extends RobotContainer {
       .rightBumper()
         .onTrue(new ShootNoteState());
     DRIVER_CONTROLLER
-    .leftBumper().onTrue(new IntakeNoteState());
+      .leftBumper().onTrue(new IntakeNoteState());
   }
 
   public static void configureCoDriverController() {

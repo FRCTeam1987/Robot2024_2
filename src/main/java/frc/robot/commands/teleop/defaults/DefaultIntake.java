@@ -3,9 +3,13 @@ package frc.robot.commands.defaultStates;
 import com.fasterxml.jackson.databind.ser.std.StdKeySerializers.Default;
 
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
+import static frc.robot.RobotContainer.INTAKE;
+
 public class DefaultIntake extends Command{
+
   public DefaultIntake() {
     addRequirements(RobotContainer.INTAKE);
   }
@@ -19,6 +23,7 @@ public class DefaultIntake extends Command{
   public void execute() {
     switch(RobotContainer.STATE) {
         case COLLECTING:
+        INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS);
             break;
         case COLLECT_PREP:
             break;

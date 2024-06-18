@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.auto.AutoState;
 import frc.robot.commands.defaultStates.DefaultCandles;
 import frc.robot.commands.logic.RobotState;
+import frc.robot.commands.logic.ScoreMode;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AmpSensors;
 import frc.robot.subsystems.Candles;
@@ -41,6 +42,7 @@ public class RobotContainer {
   public static final CommandSwerveDrivetrain DRIVETRAIN = TunerConstants.DriveTrain; // My drivetrain
 
   public static RobotState STATE = RobotState.DEFAULT;
+  public static ScoreMode MODE = ScoreMode.SPEAKER;
 
   public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID, Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
   public static Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID, Constants.IDs.CANBUS_ATTACHED);
@@ -111,5 +113,13 @@ public class RobotContainer {
 
   public static RobotState setRobotState(RobotState STATE) {
     return RobotContainer.STATE = STATE;
+  }
+
+  public static ScoreMode setScoreMode(ScoreMode MODE) {
+    return RobotContainer.MODE = MODE;
+  }
+
+  public static ScoreMode getScoreMode() {
+    return MODE;
   }
 }
