@@ -12,9 +12,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 import frc.robot.commands.auto.AutoState;
-import frc.robot.commands.defaultStates.Default;
 import frc.robot.commands.defaultStates.DefaultCandles;
 import frc.robot.commands.logic.RobotState;
 import frc.robot.generated.TunerConstants;
@@ -37,8 +35,8 @@ public class RobotContainer {
   public static double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
   public static double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
-  private static final CommandXboxController DRIVER_CONTROLLER = new CommandXboxController(0); // My joystick
-  private static final CommandXboxController CODRIVER_CONTROLLER = new CommandXboxController(1); // My joystick
+  public static final CommandXboxController DRIVER_CONTROLLER = new CommandXboxController(0); // My joystick
+  public static final CommandXboxController CODRIVER_CONTROLLER = new CommandXboxController(1); // My joystick
 
   public static final CommandSwerveDrivetrain DRIVETRAIN = TunerConstants.DriveTrain; // My drivetrain
 
@@ -53,18 +51,18 @@ public class RobotContainer {
   public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME, Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
   public static PoopMonitor POOP_MONITOR = new PoopMonitor();
 
-  private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
+  public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
       .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
                                                                // driving in open loop
-  private final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-  private final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage);
-  private final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+  public static final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
+  public static final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+  public static final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
 
   /* Path follower */
-  private Command runAuto = DRIVETRAIN.getAutoPath("Tests");
+  public Command runAuto = DRIVETRAIN.getAutoPath("Tests");
 
-  private final Telemetry logger = new Telemetry(MaxSpeed);
+  public final Telemetry logger = new Telemetry(MaxSpeed);
 
   public RobotContainer() {
     Controls.configureDriverController();
@@ -73,7 +71,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    /* First put the drivetrain into auto run mode, then run the auto */
     return runAuto;
   }
 
@@ -108,11 +105,11 @@ public class RobotContainer {
     updateLocalizationState();
   }
 
-  public RobotState getRobotState() {
+  public static RobotState getRobotState() {
     return STATE;
   }
 
-  public RobotState setRobotState(RobotState STATE) {
+  public static RobotState setRobotState(RobotState STATE) {
     return RobotContainer.STATE = STATE;
   }
 }

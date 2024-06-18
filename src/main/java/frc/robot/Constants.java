@@ -7,11 +7,20 @@ package frc.robot;
 import java.util.Arrays;
 import java.util.List;
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import frc.robot.util.InterpolatingDouble;
 import frc.robot.util.InterpolatingTreeMap;
 
 /** Add your docs here. */
 public class Constants {
+
+  public static class Limiters {
+    public static final double TRANSLATION_SLEW_RATE = 2.5;
+      public static final SlewRateLimiter TRANSLATION_X_SLEW_RATE =
+      new SlewRateLimiter(Constants.Limiters.TRANSLATION_SLEW_RATE);
+     public static final SlewRateLimiter TRANSLATION_Y_SLEW_RATE =
+      new SlewRateLimiter(Constants.Limiters.TRANSLATION_SLEW_RATE);
+  }
 
   public static class Limelight {
     public static final String LEFT_LOW = "limelight-leftlo";
