@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import frc.robot.util.InstCmd;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.AutoState;
 import frc.robot.util.interpolable.InterpolatingDouble;
@@ -264,7 +263,7 @@ public class Util {
         1.5);
   }
 
-  public static boolean isPointedAtLob() {
+  public static boolean isPointedAtPass() {
     return Util.isWithinTolerance(
         RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
         RobotContainer.getLocalizationState().getPassAngle().getDegrees(),

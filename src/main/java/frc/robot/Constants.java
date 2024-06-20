@@ -131,6 +131,7 @@ public class Constants {
 
   public static class Shooter {
     public static final double FEEDER_FEEDFWD_VOLTS = 4; // 6 // 4
+        public static final double FEEDER_FEEDFWD_VOLTS_SLOW = 3.0; // 6 // 4
     public static final double FEEDER_FEEDFWD_VOLTS_AGRESSIVE = 6; // 6 // 4
     public static final double FEEDER_SHOOT_VOLTS = 10.0; // 4
     public static final double FEEDER_RETRACT_VOLTS = -2;

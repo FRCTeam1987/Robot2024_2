@@ -23,10 +23,10 @@ public class DefaultShooter extends Command{
         case COLLECTING:
             SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
             break;
-        case COLLECT_PREP:
+        case COLLECTING_SLOW:
+            SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_SLOW);
             break;
         case POOPING:
-            break;
         case POOP_PREP:
             break;
         case SHOOTING:
@@ -35,6 +35,7 @@ public class DefaultShooter extends Command{
         case SHOOT_PREP:
             break;
         case DEFAULT:
+                    SHOOTER.stopFeeder();
             if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
                 if (MODE == ScoreMode.SPEAKER) {
                     SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);

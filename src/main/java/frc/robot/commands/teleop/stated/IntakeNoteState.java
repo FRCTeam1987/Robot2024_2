@@ -23,6 +23,10 @@ public class IntakeNoteState extends SequentialCommandGroup {
         RobotContainer.setRobotState(RobotState.COLLECTING);
       }),
       new WaitUntilCommand(() -> RobotContainer.SHOOTER.isRearBroken()),
+            new InstCmd(() -> {
+        RobotContainer.setRobotState(RobotState.COLLECTING_SLOW);
+      }),
+            new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
       new InstCmd(() -> {
         RobotContainer.setRobotState(RobotState.DEFAULT);
       })

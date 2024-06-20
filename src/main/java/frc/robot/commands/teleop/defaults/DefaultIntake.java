@@ -25,9 +25,11 @@ public class DefaultIntake extends Command{
         case COLLECTING:
         INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS);
             break;
-        case COLLECT_PREP:
+        case COLLECTING_SLOW:
+        INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS - 1.5);
             break;
         case DEFAULT:
+        INTAKE.stopBoth();
             break;
         case POOPING:
             break;

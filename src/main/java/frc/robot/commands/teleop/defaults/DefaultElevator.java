@@ -20,7 +20,7 @@ public class DefaultElevator extends Command {
     switch(RobotContainer.STATE) {
         case COLLECTING:
             break;
-        case COLLECT_PREP:
+        case COLLECTING_SLOW:
             break;
         case DEFAULT:
             break;

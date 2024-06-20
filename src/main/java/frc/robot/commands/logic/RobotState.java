@@ -4,7 +4,7 @@ public enum RobotState {
         DEFAULT,
 
         COLLECTING,
-        COLLECT_PREP,
+        COLLECTING_SLOW,
 
         POOPING,
         POOP_PREP,
