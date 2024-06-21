@@ -36,6 +36,14 @@ public class DefaultElevator extends Command {
       case PASS:
         ELEVATOR.setLengthInches(Constants.Elevator.PASS_ELEVATOR_HEIGHT);
         break;
+      case SUBWOOFER_PREP:
+      case SUBWOOFER:
+        ELEVATOR.setLengthInches(Constants.Elevator.SUBWOOFER_SHOT_HEIGHT);
+        break;
+      case PODIUM_PREP:
+      case PODIUM:
+        ELEVATOR.setLengthInches(Constants.Elevator.PODIUM_SHOT_HEIGHT);
+        break;
       default:
         if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
           ELEVATOR.goHome();
@@ -45,6 +53,8 @@ public class DefaultElevator extends Command {
           } else {
             ELEVATOR.goHome();
           }
+        } else {
+          ELEVATOR.goHome();
         }
 
         break;

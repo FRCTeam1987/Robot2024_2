@@ -19,6 +19,7 @@ import frc.robot.commands.teleop.defaults.DefaultElevator;
 import frc.robot.commands.teleop.defaults.DefaultIntake;
 import frc.robot.commands.teleop.defaults.DefaultShooter;
 import frc.robot.commands.teleop.defaults.DefaultWrist;
+import frc.robot.commands.teleop.logic.DriveMode;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.generated.TunerConstants;
@@ -48,7 +49,8 @@ public class RobotContainer {
   public static final CommandSwerveDrivetrain DRIVETRAIN = TunerConstants.DriveTrain; // My drivetrain
 
   public static RobotState STATE = RobotState.DEFAULT;
-  public static ScoreMode MODE = ScoreMode.SPEAKER;
+  public static ScoreMode SCORE_MODE = ScoreMode.SPEAKER;
+  public static DriveMode DRIVE_MODE = DriveMode.AUTOMATIC;
 
   public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
       Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
@@ -155,10 +157,18 @@ public class RobotContainer {
   }
 
   public static ScoreMode setScoreMode(ScoreMode MODE) {
-    return RobotContainer.MODE = MODE;
+    return RobotContainer.SCORE_MODE = MODE;
   }
 
   public static ScoreMode getScoreMode() {
-    return MODE;
+    return SCORE_MODE;
+  }
+
+  public static DriveMode setDriveMode(DriveMode MODE) {
+    return RobotContainer.DRIVE_MODE = MODE;
+  }
+
+  public static DriveMode getDriveMode() {
+    return DRIVE_MODE;
   }
 }

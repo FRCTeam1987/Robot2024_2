@@ -83,6 +83,8 @@ public class Constants {
         public static final double MAX_SHOOT_DEG = 35.0;
         public static final double COLLECT_DEG = 26.0;
         public static final double POOP_DEG = 26.0;
+        public static final double SUBWOOFER_SHOT_DEG = 50.0;
+        public static final double PODIUM_SHOT_DEG = 21.0;
 
         public static final double WRIST_MAX_ROT = 3;
         public static final double WRIST_MIN_ROT = 0;
@@ -113,7 +115,7 @@ public class Constants {
 
         public static final double EXTENSION_MOTION_ACCELERATION = 45000;
         public static final double EXTENSION_CRUISE_VELOCITY = 65000;
-        public static final double EXTENSION_ALLOWABLE_ERROR = 0.375;
+        public static final double EXTENSION_ALLOWABLE_ERROR = 0.275;
 
         public static final double EXTENSION_CURRENT_LIMIT = 90.0;
 
@@ -133,8 +135,10 @@ public class Constants {
         public static final double AMP_ELEVATOR_HEIGHT = 30.5;
         public static final double AMP_ELEVATOR_EXIT_HEIGHT = 4.2;
 
-        public static final double PASS_ELEVATOR_HEIGHT = 5.0;
+        public static final double PASS_ELEVATOR_HEIGHT = 4.4;
 
+        public static final double SUBWOOFER_SHOT_HEIGHT = 6.5;
+        public static final double PODIUM_SHOT_HEIGHT = 28;
     }
 
     public static class Shooter {
@@ -158,6 +162,8 @@ public class Constants {
 
         public static final double SHOT_DEBOUNCE_TIME = 0.08;
         public static final double AMP_FEEDER_VOLTAGE = -7.0;
+
+        public static final double SUBWOOFER_SHOT_RPM = 2750;
     }
 
     public static class Intake {
@@ -217,11 +223,11 @@ public class Constants {
         DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
                 new InterpolatingDouble(6.15), new InterpolatingDouble(21.45));
 
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 1.15));
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 1.15));
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 1.15));
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 1.15));
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 1.15));
-        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 1.15));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 0.95));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 0.95));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 0.95));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 0.95));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 0.95));
+        DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 0.95));
     }
 }

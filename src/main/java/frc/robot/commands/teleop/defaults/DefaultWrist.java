@@ -42,9 +42,17 @@ public class DefaultWrist extends Command {
       case AMP_EXIT:
         WRIST.goHome();
         break;
+      case SUBWOOFER_PREP:
+      case SUBWOOFER:
+        WRIST.setDegrees(Constants.Wrist.SUBWOOFER_SHOT_DEG);
+        break;
+      case PODIUM_PREP:
+      case PODIUM:
+        WRIST.setDegrees(Constants.Wrist.PODIUM_SHOT_DEG);
+        break;
       default:
         if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
-          if (MODE == ScoreMode.SPEAKER) {
+          if (SCORE_MODE == ScoreMode.SPEAKER) {
             if (SHOOTER.isCenterBroken()) {
               if (!Util.isValidShot()) {
                 WRIST.setDegrees(35.0);
@@ -62,6 +70,8 @@ public class DefaultWrist extends Command {
             WRIST.goHome();
           }
 
+        } else {
+          WRIST.goHome();
         }
         break;
 

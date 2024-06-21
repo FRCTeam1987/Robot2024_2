@@ -7,9 +7,14 @@ public enum RobotState {
 
         POOPING_PREP, POOPING,
 
+        SUBWOOFER_PREP, SUBWOOFER,
+
+        PODIUM_PREP, PODIUM,
+
         SHOOTING,
 
         AMP_PREP, AMP_SCORE, AMP_EXIT,
 
         PASS
+
 }

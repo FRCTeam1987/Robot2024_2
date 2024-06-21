@@ -54,11 +54,25 @@ public class DefaultShooter extends Command {
             case SHOOTING:
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
                 break;
+            case SUBWOOFER_PREP:
+                SHOOTER.setRPMShoot(Constants.Shooter.SUBWOOFER_SHOT_RPM);
+                break;
+            case SUBWOOFER:
+                SHOOTER.setRPMShoot(Constants.Shooter.SUBWOOFER_SHOT_RPM);
+                SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_AGRESSIVE);
+                break;
+            case PODIUM_PREP:
+                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                break;
+            case PODIUM:
+                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_AGRESSIVE);
+                break;
             default:
                 SHOOTER.stopFeeder();
                 if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
-                    if (MODE == ScoreMode.SPEAKER) {
-                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                    if (SCORE_MODE == ScoreMode.SPEAKER) {
+                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
                     } else {
                         SHOOTER.stopShooter();
                     }
