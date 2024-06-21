@@ -9,11 +9,16 @@ import java.util.Map;
 
 import com.pathplanner.lib.auto.NamedCommands;
 
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.logic.AutoState;
+import frc.robot.commands.auto.routines.Source_5_4;
 import frc.robot.util.InstCmd;
 
 import static frc.robot.RobotContainer.*;
@@ -34,5 +39,16 @@ public class AutoCommands {
 
   public static void addAllNamedCommands() {
     NamedCommands.registerCommands(namedCommands);
+  }
+
+  public static SendableChooser<Command> getRoutines() {
+    final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
+    autoChooser.setDefaultOption("DoNothing", new InstantCommand());
+    autoChooser.addOption("Source 5-4", new ConditionalCommand(
+      new Source_5_4(Alliance.Blue),
+      new Source_5_4(Alliance.Red),
+      () -> DRIVETRAIN.getAlliance().equals(Alliance.Blue)
+    ));
+    return autoChooser;
   }
 }
