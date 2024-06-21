@@ -25,7 +25,7 @@ public class LocalizationUtil {
   public static Pose2d blueFlipToRed(final Pose2d blue) {
     return new Pose2d(
       blueFlipToRed(blue.getTranslation()),
-      blue.getRotation()
+      Rotation2d.fromDegrees(-180.0).minus(blue.getRotation())
     );
   }
 

@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.05,
-        "y": 2.4531510266000858
+        "x": 4.0,
+        "y": 3.0
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.005696013822126,
-        "y": 2.0730554601057953
+        "x": 2.521002056073846,
+        "y": 2.584727322811128
       },
       "isLocked": false,
-      "linkedName": "source_5-4_a_end"
+      "linkedName": "source_5-4_b_end"
     },
     {
       "anchor": {
-        "x": 5.561797226676051,
-        "y": 1.85
+        "x": 2.54,
+        "y": 1.57
       },
       "prevControl": {
-        "x": 6.1648145973768385,
-        "y": 1.85
+        "x": 2.04,
+        "y": 1.57
       },
       "nextControl": {
-        "x": 4.958779855975263,
-        "y": 1.85
+        "x": 2.9626590588333026,
+        "y": 1.57
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.0,
-        "y": 3.0
+        "x": 4.5,
+        "y": 1.57
       },
       "prevControl": {
-        "x": 4.883883476483184,
-        "y": 2.1161165235168156
+        "x": 4.0,
+        "y": 1.57
       },
       "nextControl": null,
-      "isLocked": true,
-      "linkedName": "source_5-4_b_end"
+      "isLocked": false,
+      "linkedName": null
     }
   ],
   "rotationTargets": [
@@ -52,7 +52,25 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Collect Note",
+      "waypointRelativePos": 0.6,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "CollectNote"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.0,
     "maxAcceleration": 4.25,
@@ -61,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -30.0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "source_5-4",
+  "folder": "source_5-4_red",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": -30.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

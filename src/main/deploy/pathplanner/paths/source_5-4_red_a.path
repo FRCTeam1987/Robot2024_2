@@ -1,0 +1,205 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.4014455429084471,
+        "y": 1.57
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.401445542908447,
+        "y": 1.57
+      },
+      "isLocked": false,
+      "linkedName": "source_5-4_a_start"
+    },
+    {
+      "anchor": {
+        "x": 4.0,
+        "y": 1.57
+      },
+      "prevControl": {
+        "x": 2.75,
+        "y": 1.57
+      },
+      "nextControl": {
+        "x": 5.25,
+        "y": 1.57
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.05,
+        "y": 0.87
+      },
+      "prevControl": {
+        "x": 8.05,
+        "y": 0.37
+      },
+      "nextControl": {
+        "x": 8.05,
+        "y": 1.52
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.05,
+        "y": 2.4531510266000858
+      },
+      "prevControl": {
+        "x": 6.550000000000001,
+        "y": 2.4531510266000858
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "source_5-4_a_end"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 2.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Poop Zone",
+      "minWaypointRelativePos": 1.8,
+      "maxWaypointRelativePos": 2.15,
+      "constraints": {
+        "maxVelocity": 3.25,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 360.0
+      }
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "Poop Prep",
+      "waypointRelativePos": 0.30000000000000004,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "PrepPoop"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Poop Start",
+      "waypointRelativePos": 0.8,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartPoop"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Poop Monitor",
+      "waypointRelativePos": 1.7,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartPoopMonitor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Poop Monitor",
+      "waypointRelativePos": 2.25,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoopMonitor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collect Note",
+      "waypointRelativePos": 2.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "CollectNote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Poop Stop",
+      "waypointRelativePos": 2.35,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoop"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.25,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "source_5-4_red",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}
