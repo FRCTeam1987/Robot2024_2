@@ -46,20 +46,11 @@ public class DefaultAutoShooter extends Command {
         SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
         SHOOTER.setRPMShootNoSpin(Constants.Shooter.SHOOTER_POOP_RPM);
         break;
-      case SHOOT_PREP:
-        if (SHOOTER.isRearBroken() && !SHOOTER.isCenterBroken()) {
-          SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
-        } else {
-          SHOOTER.stopFeeder();
-        }
-        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
-        break;
       case SHOOTING:
         SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
         SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         break;
       default:
-        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         if (SHOOTER.isCenterBroken()) {
           SHOOTER.stopFeeder();
           if (state != AutoState.SHOOTING && state != AutoState.SHOOT_PREP) {
@@ -69,6 +60,11 @@ public class DefaultAutoShooter extends Command {
           SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
         } else {
           SHOOTER.stopFeeder();
+        }
+        if (currentZone != FieldZones.Zone.ALLIANCE_WING) {
+          SHOOTER.setRPMShootNoSpin(Constants.Shooter.SHOOTER_POOP_RPM);
+        } else {
+          SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
         }
     }
   }
