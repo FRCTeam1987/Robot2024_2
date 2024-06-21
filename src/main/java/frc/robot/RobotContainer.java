@@ -13,7 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.auto.AutoState;
+import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.commands.teleop.defaults.DefaultCandles;
 import frc.robot.commands.teleop.defaults.DefaultElevator;
 import frc.robot.commands.teleop.defaults.DefaultIntake;
@@ -32,7 +32,6 @@ import frc.robot.subsystems.PoopMonitor;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Wrist;
-import frc.robot.util.Util;
 import frc.robot.util.extensions.Controls;
 import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.zoning.LocalizationState;
@@ -82,8 +81,6 @@ public class RobotContainer {
   public final Telemetry logger = new Telemetry(MaxSpeed);
 
   public RobotContainer() {
-
-    new Util();
 
     Controls.configureDriverController();
     Controls.configureCoDriverController();

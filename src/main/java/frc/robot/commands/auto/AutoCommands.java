@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.PathFind;
+import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.util.InstCmd;
 
 import static frc.robot.RobotContainer.*;

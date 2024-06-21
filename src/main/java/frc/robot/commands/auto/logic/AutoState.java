@@ -1,4 +1,4 @@
-package frc.robot.commands.auto;
+package frc.robot.commands.auto.logic;
 
 public enum AutoState {
   COLLECTING,

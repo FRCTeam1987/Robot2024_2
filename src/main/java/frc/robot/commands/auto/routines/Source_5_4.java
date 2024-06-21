@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.RobotContainer;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.defaults.DefaultAutoShooter;
@@ -44,9 +43,9 @@ public class Source_5_4 extends ParallelCommandGroup {
           ),
           () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
         ),
-        AutoBuilder.buildAuto("source_5-4_" + color + "_preload")
-          .andThen(PathFind.toSourceShot())
-          .andThen(new AutoAimAndShoot())
+        AutoBuilder.buildAuto("source_5-4_" + color + "_preload"),
+        PathFind.toSourceShot(),
+        new AutoAimAndShoot()
       ),
       new DefaultAutoWrist(),
       new DefaultAutoShooter()

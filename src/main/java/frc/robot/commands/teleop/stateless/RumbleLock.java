@@ -6,14 +6,11 @@ package frc.robot.commands.teleop.stateless;
 
 import java.util.function.BooleanSupplier;
 
-import javax.print.attribute.standard.Finishings;
-
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
-import frc.robot.RobotContainer;
 
 public class RumbleLock extends Command {
   /** Creates a new RumbleLock. */

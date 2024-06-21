@@ -9,7 +9,7 @@ import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.auto.AutoState;
+import frc.robot.commands.auto.logic.AutoState;
 
 public class InstantShoot extends Command {
 

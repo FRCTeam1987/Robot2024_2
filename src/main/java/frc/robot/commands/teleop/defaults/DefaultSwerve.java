@@ -1,27 +1,18 @@
 package frc.robot.commands.teleop.defaults;
 
-import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
-
 import edu.wpi.first.math.controller.HolonomicDriveController;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
-import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.DriveMode;
-import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.generated.TunerConstants;
-import frc.robot.subsystems.CommandSwerveDrivetrain;
 import frc.robot.util.Util;
 import frc.robot.util.zoning.FieldZones;
-
-import java.util.function.DoubleSupplier;
-import java.util.function.IntSupplier;
-
-import javax.lang.model.element.ModuleElement.ProvidesDirective;
+import frc.robot.util.zoning.LocalizationState;
 
 import static frc.robot.RobotContainer.*;
 
@@ -68,29 +59,26 @@ public class DefaultSwerve extends Command {
         .squareValue(Constants.Limiters.TRANSLATION_Y_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftX()))
         * TunerConstants.kSpeedAt12VoltsMps;
     double rotationPercentage = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
-    FieldZones.Zone zone = RobotContainer.getLocalizationState().getFieldZone();
+    final LocalizationState localizationState = RobotContainer.getLocalizationState();
+    FieldZones.Zone zone = localizationState.getFieldZone();
     System.out.println(zone);
     if (prevZone != FieldZones.Zone.ALLIANCE_WING && zone == FieldZones.Zone.ALLIANCE_WING) {
       setDriveMode(DriveMode.AUTOMATIC);
-    }
-
-    if (prevZone == FieldZones.Zone.OPPONENT_WING && zone == FieldZones.Zone.NEUTRAL_WING) {
+    } else if (prevZone == FieldZones.Zone.OPPONENT_WING && zone == FieldZones.Zone.NEUTRAL_WING) {
       setDriveMode(DriveMode.AUTOMATIC);
     }
-
-    prevZone = zone;
 
     if (Math.abs(rotationPercentage) > 0.25) {
       setDriveMode(DriveMode.MANUAL);
     }
     if (DRIVER_CONTROLLER.getRightTriggerAxis() > 0.3 || getDriveMode() == DriveMode.AUTOMATIC) {
       setDriveMode(DriveMode.AUTOMATIC);
-      if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
-        rotationPercentage = getRPS(Util.getRotationToAllianceLob(DRIVETRAIN.getPose()));
+      if (zone == FieldZones.Zone.NEUTRAL_WING) {
+        rotationPercentage = getRPS(localizationState.getPassAngle());
       } else {
         switch (RobotContainer.getScoreMode()) {
           case SPEAKER:
-            rotationPercentage = getRPS(Util.getRotationToAllianceSpeaker(DRIVETRAIN.getPose()));
+            rotationPercentage = getRPS(localizationState.getSpeakerAngle());
             break;
           case AMP:
             rotationPercentage = getRPS(new Rotation2d(Math.toRadians(90.0)));
@@ -112,6 +100,8 @@ public class DefaultSwerve extends Command {
     }
     DRIVETRAIN
         .setControl(drive.withVelocityX(xPercentage).withVelocityY(yPercentage).withRotationalRate(rotationPercentage));
+
+    prevZone = zone;
   }
 
   @Override

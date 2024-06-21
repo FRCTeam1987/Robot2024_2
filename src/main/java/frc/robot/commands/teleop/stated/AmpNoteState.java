@@ -4,12 +4,9 @@
 
 package frc.robot.commands.teleop.stated;
 
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.teleop.logic.RobotState;
-import frc.robot.commands.teleop.stateless.AsyncRumble;
 import frc.robot.commands.teleop.stateless.RumbleLock;
 import frc.robot.RobotContainer;
 import frc.robot.util.InstCmd;

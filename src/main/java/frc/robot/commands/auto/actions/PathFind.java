@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
-import frc.robot.commands.auto.AutoState;
+import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.util.zoning.LocalizationUtil;
 
 /** Add your docs here. */
@@ -31,6 +31,12 @@ public class PathFind {
   public static final Pose2d RED_AUTO_AMP_SHOT = new Pose2d(
     LocalizationUtil.blueFlipToRed(BLUE_AUTO_AMP_SHOT.getTranslation()),
     Rotation2d.fromDegrees(167)
+  );
+
+  public static final Pose2d BLUE_MADTOWN_SHOT = new Pose2d(4.35, 5.15, Rotation2d.fromDegrees(-88));
+  public static final Pose2d RED_MADTOWN_SHOT = new Pose2d(
+    LocalizationUtil.blueFlipToRed(BLUE_MADTOWN_SHOT.getTranslation()),
+    Rotation2d.fromDegrees(-178.0)
   );
 
   private static Command pathfindToPose(Pose2d pose) {
@@ -57,6 +63,16 @@ public class PathFind {
       new ConditionalCommand(
         pathfindToPose(BLUE_AUTO_AMP_SHOT),
         pathfindToPose(RED_AUTO_AMP_SHOT),
+        () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)
+      )
+    );
+  }
+
+  public static Command toMadtownshot() {
+    return new InstantCommand(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP)).andThen(
+      new ConditionalCommand(
+        pathfindToPose(BLUE_MADTOWN_SHOT),
+        pathfindToPose(RED_MADTOWN_SHOT),
         () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)
       )
     );

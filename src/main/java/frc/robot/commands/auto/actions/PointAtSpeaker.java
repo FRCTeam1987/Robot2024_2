@@ -66,8 +66,8 @@ public class PointAtSpeaker extends Command {
     Pose2d pose = RobotContainer.DRIVETRAIN.getPose();
     desiredRotation =
         shouldLob.getAsBoolean()
-            ? Util.getRotationToAllianceLob(pose).getDegrees()
-            : Util.getRotationToAllianceSpeaker(pose).getDegrees();
+            ? RobotContainer.getLocalizationState().getPassAngle().getDegrees()
+            : RobotContainer.getLocalizationState().getSpeakerAngle().getDegrees();
     double rotationRate =
         THETA_CONTROLLER.calculate(pose.getRotation().getDegrees(), desiredRotation);
     RobotContainer.DRIVETRAIN.setControl(

@@ -9,6 +9,7 @@ import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.util.Util;
 import frc.robot.util.interpolable.InterpolatingDouble;
 import frc.robot.util.zoning.FieldZones;
+import frc.robot.util.zoning.LocalizationState;
 
 public class DefaultShooter extends Command {
     public DefaultShooter() {
@@ -48,7 +49,7 @@ public class DefaultShooter extends Command {
                 break;
             case PASS:
                 SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                        .getInterpolated(new InterpolatingDouble(Util.getDistanceToPass())).value);
+                        .getInterpolated(new InterpolatingDouble(RobotContainer.getLocalizationState().getPassDistance())).value);
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case SHOOTING:
@@ -70,15 +71,24 @@ public class DefaultShooter extends Command {
                 break;
             default:
                 SHOOTER.stopFeeder();
-                if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
+                final LocalizationState localizationState = RobotContainer.getLocalizationState();
+                if (localizationState.getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
                     if (SCORE_MODE == ScoreMode.SPEAKER) {
-                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                        if (Util.isWithinTolerance(
+                            RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
+                            localizationState.getSpeakerAngle().getDegrees(),
+                            15.0
+                        )) {
+                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                        } else {
+                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                        }
                     } else {
                         SHOOTER.stopShooter();
                     }
-                } else if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
+                } else if (localizationState.getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
                     SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                            .getInterpolated(new InterpolatingDouble(Util.getDistanceToPass())).value);
+                            .getInterpolated(new InterpolatingDouble(localizationState.getPassDistance())).value);
                 }
 
                 break;

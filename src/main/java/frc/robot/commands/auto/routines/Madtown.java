@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.AutoCollectNote;
+import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.actions.RotateUntilNote;
 import frc.robot.commands.auto.defaults.DefaultAutoShooter;
 import frc.robot.commands.auto.defaults.DefaultAutoWrist;
-import frc.robot.util.Util;
 import java.util.function.BooleanSupplier;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -51,18 +51,18 @@ public class Madtown extends ParallelCommandGroup {
                 new AutoCollectNote(2.75)
                     // have time in 15 seconds
                     .withTimeout(1.0)
-                    .andThen(Util.PathFindToAutoSourceCloseShot())
+                    .andThen(PathFind.toSourceShot())
                     .andThen(new AutoAimAndShoot()),
                 new InstCmd(),
                 () -> INITIAL_WAS_INTERRUPTED),
             new RotateUntilNote(isBlue),
             new AutoCollectNote(2.5),
-            Util.PathFindToAutoMadtownShot(),
+            PathFind.toMadtownshot(),
             new AutoAimAndShoot(),
             // new InstantShoot(RobotContainer.SHOOTER),
             new RotateUntilNote(isBlue),
             new AutoCollectNote(2.75),
-            Util.PathFindToAutoMadtownShot(),
+            PathFind.toMadtownshot(),
             new AutoAimAndShoot()
             // new InstantShoot(RobotContainer.SHOOTER)
             ),

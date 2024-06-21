@@ -28,6 +28,10 @@ public class DefaultAutoIntake extends Command {
           INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
         }
         break;
+      case POOP_PREP:
+      case POOPING:
+        INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
+        break;
       case DEFAULT:
       default:
         INTAKE.stopBoth();
