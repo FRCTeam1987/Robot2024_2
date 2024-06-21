@@ -4,6 +4,9 @@
 
 package frc.robot.commands.teleop.stated;
 
+import static frc.robot.RobotContainer.SHOOTER;
+import static frc.robot.RobotContainer.WRIST;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
@@ -13,22 +16,17 @@ import frc.robot.util.InstCmd;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class IntakeNoteState extends SequentialCommandGroup {
-  /** Creates a new IntakeNoteState. */
-  public IntakeNoteState() {
+public class PoopNoteState extends SequentialCommandGroup {
+  /** Creates a new PoopNoteState. */
+  public PoopNoteState() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.COLLECTING);
-        }),
-        new WaitUntilCommand(() -> RobotContainer.SHOOTER.isRearBroken()),
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.COLLECTING_SLOW);
-        }),
-        new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.DEFAULT);
-        }));
+        new InstCmd(() -> RobotContainer.setRobotState(RobotState.POOPING_PREP)),
+        new WaitUntilCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint()),
+        new InstCmd(() -> RobotContainer.setRobotState(RobotState.POOPING)),
+        new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
+        new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
   }
+
 }

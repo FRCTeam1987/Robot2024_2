@@ -8,7 +8,7 @@ import frc.robot.RobotContainer;
 
 import static frc.robot.RobotContainer.INTAKE;
 
-public class DefaultIntake extends Command{
+public class DefaultIntake extends Command {
 
   public DefaultIntake() {
     addRequirements(RobotContainer.INTAKE);
@@ -21,32 +21,23 @@ public class DefaultIntake extends Command{
 
   @Override
   public void execute() {
-    switch(RobotContainer.STATE) {
-        case COLLECTING:
+    switch (RobotContainer.STATE) {
+      case COLLECTING:
         INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS);
-            break;
-        case COLLECTING_SLOW:
-        INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS - 1.5);
-            break;
-        case DEFAULT:
+        break;
+      case COLLECTING_SLOW:
+        INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_SLOW_VOLTS);
+        break;
+      default:
         INTAKE.stopBoth();
-            break;
-        case POOPING:
-            break;
-        case POOP_PREP:
-            break;
-        case SHOOTING:
-            break;
-        case SHOOT_PREP:
-            break;
-        default:
-            break;
+        break;
 
-      }
+    }
   }
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   @Override
   public boolean isFinished() {

@@ -13,20 +13,20 @@ import static frc.robot.RobotContainer.DRIVETRAIN;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class SubLocalize extends InstantCommand {
-  public SubLocalize() {
+public class ReLocalizeSub extends InstantCommand {
+  public ReLocalizeSub() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-                          if (DRIVETRAIN.getAlliance() == Alliance.Blue) {
-                    DRIVETRAIN.seedFieldRelative(
-                        new Pose2d(1.37, 5.52, Rotation2d.fromDegrees(0.0)));
-                  } else {
-                    DRIVETRAIN.seedFieldRelative(
-                        new Pose2d(15.2, 5.5, Rotation2d.fromDegrees(-180)));
-                  }
+    if (DRIVETRAIN.getAlliance() == Alliance.Blue) {
+      DRIVETRAIN.seedFieldRelative(
+          new Pose2d(1.37, 5.52, Rotation2d.fromDegrees(0.0)));
+    } else {
+      DRIVETRAIN.seedFieldRelative(
+          new Pose2d(15.2, 5.5, Rotation2d.fromDegrees(-180)));
+    }
   }
 }

@@ -30,8 +30,7 @@ import frc.robot.LimelightHelpers;
 import java.util.List;
 
 public class Util {
-  public static final AprilTagFieldLayout field =
-      AprilTagFields.k2024Crescendo.loadAprilTagLayoutField();
+  public static final AprilTagFieldLayout field = AprilTagFields.k2024Crescendo.loadAprilTagLayoutField();
   public static Pose2d TAG_4_POSE; // RED ALLIANCE SPEAKER CENTER
   public static Pose2d TAG_7_POSE; // BLUE ALLIANCE SPEAKER CENTER
   public static Pose3d TAG_5_POSE; // RED AMP
@@ -52,15 +51,13 @@ public class Util {
         .getTagPose(4)
         .ifPresent(
             pose -> {
-              Util.TAG_4_POSE =
-                  pose.toPose2d(); // .transformBy(new Transform3d(0, 0.565, 0, new Rotation3d()));
+              Util.TAG_4_POSE = pose.toPose2d(); // .transformBy(new Transform3d(0, 0.565, 0, new Rotation3d()));
             });
     field
         .getTagPose(7)
         .ifPresent(
             pose -> {
-              Util.TAG_7_POSE =
-                  pose.toPose2d(); // .transformBy(new Transform3d(0, 0.565, 0, new Rotation3d()));
+              Util.TAG_7_POSE = pose.toPose2d(); // .transformBy(new Transform3d(0, 0.565, 0, new Rotation3d()));
             });
     MANUAL_RED_AMP = new Pose2d(14.7, 7.42, new Rotation2d(Math.toRadians(90.0)));
     MANUAL_BLUE_AMP = new Pose2d(1.84, 7.42, new Rotation2d(Math.toRadians(90.0)));
@@ -92,35 +89,33 @@ public class Util {
   }
 
   public static Rotation2d getRotationToAllianceLob(Pose2d opose) {
-    Transform2d delta =
-        new Transform2d(
-            Util.getAllianceLob().getTranslation().minus(opose.getTranslation()), new Rotation2d());
+    Transform2d delta = new Transform2d(
+        Util.getAllianceLob().getTranslation().minus(opose.getTranslation()), new Rotation2d());
     return new Rotation2d(Math.atan2(delta.getY(), delta.getX()))
         .plus(Rotation2d.fromDegrees(180.0));
   }
 
   public static double getShooterSpeedFromDistanceForLob(double distance) {
-    return Constants.DISTANCE_TO_LOB_RPM.getInterpolated(new InterpolatingDouble(distance)).value;
+    return Constants.DISTANCE_TO_PASS_RPM.getInterpolated(new InterpolatingDouble(distance)).value;
   }
 
   // private static final Pose2d SOURCE_SHOOT_POSE =
   // PathPlannerAuto.getStaringPoseFromAutoFile("Source 5-4 Shoot Pose");
-  // public static final Pose2d BLUE_AUTO_SOURCE_SHOOTING_POSE = SOURCE_SHOOT_POSE;
-  //     // new Pose2d(SOURCE_SHOOT_POSE.getX(), SOURCE_SHOOT_POSE.getY(),
+  // public static final Pose2d BLUE_AUTO_SOURCE_SHOOTING_POSE =
+  // SOURCE_SHOOT_POSE;
+  // // new Pose2d(SOURCE_SHOOT_POSE.getX(), SOURCE_SHOOT_POSE.getY(),
   // Rotation2d.fromDegrees(-30.0));
   // public static final Pose2d RED_AUTO_SOURCE_SHOOTING_POSE =
-  //     new Pose2d(16.56 - BLUE_AUTO_SOURCE_SHOOTING_POSE.getX(),
-  //     BLUE_AUTO_SOURCE_SHOOTING_POSE.getY(),
-  //     BLUE_AUTO_SOURCE_SHOOTING_POSE.getRotation().plus(Rotation2d.fromDegrees(180.0)));
-  //     // new Pose2d(13.04, 3.22, Rotation2d.fromDegrees(-150));
+  // new Pose2d(16.56 - BLUE_AUTO_SOURCE_SHOOTING_POSE.getX(),
+  // BLUE_AUTO_SOURCE_SHOOTING_POSE.getY(),
+  // BLUE_AUTO_SOURCE_SHOOTING_POSE.getRotation().plus(Rotation2d.fromDegrees(180.0)));
+  // // new Pose2d(13.04, 3.22, Rotation2d.fromDegrees(-150));
 
-  public static final Pose2d BLUE_AUTO_SOURCE_CLOSE_SHOT =
-      new Pose2d(3.7, 3.15, Rotation2d.fromDegrees(-30));
-  public static final Pose2d RED_AUTO_SOURCE_CLOSE_SHOT =
-      new Pose2d(
-          16.56 - BLUE_AUTO_SOURCE_CLOSE_SHOT.getX(),
-          BLUE_AUTO_SOURCE_CLOSE_SHOT.getY(),
-          Rotation2d.fromDegrees(-150));
+  public static final Pose2d BLUE_AUTO_SOURCE_CLOSE_SHOT = new Pose2d(3.7, 3.15, Rotation2d.fromDegrees(-30));
+  public static final Pose2d RED_AUTO_SOURCE_CLOSE_SHOT = new Pose2d(
+      16.56 - BLUE_AUTO_SOURCE_CLOSE_SHOT.getX(),
+      BLUE_AUTO_SOURCE_CLOSE_SHOT.getY(),
+      Rotation2d.fromDegrees(-150));
 
   public static Command PathFindToAutoSourceCloseShot() {
     return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
@@ -131,13 +126,11 @@ public class Util {
                 () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)));
   }
 
-  public static final Pose2d BLUE_AUTO_SOURCE_SHOOTING_POSE =
-      new Pose2d(4, 3, Rotation2d.fromDegrees(-30.0));
-  public static final Pose2d RED_AUTO_SOURCE_SHOOTING_POSE =
-      new Pose2d(
-          16.56 - BLUE_AUTO_SOURCE_SHOOTING_POSE.getX(),
-          BLUE_AUTO_SOURCE_SHOOTING_POSE.getY(),
-          Rotation2d.fromDegrees(-144.5));
+  public static final Pose2d BLUE_AUTO_SOURCE_SHOOTING_POSE = new Pose2d(4, 3, Rotation2d.fromDegrees(-30.0));
+  public static final Pose2d RED_AUTO_SOURCE_SHOOTING_POSE = new Pose2d(
+      16.56 - BLUE_AUTO_SOURCE_SHOOTING_POSE.getX(),
+      BLUE_AUTO_SOURCE_SHOOTING_POSE.getY(),
+      Rotation2d.fromDegrees(-144.5));
 
   public static Command PathFindToAutoSourceShot() {
     return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
@@ -148,13 +141,11 @@ public class Util {
                 () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)));
   }
 
-  public static final Pose2d BLUE_AUTO_MADTOWN_SHOOTING_POSE =
-      new Pose2d(4.35, 5.15, Rotation2d.fromDegrees(-88));
-  public static final Pose2d RED_AUTO_MADTOWN_SHOOTING_POSE =
-      new Pose2d(
-          16.56 - BLUE_AUTO_MADTOWN_SHOOTING_POSE.getX(),
-          BLUE_AUTO_MADTOWN_SHOOTING_POSE.getY(),
-          Rotation2d.fromDegrees(-178.0));
+  public static final Pose2d BLUE_AUTO_MADTOWN_SHOOTING_POSE = new Pose2d(4.35, 5.15, Rotation2d.fromDegrees(-88));
+  public static final Pose2d RED_AUTO_MADTOWN_SHOOTING_POSE = new Pose2d(
+      16.56 - BLUE_AUTO_MADTOWN_SHOOTING_POSE.getX(),
+      BLUE_AUTO_MADTOWN_SHOOTING_POSE.getY(),
+      Rotation2d.fromDegrees(-178.0));
 
   public static Command PathFindToAutoMadtownShot() {
     return new InstCmd(() -> RobotContainer.setAutoState(AutoState.SHOOT_PREP))
@@ -174,7 +165,8 @@ public class Util {
     return LimelightHelpers.getBotPoseEstimate_wpiBlue(limelight).tagCount > 0;
   }
 
-  public static void setupUtil() {}
+  public static void setupUtil() {
+  }
 
   // TODO flex on alliance tag pose
   public static double getDistanceToSpeaker() {
@@ -191,7 +183,7 @@ public class Util {
         .getDistance(getAllianceAmp().getTranslation());
   }
 
-  public static double getDistanceToLob() {
+  public static double getDistanceToPass() {
     return RobotContainer.DRIVETRAIN
         .getPose()
         .getTranslation()
@@ -208,16 +200,14 @@ public class Util {
     // Pose2d newpose = new Pose2d(opose.getTranslation(), new Rotation2d(90.0));
     Translation2d speakerTranslation = Util.getAllianceSpeaker().getTranslation();
     Translation2d robotTranslation = opose.getTranslation();
-    Transform2d delta =
-        new Transform2d(speakerTranslation.minus(robotTranslation), new Rotation2d());
+    Transform2d delta = new Transform2d(speakerTranslation.minus(robotTranslation), new Rotation2d());
     return new Rotation2d(Math.atan2(delta.getY(), delta.getX()))
         .plus(Rotation2d.fromDegrees(180.0));
   }
 
   public static double getInterpolatedWristAngleSpeaker() {
     return Constants.DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.getInterpolated(
-            new InterpolatingDouble(Util.getDistanceToSpeaker()))
-        .value;
+        new InterpolatingDouble(Util.getDistanceToSpeaker())).value;
   }
 
   public static boolean isValidShot() {
@@ -232,7 +222,7 @@ public class Util {
   }
 
   public static boolean isLobShot() {
-    return Util.getDistanceToLob() > 5.5;
+    return Util.getDistanceToPass() > 5.5;
   }
 
   public static double squareValue(double value) {

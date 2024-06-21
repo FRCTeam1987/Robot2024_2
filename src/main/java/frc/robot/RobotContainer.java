@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.auto.AutoState;
-import frc.robot.commands.logic.RobotState;
-import frc.robot.commands.logic.ScoreMode;
 import frc.robot.commands.teleop.defaults.DefaultCandles;
 import frc.robot.commands.teleop.defaults.DefaultElevator;
 import frc.robot.commands.teleop.defaults.DefaultIntake;
 import frc.robot.commands.teleop.defaults.DefaultShooter;
 import frc.robot.commands.teleop.defaults.DefaultWrist;
+import frc.robot.commands.teleop.logic.RobotState;
+import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AmpSensors;
 import frc.robot.subsystems.Candles;
@@ -50,13 +50,19 @@ public class RobotContainer {
   public static RobotState STATE = RobotState.DEFAULT;
   public static ScoreMode MODE = ScoreMode.SPEAKER;
 
-  public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID, Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
-  public static Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID, Constants.IDs.CANBUS_ATTACHED);
-  public static Intake INTAKE = new Intake(Constants.IDs.INTAKE_BOTTOM_ID, Constants.IDs.INTAKE_TOP_ID, Constants.IDs.CANBUS_ATTACHED);
+  public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
+      Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
+  public static Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID,
+      Constants.IDs.CANBUS_ATTACHED);
+  public static Intake INTAKE = new Intake(Constants.IDs.INTAKE_BOTTOM_ID, Constants.IDs.INTAKE_TOP_ID,
+      Constants.IDs.CANBUS_ATTACHED);
   public static Wrist WRIST = new Wrist(Constants.IDs.WRIST_ID, Constants.IDs.CANBUS_DETACHED);
-  public static AmpSensors AMP_SENSORS = new AmpSensors(Constants.IDs.PROXIMITY_SENSOR_LEFT_ID, Constants.IDs.PROXIMITY_SENSOR_RIGHT_ID);
-  public static Candles CANDLES = new Candles(Constants.IDs.LEFT_CANDLE, Constants.IDs.RIGHT_CANDLE, Constants.IDs.CANBUS_ATTACHED);
-  public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME, Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
+  public static AmpSensors AMP_SENSORS = new AmpSensors(Constants.IDs.PROXIMITY_SENSOR_LEFT_ID,
+      Constants.IDs.PROXIMITY_SENSOR_RIGHT_ID);
+  public static Candles CANDLES = new Candles(Constants.IDs.LEFT_CANDLE, Constants.IDs.RIGHT_CANDLE,
+      Constants.IDs.CANBUS_ATTACHED);
+  public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
+      Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
   public static PoopMonitor POOP_MONITOR = new PoopMonitor();
 
   public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
@@ -64,7 +70,8 @@ public class RobotContainer {
       .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
                                                                // driving in open loop
   public static final SwerveRequest.SwerveDriveBrake brake = new SwerveRequest.SwerveDriveBrake();
-  public static final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric().withDriveRequestType(DriveRequestType.OpenLoopVoltage);
+  public static final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
+      .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
   public static final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
 
   /* Path follower */
@@ -73,7 +80,7 @@ public class RobotContainer {
   public final Telemetry logger = new Telemetry(MaxSpeed);
 
   public RobotContainer() {
-    
+
     new Util();
 
     Controls.configureDriverController();
@@ -90,14 +97,13 @@ public class RobotContainer {
     ELEVATOR.setDefaultCommand(new DefaultElevator());
     WRIST.setDefaultCommand(new DefaultWrist());
 
-
-                      if (DRIVETRAIN.getAlliance() == Alliance.Blue) {
-                    DRIVETRAIN.seedFieldRelative(
-                        new Pose2d(1.37, 5.52, Rotation2d.fromDegrees(0.0)));
-                  } else {
-                    DRIVETRAIN.seedFieldRelative(
-                        new Pose2d(15.2, 5.5, Rotation2d.fromDegrees(-180)));
-                  }
+    if (DRIVETRAIN.getAlliance() == Alliance.Blue) {
+      DRIVETRAIN.seedFieldRelative(
+          new Pose2d(1.37, 5.52, Rotation2d.fromDegrees(0.0)));
+    } else {
+      DRIVETRAIN.seedFieldRelative(
+          new Pose2d(15.2, 5.5, Rotation2d.fromDegrees(-180)));
+    }
   }
 
   public Command getAutonomousCommand() {
@@ -107,27 +113,32 @@ public class RobotContainer {
   /***** Begin Team Logic *****/
 
   private static AutoState autoState = AutoState.DEFAULT;
+
   public static AutoState getAutoState() {
     return autoState;
   }
+
   public static void setAutoState(final AutoState newState) {
     autoState = newState;
   }
-  private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.ALLIANCE_WING, new Rotation2d(), 0.0, new Rotation2d(), 0.0);
+
+  private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.ALLIANCE_WING,
+      new Rotation2d(), 0.0, new Rotation2d(), 0.0);
+
   public static LocalizationState getLocalizationState() {
     return localizationState;
   }
+
   public void updateLocalizationState() {
     final Alliance alliance = DRIVETRAIN.getAlliance();
     final PointsOfInterest poi = PointsOfInterest.get(alliance);
     final Translation2d robot = DRIVETRAIN.getState().Pose.getTranslation();
     localizationState = new LocalizationState(
-      FieldZones.getZoneFromTranslation(alliance, robot),
-      LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
-      robot.getDistance(poi.PASS_TARGET),
-      LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
-      robot.getDistance(poi.SPEAKER)
-    );
+        FieldZones.getZoneFromTranslation(alliance, robot),
+        LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
+        robot.getDistance(poi.PASS_TARGET),
+        LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
+        robot.getDistance(poi.SPEAKER));
   }
 
   public void robotPeriodic() {

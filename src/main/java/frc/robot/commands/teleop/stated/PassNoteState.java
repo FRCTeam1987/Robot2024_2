@@ -4,6 +4,9 @@
 
 package frc.robot.commands.teleop.stated;
 
+import static frc.robot.RobotContainer.ELEVATOR;
+import static frc.robot.RobotContainer.*;
+
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
@@ -13,22 +16,15 @@ import frc.robot.util.InstCmd;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class IntakeNoteState extends SequentialCommandGroup {
-  /** Creates a new IntakeNoteState. */
-  public IntakeNoteState() {
+public class PassNoteState extends SequentialCommandGroup {
+  /** Creates a new PassNoteState. */
+  public PassNoteState() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.COLLECTING);
-        }),
-        new WaitUntilCommand(() -> RobotContainer.SHOOTER.isRearBroken()),
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.COLLECTING_SLOW);
-        }),
-        new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
-        new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.DEFAULT);
-        }));
+        new WaitUntilCommand(() -> ELEVATOR.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && WRIST.isAtSetpoint()),
+        new InstCmd(() -> RobotContainer.setRobotState(RobotState.PASS)),
+        new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
+        new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
   }
 }
