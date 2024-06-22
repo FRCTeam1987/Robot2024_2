@@ -8,15 +8,8 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 
 /** Add your docs here. */
-public class Tab {
-
-  protected final ShuffleboardTab tab;
-
-  public Tab(final String name) {
-    tab = Shuffleboard.getTab("name");
-  }
-
-  public ShuffleboardTab get() {
-    return tab;
+public class TabUtil {
+  public static ShuffleboardTab createTab(final String name) {
+    return Shuffleboard.getTab("name");
   }
 }

@@ -1,0 +1,37 @@
+{
+  "version": 1.0,
+  "startingPose": null,
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "amp_1-2_d"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToAmpShot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "amp_1-2",
+  "choreoAuto": false
+}

@@ -3,87 +3,119 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.4014455429084471,
-        "y": 1.57
+        "x": 1.3977293798771628,
+        "y": 7.32
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.401445542908447,
-        "y": 1.57
-      },
-      "isLocked": true,
-      "linkedName": "source_5-4_a_start"
-    },
-    {
-      "anchor": {
-        "x": 4.0,
-        "y": 1.57
-      },
-      "prevControl": {
-        "x": 2.75,
-        "y": 1.57
-      },
-      "nextControl": {
-        "x": 5.25,
-        "y": 1.57
+        "x": 1.6575975690164193,
+        "y": 7.32
       },
       "isLocked": true,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.05,
-        "y": 0.87
+        "x": 2.53,
+        "y": 7.677185714885753
       },
       "prevControl": {
-        "x": 8.05,
-        "y": 0.37
+        "x": 2.03,
+        "y": 7.677185714885753
       },
       "nextControl": {
-        "x": 8.05,
-        "y": 1.52
+        "x": 3.53,
+        "y": 7.677185714885753
       },
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.05,
-        "y": 2.4531510266000858
+        "x": 4.6882929247629335,
+        "y": 7.677185714885753
       },
       "prevControl": {
-        "x": 6.550000000000001,
-        "y": 2.4531510266000858
+        "x": 3.6075646671907604,
+        "y": 7.699612801112244
+      },
+      "nextControl": {
+        "x": 5.7690211823351065,
+        "y": 7.654758628659262
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.1,
+        "y": 7.2
+      },
+      "prevControl": {
+        "x": 8.107768080769846,
+        "y": 7.699939653279427
+      },
+      "nextControl": {
+        "x": 8.092231919230155,
+        "y": 6.700060346720574
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.1,
+        "y": 5.78
+      },
+      "prevControl": {
+        "x": 6.35,
+        "y": 5.78
       },
       "nextControl": null,
       "isLocked": true,
-      "linkedName": "source_5-4_a_end"
+      "linkedName": "amp_1-2_a_end"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 2.0,
+      "waypointRelativePos": 3.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 1.0,
       "rotationDegrees": 0,
       "rotateFast": false
     }
   ],
   "constraintZones": [
     {
-      "name": "Poop Zone",
-      "minWaypointRelativePos": 1.8,
-      "maxWaypointRelativePos": 2.15,
+      "name": "Slow Poop Zone",
+      "minWaypointRelativePos": 3.0,
+      "maxWaypointRelativePos": 3.1499999999999995,
       "constraints": {
         "maxVelocity": 3.25,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
-        "maxAngularAcceleration": 360.0
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Slow Shoot Zone",
+      "minWaypointRelativePos": 0.2,
+      "maxWaypointRelativePos": 0.7,
+      "constraints": {
+        "maxVelocity": 2.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
       }
     }
   ],
   "eventMarkers": [
     {
       "name": "Prep Poop",
-      "waypointRelativePos": 0.30000000000000004,
+      "waypointRelativePos": 0.7,
       "command": {
         "type": "parallel",
         "data": {
@@ -100,7 +132,7 @@
     },
     {
       "name": "Start Poop",
-      "waypointRelativePos": 0.8,
+      "waypointRelativePos": 1.75,
       "command": {
         "type": "parallel",
         "data": {
@@ -117,7 +149,7 @@
     },
     {
       "name": "Start Poop Monitor",
-      "waypointRelativePos": 1.7,
+      "waypointRelativePos": 2.55,
       "command": {
         "type": "parallel",
         "data": {
@@ -134,7 +166,7 @@
     },
     {
       "name": "Stop Poop Monitor",
-      "waypointRelativePos": 2.25,
+      "waypointRelativePos": 3.4,
       "command": {
         "type": "parallel",
         "data": {
@@ -151,7 +183,7 @@
     },
     {
       "name": "Collect Note",
-      "waypointRelativePos": 2.45,
+      "waypointRelativePos": 3.5,
       "command": {
         "type": "parallel",
         "data": {
@@ -159,24 +191,7 @@
             {
               "type": "named",
               "data": {
-                "name": "CollectNote"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Stop Poop",
-      "waypointRelativePos": 2.35,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StopPoop"
+                "name": "FollowCollectNote"
               }
             }
           ]
@@ -196,9 +211,9 @@
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "source_5-4_blue",
+  "folder": "amp_1-2",
   "previewStartingState": {
-    "rotation": 0,
+    "rotation": 0.0,
     "velocity": 0
   },
   "useDefaultConstraints": true

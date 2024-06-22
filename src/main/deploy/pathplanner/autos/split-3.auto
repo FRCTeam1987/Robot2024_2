@@ -1,0 +1,49 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.37,
+      "y": 5.55
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "split-3_a"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "split-3_b"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "split-3_c"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "split-3",
+  "choreoAuto": false
+}

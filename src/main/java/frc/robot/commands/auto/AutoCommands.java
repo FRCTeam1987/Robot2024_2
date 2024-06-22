@@ -4,9 +4,11 @@
 
 package frc.robot.commands.auto;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
@@ -16,8 +18,12 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoCollectNote;
+import frc.robot.commands.auto.actions.FollowCollectNote;
+import frc.robot.commands.auto.actions.InstantShoot;
 import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.logic.AutoState;
+import frc.robot.commands.auto.routines.Amp_1_2;
+import frc.robot.commands.auto.routines.Madtown;
 import frc.robot.commands.auto.routines.Source_5_4;
 import frc.robot.util.InstCmd;
 
@@ -25,30 +31,52 @@ import static frc.robot.RobotContainer.*;
 
 /** Add your docs here. */
 public class AutoCommands {
-  private static final Map<String, Command> namedCommands = new HashMap<>() {{
+  private static final Map<String, Command> namedCommands = Collections.unmodifiableMap(new HashMap<>() {{
     put("PrepPoop", new InstCmd(() -> setAutoState(AutoState.POOP_PREP)));
     put("StartPoop", new InstCmd(() -> setAutoState(AutoState.POOPING)));
     put("StopPoop", new InstCmd(() -> setAutoState(AutoState.DEFAULT)));
     put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
     put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
-    put("AutoCollectNote", new AutoCollectNote(2.5));
+    put("AutoCollectNote", new AutoCollectNote());
     put("PathFindToSourceShot", PathFind.toSourceShot());
     put("PathFindToAmpShot", PathFind.toAmpShot());
     put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
-  }};
+    put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
+    put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
+    put("StartWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = true));
+    put("StopWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = false));
+    put("FollowCollectNote", new FollowCollectNote());
+    put("InstantShoot", new InstantShoot());
+    put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
+    put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
+    put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
+    put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
+  }});
 
   public static void addAllNamedCommands() {
     NamedCommands.registerCommands(namedCommands);
   }
 
+  private static Boolean isBluealliance() {
+    return DRIVETRAIN.getAlliance().equals(Alliance.Blue);
+  }
+
   public static SendableChooser<Command> getRoutines() {
     final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("DoNothing", new InstantCommand());
+    autoChooser.addOption("Amp 1-2", new Amp_1_2());
+    autoChooser.addOption("Madtown", new ConditionalCommand(
+      new Madtown(Alliance.Blue),
+      new Madtown(Alliance.Red),
+      AutoCommands::isBluealliance
+    ));
+    autoChooser.addOption("Middle 3", AutoBuilder.buildAuto("middle-3_blue"));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
       new Source_5_4(Alliance.Blue),
       new Source_5_4(Alliance.Red),
-      () -> DRIVETRAIN.getAlliance().equals(Alliance.Blue)
+      AutoCommands::isBluealliance
     ));
+    autoChooser.addOption("Split 3", AutoBuilder.buildAuto("split-3"));
     return autoChooser;
   }
 }

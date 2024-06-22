@@ -22,6 +22,7 @@ import frc.robot.commands.teleop.defaults.DefaultWrist;
 import frc.robot.commands.teleop.logic.DriveMode;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.commands.teleop.logic.ScoreMode;
+import frc.robot.dashboard.Dashboard;
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.AmpSensors;
 import frc.robot.subsystems.Candles;
@@ -65,6 +66,7 @@ public class RobotContainer {
   public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
       Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
   public static PoopMonitor POOP_MONITOR = new PoopMonitor();
+  public static Dashboard DASHBOARD = new Dashboard();
 
   public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -106,7 +108,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return runAuto;
+    return DASHBOARD.MATCH_TAB.getSelectedAuto();
   }
 
   /***** Begin Team Logic *****/

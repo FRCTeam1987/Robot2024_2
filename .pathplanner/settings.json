@@ -3,13 +3,20 @@
   "robotLength": 0.92,
   "holonomicMode": true,
   "pathFolders": [
-    "amp_1-2_blue",
+    "amp_1-2",
+    "madtown",
+    "middle-3",
     "source_5-4_blue",
-    "source_5-4_red"
+    "source_5-4_red",
+    "split-3"
   ],
   "autoFolders": [
+    "amp_1-2",
+    "madtown",
+    "middle-3",
+    "source_5-4_blue",
     "source_5-4_red",
-    "source_5-4_blue"
+    "split-3"
   ],
   "defaultMaxVel": 5.0,
   "defaultMaxAccel": 4.25,

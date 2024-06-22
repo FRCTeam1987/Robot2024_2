@@ -82,7 +82,7 @@
   ],
   "eventMarkers": [
     {
-      "name": "Poop Prep",
+      "name": "Prep Poop",
       "waypointRelativePos": 0.30000000000000004,
       "command": {
         "type": "parallel",
@@ -99,7 +99,7 @@
       }
     },
     {
-      "name": "Poop Start",
+      "name": "Start Poop",
       "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
@@ -167,7 +167,7 @@
       }
     },
     {
-      "name": "Poop Stop",
+      "name": "Stop Poop",
       "waypointRelativePos": 2.35,
       "command": {
         "type": "parallel",

@@ -5,9 +5,8 @@
 package frc.robot.dashboard;
 
 import frc.robot.dashboard.tabs.MatchTab;
-import frc.robot.dashboard.tabs.Tab;
 
 /** Add your docs here. */
 public class Dashboard {
-  public static final Tab MATCH_TAB = new MatchTab();
+  public final MatchTab MATCH_TAB = new MatchTab();
 }

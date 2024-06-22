@@ -5,20 +5,33 @@
 package frc.robot.commands.auto.actions;
 
 import frc.robot.util.InstCmd;
+
+import java.util.function.DoubleSupplier;
+
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.ParallelDeadlineGroup;
-import frc.robot.RobotContainer;
+
+import static frc.robot.RobotContainer.DRIVETRAIN;
+import static frc.robot.RobotContainer.WRIST;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class AutoCollectNote extends ParallelDeadlineGroup {
   /** Creates a new AutoCollectNote. */
-  public AutoCollectNote(final double initialVelocity) {
+  public AutoCollectNote(final DoubleSupplier initialVelocity) {
     super(new IntakeNoteSequenceAuto());
     addCommands(
-      new InstCmd(() -> RobotContainer.WRIST.enableWristLockdown())
-        .andThen(new DriveToNote(initialVelocity))
-        .finallyDo(() -> RobotContainer.WRIST.disableWristLockdown())
+      new InstCmd(() -> WRIST.enableWristLockdown())
+        .andThen(new DriveToNote(initialVelocity.getAsDouble()))
+        .finallyDo(() -> WRIST.disableWristLockdown())
     );
+  }
+
+  public AutoCollectNote() {
+    this(() -> {
+      final ChassisSpeeds speeds = DRIVETRAIN.getCurrentRobotChassisSpeeds();
+      return Math.sqrt(speeds.vxMetersPerSecond * speeds.vxMetersPerSecond + speeds.vyMetersPerSecond * speeds.vyMetersPerSecond);
+    });
   }
 }

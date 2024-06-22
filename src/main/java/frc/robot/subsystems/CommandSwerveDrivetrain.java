@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import static edu.wpi.first.units.Units.Volts;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
@@ -10,8 +11,10 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.RobotCentric;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
@@ -29,6 +32,7 @@ import edu.wpi.first.wpilibj2.command.Subsystem;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
+import frc.robot.RobotContainer;
 import frc.robot.generated.TunerConstants;
 
 /**
@@ -123,6 +127,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                                             new ReplanningConfig()),
             () -> DriverStation.getAlliance().orElse(Alliance.Blue)==Alliance.Red, // Assume the path needs to be flipped for Red vs Blue, this is normally the case
             this); // Subsystem for requirements
+            PPHolonomicDriveController.setRotationTargetOverride(this::getRotationTargetOverride);
     }
 
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
@@ -183,6 +188,24 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     }
 
     /***** Begin Team Logic *****/
+
+    private Boolean ppShouldPointAtSpeaker = false;
+    public void setPPShouldPointAtSpeaker(final Boolean shouldPointAtSpeaker) {
+        ppShouldPointAtSpeaker = shouldPointAtSpeaker;
+    }
+    private Boolean ppShouldPointAtNote = false;
+    public void setPPShouldPointAtNote(final Boolean shouldPointAtNote) {
+        ppShouldPointAtNote = shouldPointAtNote;
+    }
+    private Optional<Rotation2d> getRotationTargetOverride() {
+        if (ppShouldPointAtSpeaker) {
+            return Optional.of(RobotContainer.getLocalizationState().getSpeakerAngle());
+        }
+        if (ppShouldPointAtNote) {
+            return Optional.of(getState().Pose.getRotation().plus(Rotation2d.fromDegrees(RobotContainer.VISION.getYawVal())));
+        }
+        return Optional.empty();
+    }
 
     private Alliance alliance = Alliance.Red;
     public Alliance getAlliance() {

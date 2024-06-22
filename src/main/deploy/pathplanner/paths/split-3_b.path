@@ -1,0 +1,70 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.65,
+        "y": 5.55
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.9186297949919933,
+        "y": 5.491849879202026
+      },
+      "isLocked": false,
+      "linkedName": "split-3_a_end"
+    },
+    {
+      "anchor": {
+        "x": 2.6133387326815165,
+        "y": 4.25
+      },
+      "prevControl": {
+        "x": 1.2768289463989646,
+        "y": 4.93098574960932
+      },
+      "nextControl": null,
+      "isLocked": true,
+      "linkedName": "split-3_b_end"
+    }
+  ],
+  "rotationTargets": [],
+  "constraintZones": [],
+  "eventMarkers": [
+    {
+      "name": "Collect Note",
+      "waypointRelativePos": 0.35,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "FollowCollectNote"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 4.0,
+    "maxAcceleration": 3.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 360.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -27.0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "split-3",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 2.0
+  },
+  "useDefaultConstraints": true
+}

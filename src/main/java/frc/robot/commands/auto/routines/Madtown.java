@@ -19,7 +19,7 @@ import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.actions.RotateUntilNote;
 import frc.robot.commands.auto.defaults.DefaultAutoShooter;
 import frc.robot.commands.auto.defaults.DefaultAutoWrist;
-import java.util.function.BooleanSupplier;
+import frc.robot.commands.teleop.defaults.DefaultIntake;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -30,43 +30,42 @@ public class Madtown extends ParallelCommandGroup {
   private static boolean INITIAL_WAS_INTERRUPTED = false;
 
   /** Creates a new Madtown. */
-  public Madtown() {
+  public Madtown(final Alliance alliance) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    BooleanSupplier isBlue = () -> RobotContainer.DRIVETRAIN.getAlliance() == Alliance.Blue;
+    Boolean isBlue = alliance == Alliance.Blue;
+    final String color = alliance.toString().toLowerCase();
     addCommands(
-        new SequentialCommandGroup(
-            new ParallelRaceGroup(
-                AutoBuilder.buildAuto("Madtown Initial"),
-                new WaitUntilCommand(
-                    () -> {
-                      final boolean shouldInterrupt =
-                          SHOULD_WATCH_FOR_NOTE
-                              && RobotContainer.VISION.hasTargets()
-                              && Math.abs(RobotContainer.VISION.getYawVal()) < 20.0;
-                      INITIAL_WAS_INTERRUPTED = shouldInterrupt;
-                      return shouldInterrupt;
-                    })),
-            new ConditionalCommand(
-                new AutoCollectNote(2.75)
-                    // have time in 15 seconds
-                    .withTimeout(1.0)
-                    .andThen(PathFind.toSourceShot())
-                    .andThen(new AutoAimAndShoot()),
-                new InstCmd(),
-                () -> INITIAL_WAS_INTERRUPTED),
-            new RotateUntilNote(isBlue),
-            new AutoCollectNote(2.5),
-            PathFind.toMadtownshot(),
-            new AutoAimAndShoot(),
-            // new InstantShoot(RobotContainer.SHOOTER),
-            new RotateUntilNote(isBlue),
-            new AutoCollectNote(2.75),
-            PathFind.toMadtownshot(),
-            new AutoAimAndShoot()
-            // new InstantShoot(RobotContainer.SHOOTER)
-            ),
-        new DefaultAutoWrist(),
-        new DefaultAutoShooter());
+      new SequentialCommandGroup(
+        new ParallelRaceGroup(
+          AutoBuilder.buildAuto("madtown_" + color + "_initial"),
+          new WaitUntilCommand(() -> {
+            final boolean shouldInterrupt = SHOULD_WATCH_FOR_NOTE
+              && RobotContainer.VISION.hasTargets()
+              && Math.abs(RobotContainer.VISION.getYawVal()) < 20.0;
+            INITIAL_WAS_INTERRUPTED = shouldInterrupt;
+            return shouldInterrupt;
+        })),
+        new ConditionalCommand(
+          new AutoCollectNote(() -> 2.75).withTimeout(1.0)
+            .andThen(PathFind.toSourceShot())
+            .andThen(new AutoAimAndShoot()),
+          new InstCmd(),
+          () -> INITIAL_WAS_INTERRUPTED
+        ),
+        new RotateUntilNote(() -> isBlue),
+        new AutoCollectNote(() -> 2.25),
+        PathFind.toMadtownshot(),
+        new AutoAimAndShoot(),
+        // new InstantShoot(RobotContainer.SHOOTER),
+        new RotateUntilNote(() -> isBlue),
+        new AutoCollectNote(() -> 2.75),
+        PathFind.toMadtownshot(),
+        new AutoAimAndShoot()
+      ),
+      new DefaultIntake(),
+      new DefaultAutoWrist(),
+      new DefaultAutoShooter()
+    );
   }
 }

@@ -6,8 +6,8 @@ package frc.robot.commands.auto.routines;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
@@ -22,30 +22,29 @@ import static frc.robot.RobotContainer.SHOOTER;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Source_5_4 extends ParallelCommandGroup {
-  /** Creates a new Source_5_4. */
-  public Source_5_4(final Alliance alliance) {
+public class Amp_1_2 extends ParallelCommandGroup {
+  /** Creates a new Amp_1_2. */
+  public Amp_1_2() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    final String color = alliance.toString().toLowerCase();
     addCommands(
       new SequentialCommandGroup(
-        AutoBuilder.buildAuto("source_5-4_" + color + "_initial"),
+        AutoBuilder.buildAuto("amp_1-2_initial"),
         new ConditionalCommand(
-          AutoBuilder.buildAuto("source_5-4_" + color + "_5y4y"),
+          AutoBuilder.buildAuto("amp_1-2_1y2y"),
           new ConditionalCommand(
-            AutoBuilder.buildAuto("source_5-4_" + color + "_5y4n"),
+            AutoBuilder.buildAuto("amp_1-2_1y2n"),
             new ConditionalCommand(
-              AutoBuilder.buildAuto("source_5-4_" + color + "_5n4y"),
-              AutoBuilder.buildAuto("source_5-4_" + color + "_5n4n"),
-              () -> !POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
-            ),
+              AutoBuilder.buildAuto("amp_1-2_1n2y"),
+              AutoBuilder.buildAuto("amp_1-2_1n2n"),
+              () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
+              ),
             () -> POOP_MONITOR.hasPooped() && !SHOOTER.hasNote()
           ),
           () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
         ),
-        AutoBuilder.buildAuto("source_5-4_" + color + "_preload"),
-        PathFind.toSourceShot(),
+        AutoBuilder.buildAuto("amp_1-2_preload"),
+        PathFind.toAmpShot(),
         new AutoAimAndShoot()
       ),
       new DefaultAutoIntake(),

@@ -27,7 +27,7 @@ public class PathFind {
     Rotation2d.fromDegrees(-150)
   );
 
-  public static final Pose2d BLUE_AUTO_AMP_SHOT = new Pose2d(4.7, 6.6, Rotation2d.fromDegrees(13.0));
+  public static final Pose2d BLUE_AUTO_AMP_SHOT = new Pose2d(4.1, 6.4, Rotation2d.fromDegrees(13.0));
   public static final Pose2d RED_AUTO_AMP_SHOT = new Pose2d(
     LocalizationUtil.blueFlipToRed(BLUE_AUTO_AMP_SHOT.getTranslation()),
     Rotation2d.fromDegrees(167)
