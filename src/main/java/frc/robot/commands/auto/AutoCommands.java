@@ -16,11 +16,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.FollowCollectNote;
 import frc.robot.commands.auto.actions.InstantShoot;
 import frc.robot.commands.auto.actions.PathFind;
+import frc.robot.commands.auto.defaults.DefaultAutoIntake;
+import frc.robot.commands.auto.defaults.DefaultAutoShooter;
+import frc.robot.commands.auto.defaults.DefaultAutoWrist;
 import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.commands.auto.routines.Amp_1_2;
 import frc.robot.commands.auto.routines.Madtown;
@@ -61,22 +65,32 @@ public class AutoCommands {
     return DRIVETRAIN.getAlliance().equals(Alliance.Blue);
   }
 
+  private static Command wrap(final Command autoCommand) {
+    return new ParallelCommandGroup(
+      autoCommand,
+      new DefaultAutoIntake(),
+      new DefaultAutoWrist(),
+      new DefaultAutoShooter()
+    );
+  }
+
   public static SendableChooser<Command> getRoutines() {
     final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
-    autoChooser.setDefaultOption("DoNothing", new InstantCommand());
-    autoChooser.addOption("Amp 1-2", new Amp_1_2());
+    autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
+    autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
     autoChooser.addOption("Madtown", new ConditionalCommand(
-      new Madtown(Alliance.Blue),
-      new Madtown(Alliance.Red),
+      wrap(new Madtown(Alliance.Blue)),
+      wrap(new Madtown(Alliance.Red)),
       AutoCommands::isBluealliance
     ));
-    autoChooser.addOption("Middle 3", AutoBuilder.buildAuto("middle-3_blue"));
+    autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
-      new Source_5_4(Alliance.Blue),
-      new Source_5_4(Alliance.Red),
+      wrap(new Source_5_4(Alliance.Blue)),
+      wrap(new Source_5_4(Alliance.Red)),
       AutoCommands::isBluealliance
     ));
-    autoChooser.addOption("Split 3", AutoBuilder.buildAuto("split-3"));
+    autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
 }
+;
