@@ -178,7 +178,7 @@ public class Constants {
 
                 public static final double SUBWOOFER_SHOT_RPM = 2750;
 
-                public static final double TRAP_RPM_SPEED = 225;
+                public static final double TRAP_RPM_SPEED = 440;
         }
 
         public static class Intake {

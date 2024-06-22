@@ -54,7 +54,7 @@ public class TrapState extends SequentialCommandGroup {
                 && ELEVATOR.isAtSetpoint()),
 
         new InstCmd(() -> setRobotState(RobotState.TRAP_SCORE)),
-        new WaitUntilCommand(() -> LINE_DEBOUNCER.calculate(SHOOTER.isCenterBroken())),
+        new WaitUntilCommand(() -> LINE_DEBOUNCER.calculate(!SHOOTER.isCenterBroken())),
         new WaitCommand(1.0),
         new InstCmd(() -> setRobotState(RobotState.TRAP_DOTHEJIGGLE))
 

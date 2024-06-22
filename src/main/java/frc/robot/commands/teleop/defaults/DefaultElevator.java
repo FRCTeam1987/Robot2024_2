@@ -46,7 +46,7 @@ public class DefaultElevator extends Command {
         ELEVATOR.setLengthInches(Constants.Elevator.CLIMB_PULLDOWN_HEIGHT, 1);
         break;
       case CLIMB_LEVEL:
-        ELEVATOR.setLengthInches(Constants.Elevator.CLIMB_LEVEL_HEIGHT, 0);
+        // level here maybe?
       case TRAP_ELEV_MIDWAY:
       case TRAP_WRIST_MIDWAY:
         ELEVATOR.setLengthInches(Constants.Elevator.TRAP_ELEVATOR_HEIGHT_MIDWAY, 0);

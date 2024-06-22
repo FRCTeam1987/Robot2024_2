@@ -85,6 +85,7 @@ public class DefaultShooter extends Command {
                 break;
             case TRAP_SCORE:
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
+                break;
             case TRAP_DOTHEJIGGLE:
                 SHOOTER.stopFeeder();
                 break;

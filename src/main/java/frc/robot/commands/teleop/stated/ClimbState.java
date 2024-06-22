@@ -4,6 +4,7 @@
 
 package frc.robot.commands.teleop.stated;
 
+import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
@@ -18,20 +19,25 @@ import static frc.robot.RobotContainer.*;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ClimbState extends SequentialCommandGroup {
+  private Debouncer A_DEBOUNCER;
+
   /** Creates a new ClimbState. */
   public ClimbState() {
+    A_DEBOUNCER = new Debouncer(0.05);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new InstCmd(() -> {
           RobotContainer.setRobotState(RobotState.CLIMB_INIT);
         }),
-        new WaitUntilCommand(() -> ELEVATOR.isAtSetpoint() && DRIVER_CONTROLLER.a().getAsBoolean()),
+        new WaitUntilCommand(() -> !DRIVER_CONTROLLER.a().getAsBoolean()),
+        new WaitUntilCommand(
+            () -> ELEVATOR.isAtSetpoint() && A_DEBOUNCER.calculate(DRIVER_CONTROLLER.a().getAsBoolean())),
         new InstCmd(() -> {
           RobotContainer.setRobotState(RobotState.CLIMB_PULLDOWN);
         }),
         new WaitUntilCommand(ELEVATOR::isAtSetpoint),
-        new WaitCommand(0.6),
+        new WaitCommand(0.8),
         new InstCmd(() -> {
           RobotContainer.setRobotState(RobotState.CLIMB_LEVEL);
         }),
