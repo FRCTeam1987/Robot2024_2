@@ -35,27 +35,29 @@ import static frc.robot.RobotContainer.*;
 
 /** Add your docs here. */
 public class AutoCommands {
-  private static final Map<String, Command> namedCommands = Collections.unmodifiableMap(new HashMap<>() {{
-    put("PrepPoop", new InstCmd(() -> setAutoState(AutoState.POOP_PREP)));
-    put("StartPoop", new InstCmd(() -> setAutoState(AutoState.POOPING)));
-    put("StopPoop", new InstCmd(() -> setAutoState(AutoState.DEFAULT)));
-    put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
-    put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
-    put("AutoCollectNote", new AutoCollectNote());
-    put("PathFindToSourceShot", PathFind.toSourceShot());
-    put("PathFindToAmpShot", PathFind.toAmpShot());
-    put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
-    put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
-    put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
-    put("StartWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = true));
-    put("StopWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = false));
-    put("FollowCollectNote", new FollowCollectNote());
-    put("InstantShoot", new InstantShoot());
-    put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
-    put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
-    put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
-    put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
-  }});
+  private static final Map<String, Command> namedCommands = Collections.unmodifiableMap(new HashMap<>() {
+    {
+      put("PrepPoop", new InstCmd(() -> setAutoState(AutoState.POOP_PREP)));
+      put("StartPoop", new InstCmd(() -> setAutoState(AutoState.POOPING)));
+      put("StopPoop", new InstCmd(() -> setAutoState(AutoState.DEFAULT)));
+      put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
+      put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
+      put("AutoCollectNote", new AutoCollectNote());
+      put("PathFindToSourceShot", PathFind.toSourceShot());
+      put("PathFindToAmpShot", PathFind.toAmpShot());
+      put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
+      put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
+      put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
+      put("StartWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = true));
+      put("StopWatchForNote", new InstantCommand(() -> Madtown.SHOULD_WATCH_FOR_NOTE = false));
+      put("FollowCollectNote", new FollowCollectNote());
+      put("InstantShoot", new InstantShoot());
+      put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
+      put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
+      put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
+      put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
+    }
+  });
 
   public static void addAllNamedCommands() {
     NamedCommands.registerCommands(namedCommands);
@@ -66,31 +68,29 @@ public class AutoCommands {
   }
 
   private static Command wrap(final Command autoCommand) {
-    return new ParallelCommandGroup(
-      autoCommand,
-      new DefaultAutoIntake(),
-      new DefaultAutoWrist(),
-      new DefaultAutoShooter()
-    );
+    return new InstCmd();
+    // return new ParallelCommandGroup(
+    // autoCommand,
+    // new DefaultAutoIntake(),
+    // new DefaultAutoWrist(),
+    // new DefaultAutoShooter()
+    // );
   }
 
   public static SendableChooser<Command> getRoutines() {
     final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
-    autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
-    autoChooser.addOption("Madtown", new ConditionalCommand(
-      wrap(new Madtown(Alliance.Blue)),
-      wrap(new Madtown(Alliance.Red)),
-      AutoCommands::isBlueAlliance
-    ));
-    autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    autoChooser.addOption("Source 5-4", new ConditionalCommand(
-      wrap(new Source_5_4(Alliance.Blue)),
-      wrap(new Source_5_4(Alliance.Red)),
-      AutoCommands::isBlueAlliance
-    ));
-    autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
+    // autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
+    // autoChooser.addOption("Madtown", new ConditionalCommand(
+    // wrap(new Madtown(Alliance.Blue)),
+    // wrap(new Madtown(Alliance.Red)),
+    // AutoCommands::isBlueAlliance));
+    // autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
+    // autoChooser.addOption("Source 5-4", new ConditionalCommand(
+    // wrap(new Source_5_4(Alliance.Blue)),
+    // wrap(new Source_5_4(Alliance.Red)),
+    // AutoCommands::isBlueAlliance));
+    // autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
-}
-;
+};

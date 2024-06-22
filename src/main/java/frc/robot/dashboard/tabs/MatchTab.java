@@ -13,6 +13,7 @@ import frc.robot.commands.auto.AutoCommands;
 public class MatchTab {
   private final ShuffleboardTab tab;
   private final SendableChooser<Command> autoSelector;
+
   public MatchTab() {
     AutoCommands.addAllNamedCommands();
     tab = TabUtil.createTab("MATCH");

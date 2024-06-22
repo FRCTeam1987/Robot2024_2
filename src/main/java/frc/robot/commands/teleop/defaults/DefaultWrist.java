@@ -10,6 +10,9 @@ import frc.robot.util.zoning.FieldZones;
 import static frc.robot.RobotContainer.*;
 
 public class DefaultWrist extends Command {
+
+  private boolean doTheJiggle;
+
   public DefaultWrist() {
     addRequirements(RobotContainer.WRIST);
   }
@@ -46,6 +49,28 @@ public class DefaultWrist extends Command {
       case PODIUM_PREP:
       case PODIUM:
         WRIST.setDegrees(Constants.Wrist.PODIUM_SHOT_DEG);
+        break;
+      case CLIMB_INIT:
+      case CLIMB_PULLDOWN:
+      case CLIMB_LEVEL:
+      case TRAP_ELEV_MIDWAY:
+        WRIST.goHome();
+        break;
+      case TRAP_WRIST_MIDWAY:
+      case TRAP_ELEV_FULL:
+        WRIST.setDegrees(Constants.Wrist.TRAP_WRIST_DEGREES_MIDWAY);
+        break;
+      case TRAP_WRIST_FULL:
+      case TRAP_SCORE:
+        WRIST.setDegrees(Constants.Wrist.TRAP_WRIST_DEGREES);
+        break;
+      case TRAP_DOTHEJIGGLE:
+        doTheJiggle = Util.isWithinTolerance(WRIST.getDegrees(), Constants.Wrist.TRAP_WRIST_DEGREES, 3.0);
+        if (doTheJiggle) {
+          WRIST.setDegrees(Constants.Wrist.TRAP_WRIST_DEGREES - 7.0, 1);
+        } else {
+          WRIST.setDegrees(Constants.Wrist.TRAP_WRIST_DEGREES, 1);
+        }
         break;
       default:
         if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {

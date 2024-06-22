@@ -61,7 +61,7 @@ public class DefaultSwerve extends Command {
     double rotationPercentage = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
     final LocalizationState localizationState = RobotContainer.getLocalizationState();
     FieldZones.Zone zone = localizationState.getFieldZone();
-    System.out.println(zone);
+    System.out.println(STATE);
     if (prevZone != FieldZones.Zone.ALLIANCE_WING && zone == FieldZones.Zone.ALLIANCE_WING) {
       setDriveMode(DriveMode.AUTOMATIC);
     } else if (prevZone == FieldZones.Zone.OPPONENT_WING && zone == FieldZones.Zone.NEUTRAL_WING) {

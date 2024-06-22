@@ -50,7 +50,7 @@ public class RobotContainer {
 
   public static RobotState STATE = RobotState.DEFAULT;
   public static ScoreMode SCORE_MODE = ScoreMode.SPEAKER;
-  public static DriveMode DRIVE_MODE = DriveMode.AUTOMATIC;
+  public static DriveMode DRIVE_MODE = DriveMode.MANUAL;
 
   public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
       Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);

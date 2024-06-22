@@ -39,6 +39,25 @@ public class DefaultElevator extends Command {
       case PODIUM:
         ELEVATOR.setLengthInches(Constants.Elevator.PODIUM_SHOT_HEIGHT);
         break;
+      case CLIMB_INIT:
+        ELEVATOR.setLengthInches(Constants.Elevator.CLIMB_START_HEIGHT, 0);
+        break;
+      case CLIMB_PULLDOWN:
+        ELEVATOR.setLengthInches(Constants.Elevator.CLIMB_PULLDOWN_HEIGHT, 1);
+        break;
+      case CLIMB_LEVEL:
+        ELEVATOR.setLengthInches(Constants.Elevator.CLIMB_LEVEL_HEIGHT, 0);
+      case TRAP_ELEV_MIDWAY:
+      case TRAP_WRIST_MIDWAY:
+        ELEVATOR.setLengthInches(Constants.Elevator.TRAP_ELEVATOR_HEIGHT_MIDWAY, 0);
+        break;
+      case TRAP_ELEV_FULL:
+      case TRAP_WRIST_FULL:
+      case TRAP_SCORE:
+      case TRAP_DOTHEJIGGLE:
+        ELEVATOR.setLengthInches(Constants.Elevator.TRAP_ELEVATOR_HEIGHT, 0);
+
+        break;
       default:
         if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
           ELEVATOR.goHome();
