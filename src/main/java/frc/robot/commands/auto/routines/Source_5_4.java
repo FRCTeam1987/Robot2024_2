@@ -23,25 +23,25 @@ public class Source_5_4 extends SequentialCommandGroup {
   public Source_5_4(final Alliance alliance) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    final String color = alliance.toString().toLowerCase();
+    // final String color = alliance.toString().toLowerCase();
     addCommands(
-      AutoBuilder.buildAuto("source_5-4_" + color + "_initial"),
-      new ConditionalCommand(
-        AutoBuilder.buildAuto("source_5-4_" + color + "_5y4y"),
-        new ConditionalCommand(
-          AutoBuilder.buildAuto("source_5-4_" + color + "_5y4n"),
-          new ConditionalCommand(
-            AutoBuilder.buildAuto("source_5-4_" + color + "_5n4y"),
-            AutoBuilder.buildAuto("source_5-4_" + color + "_5n4n"),
-            () -> !POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
-          ),
-          () -> POOP_MONITOR.hasPooped() && !SHOOTER.hasNote()
-        ),
-        () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
-      ),
-      AutoBuilder.buildAuto("source_5-4_" + color + "_preload"),
-      PathFind.toSourceShot(),
-      new AutoAimAndShoot()
+      AutoBuilder.buildAuto("source_5-4_blue_initial")
+      // new ConditionalCommand(
+      //   AutoBuilder.buildAuto("source_5-4_blue_5y4y"),
+      //   new ConditionalCommand(
+      //     AutoBuilder.buildAuto("source_5-4_blue_5y4n"),
+      //     new ConditionalCommand(
+      //       AutoBuilder.buildAuto("source_5-4_blue_5n4y"),
+      //       AutoBuilder.buildAuto("source_5-4_blue_5n4n"),
+      //       () -> !POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
+      //     ),
+      //     () -> POOP_MONITOR.hasPooped() && !SHOOTER.hasNote()
+      //   ),
+      //   () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
+      // ),
+      // AutoBuilder.buildAuto("source_5-4_blue_preload"),
+      // PathFind.toSourceShot(),
+      // new AutoAimAndShoot()
     );
   }
 }

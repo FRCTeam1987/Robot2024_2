@@ -78,7 +78,7 @@ public class RobotContainer {
   public static final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
 
   /* Path follower */
-  public Command runAuto = DRIVETRAIN.getAutoPath("Tests");
+  // public Command runAuto = DRIVETRAIN.getAutoPath("Tests");
 
   public final Telemetry logger = new Telemetry(MaxSpeed);
 

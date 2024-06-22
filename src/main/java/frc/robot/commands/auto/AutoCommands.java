@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.FollowCollectNote;
 import frc.robot.commands.auto.actions.InstantShoot;
@@ -40,6 +41,7 @@ public class AutoCommands {
       put("PrepPoop", new InstCmd(() -> setAutoState(AutoState.POOP_PREP)));
       put("StartPoop", new InstCmd(() -> setAutoState(AutoState.POOPING)));
       put("StopPoop", new InstCmd(() -> setAutoState(AutoState.DEFAULT)));
+      put("PrepShoot", new InstantCommand(() -> setAutoState(AutoState.SHOOT_PREP)));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
       put("AutoCollectNote", new AutoCollectNote());
@@ -56,6 +58,7 @@ public class AutoCommands {
       put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
       put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
+      put("AutoAimAndShoot", new AutoAimAndShoot());
     }
   });
 
@@ -85,10 +88,10 @@ public class AutoCommands {
     wrap(new Madtown(Alliance.Red)),
     AutoCommands::isBlueAlliance));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    autoChooser.addOption("Source 5-4", new ConditionalCommand(
-    wrap(new Source_5_4(Alliance.Blue)),
-    wrap(new Source_5_4(Alliance.Red)),
-    AutoCommands::isBlueAlliance));
+    // autoChooser.addOption("Source 5-4", new ConditionalCommand(
+    // wrap(new Source_5_4(Alliance.Blue)),
+    // wrap(new Source_5_4(Alliance.Red)),
+    // AutoCommands::isBlueAlliance));
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
