@@ -68,29 +68,28 @@ public class AutoCommands {
   }
 
   private static Command wrap(final Command autoCommand) {
-    return new InstCmd();
-    // return new ParallelCommandGroup(
-    // autoCommand,
-    // new DefaultAutoIntake(),
-    // new DefaultAutoWrist(),
-    // new DefaultAutoShooter()
-    // );
+    return new ParallelCommandGroup(
+      autoCommand,
+      new DefaultAutoIntake(),
+      new DefaultAutoWrist(),
+      new DefaultAutoShooter()
+    );
   }
 
   public static SendableChooser<Command> getRoutines() {
     final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
     autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
-    // autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
-    // autoChooser.addOption("Madtown", new ConditionalCommand(
-    // wrap(new Madtown(Alliance.Blue)),
-    // wrap(new Madtown(Alliance.Red)),
-    // AutoCommands::isBlueAlliance));
-    // autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    // autoChooser.addOption("Source 5-4", new ConditionalCommand(
-    // wrap(new Source_5_4(Alliance.Blue)),
-    // wrap(new Source_5_4(Alliance.Red)),
-    // AutoCommands::isBlueAlliance));
-    // autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
+    autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
+    autoChooser.addOption("Madtown", new ConditionalCommand(
+    wrap(new Madtown(Alliance.Blue)),
+    wrap(new Madtown(Alliance.Red)),
+    AutoCommands::isBlueAlliance));
+    autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
+    autoChooser.addOption("Source 5-4", new ConditionalCommand(
+    wrap(new Source_5_4(Alliance.Blue)),
+    wrap(new Source_5_4(Alliance.Red)),
+    AutoCommands::isBlueAlliance));
+    autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
 };

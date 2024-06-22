@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.logic.AutoState;
-import frc.robot.Constants;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -23,16 +22,10 @@ public class IntakeNoteSequenceAuto extends SequentialCommandGroup {
     addCommands(
       new InstCmd(() -> {
         RobotContainer.setAutoState(AutoState.COLLECTING);
-        RobotContainer.INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
-        RobotContainer.ELEVATOR.goHome();
-      },
-      RobotContainer.INTAKE),
+      }),
       new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
       new InstCmd(() -> {
-        RobotContainer.SHOOTER.stopFeeder();
         RobotContainer.setAutoState(AutoState.DEFAULT);
-        RobotContainer.INTAKE.stopBoth();
-      },
-      RobotContainer.INTAKE));
+      }));
   }
 }
