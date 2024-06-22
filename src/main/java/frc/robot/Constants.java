@@ -148,15 +148,15 @@ public class Constants {
 
                 public static final double CLIMB_PULLDOWN_HEIGHT = 6.75;
                 public static final double CLIMB_LEVEL_HEIGHT = 11.0;
-                public static final double CLIMB_START_HEIGHT = 28.0;
+                public static final double CLIMB_START_HEIGHT = 28;
 
-                public static final double TRAP_ELEVATOR_HEIGHT = 29.5;
+                public static final double TRAP_ELEVATOR_HEIGHT = 30.0;
                 public static final double TRAP_ELEVATOR_HEIGHT_MIDWAY = 24.0;
         }
 
         public static class Shooter {
                 public static final double FEEDER_FEEDFWD_VOLTS = 4; // 6 // 4
-                public static final double FEEDER_FEEDFWD_VOLTS_SLOW = 2.5; // 6 // 4
+                public static final double FEEDER_FEEDFWD_VOLTS_SLOW = 2.0; // 6 // 4
                 public static final double FEEDER_FEEDFWD_VOLTS_AGRESSIVE = 6; // 6 // 4
                 public static final double FEEDER_SHOOT_VOLTS = 10.0; // 4
                 public static final double FEEDER_RETRACT_VOLTS = -2;
@@ -174,16 +174,18 @@ public class Constants {
                 public static final int SHOOTER_AMP_RPM = 550;
 
                 public static final double SHOT_DEBOUNCE_TIME = 0.08;
+                public static final double PASS_DEBOUNCE_TIME = 0.16;
                 public static final double AMP_FEEDER_VOLTAGE = -7.0;
+                public static final double FEEDER_FEEDBACKWARD = -2.0;
 
                 public static final double SUBWOOFER_SHOT_RPM = 2750;
 
-                public static final double TRAP_RPM_SPEED = 440;
+                public static final double TRAP_RPM_SPEED = 480;
         }
 
         public static class Intake {
                 public static final double INTAKE_COLLECT_VOLTS = -6; // 6
-                public static final double INTAKE_COLLECT_SLOW_VOLTS = -4;
+                public static final double INTAKE_COLLECT_SLOW_VOLTS = -5;
                 public static final double INTAKE_COLLECT_VOLTS_MANUAL = -8; // 6 //-9
                 public static final double INTAKE_RPM = -5000;
         }
@@ -240,11 +242,11 @@ public class Constants {
                 DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
                                 new InterpolatingDouble(6.15), new InterpolatingDouble(21.45));
 
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 0.95));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 0.95));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 0.95));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 0.95));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 0.95));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 0.95));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 1.07));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 1.07));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 1.07));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 1.07));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 1.07));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 1.07));
         }
 }

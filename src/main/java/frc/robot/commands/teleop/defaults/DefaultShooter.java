@@ -38,7 +38,9 @@ public class DefaultShooter extends Command {
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case COLLECTING_SLOW:
-                SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_SLOW);
+                if (!SHOOTER.isCenterBroken())
+                    SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_SLOW);
+
                 break;
             case POOPING_PREP:
                 SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_POOP_RPM);
@@ -71,8 +73,16 @@ public class DefaultShooter extends Command {
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_AGRESSIVE);
                 break;
             case CLIMB_INIT:
+                SHOOTER.stopShooter();
+                if (SHOOTER.isCenterBroken() && SHOOTER.getRPMLeader() < 1)
+                    SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
+                break;
             case CLIMB_PULLDOWN:
             case CLIMB_LEVEL:
+                SHOOTER.stopShooter();
+                if (!SHOOTER.isRearBroken() && SHOOTER.isShooterAtSetpoint())
+                    SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDBACKWARD);
+                break;
             case TRAP_ELEV_MIDWAY:
                 SHOOTER.stopFeeder();
                 SHOOTER.stopShooter();
@@ -94,14 +104,19 @@ public class DefaultShooter extends Command {
                 final LocalizationState localizationState = RobotContainer.getLocalizationState();
                 if (localizationState.getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
                     if (SCORE_MODE == ScoreMode.SPEAKER) {
-                        if (Util.isWithinTolerance(
-                                RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
-                                localizationState.getSpeakerAngle().getDegrees(),
-                                15.0)) {
-                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                        if (SHOOTER.hasNote()) {
+                            if (Util.isWithinTolerance(
+                                    RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
+                                    localizationState.getSpeakerAngle().getDegrees(),
+                                    15.0)) {
+                                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                            } else {
+                                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                            }
                         } else {
-                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                            SHOOTER.stopShooter();
                         }
+
                     } else {
                         SHOOTER.stopShooter();
                     }

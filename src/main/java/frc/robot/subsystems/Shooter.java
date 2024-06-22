@@ -34,12 +34,10 @@ public class Shooter extends SubsystemBase {
 
     SHOOTER_CONFIG.Slot0.kP = 0.75;
     SHOOTER_CONFIG.Slot0.kA = 0.74; // acceleration
-    SHOOTER_CONFIG.Slot0.kI =
-        0.0; // An error of 1 rotation per second increases output by 0.5V every second
-    SHOOTER_CONFIG.Slot0.kD =
-        0.000; // A change of 1 rotation per second squared results in 0.01 volts output
-    SHOOTER_CONFIG.Slot0.kV =
-        0.12; // Falcon 500 is a 500kV motor, 500rpm per V = 8.333 rps per V, 1/8.33 = 0.12 volts /
+    SHOOTER_CONFIG.Slot0.kI = 0.0; // An error of 1 rotation per second increases output by 0.5V every second
+    SHOOTER_CONFIG.Slot0.kD = 0.000; // A change of 1 rotation per second squared results in 0.01 volts output
+    SHOOTER_CONFIG.Slot0.kV = 0.12; // Falcon 500 is a 500kV motor, 500rpm per V = 8.333 rps per V, 1/8.33 = 0.12
+                                    // volts /
     // Rotation per second
     SHOOTER_CONFIG.Slot0.kS = 0.05; // Add 0.05 V output to overcome static friction
     // Peak output of 10 volts
@@ -56,12 +54,10 @@ public class Shooter extends SubsystemBase {
     FEEDER_CFG.CurrentLimits.StatorCurrentLimit = 45;
     FEEDER_CFG.CurrentLimits.StatorCurrentLimitEnable = true;
 
-    VOLTAGE_VELOCITY_LEADER =
-        new VelocityVoltage(0, 0, true, SHOOTER_CONFIG_FEEDFOWARD, 0, false, false, false)
-            .withSlot(0);
-    VOLTAGE_VELOCITY_FOLLOWER =
-        new VelocityVoltage(0, 0, true, SHOOTER_CONFIG_FEEDFOWARD, 0, false, false, false)
-            .withSlot(0);
+    VOLTAGE_VELOCITY_LEADER = new VelocityVoltage(0, 0, true, SHOOTER_CONFIG_FEEDFOWARD, 0, false, false, false)
+        .withSlot(0);
+    VOLTAGE_VELOCITY_FOLLOWER = new VelocityVoltage(0, 0, true, SHOOTER_CONFIG_FEEDFOWARD, 0, false, false, false)
+        .withSlot(0);
 
     SHOOTER_LEADER.getConfigurator().apply(SHOOTER_CONFIG);
     SHOOTER_FOLLOWER.getConfigurator().apply(SHOOTER_CONFIG);

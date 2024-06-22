@@ -40,8 +40,8 @@ public class DefaultSwerve extends Command {
 
   public DefaultSwerve() {
     this.HOLONOMIC_CONTROLLER = new HolonomicDriveController(new PIDController(1, 0, 0), new PIDController(1.0, 0, 0),
-        new ProfiledPIDController(12.0, 0, 0,
-            new TrapezoidProfile.Constraints(TunerConstants.kSpeedAt12VoltsMps, 3.8)));
+        new ProfiledPIDController(9.0, 0, 0,
+            new TrapezoidProfile.Constraints(TunerConstants.kSpeedAt12VoltsMps, 4.2)));
     addRequirements(DRIVETRAIN);
   }
 

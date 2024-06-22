@@ -7,7 +7,9 @@ package frc.robot.commands.teleop.stated;
 import static frc.robot.RobotContainer.SHOOTER;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
@@ -23,6 +25,7 @@ public class ShootNoteState extends SequentialCommandGroup {
     addCommands(
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.SHOOTING)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
+        new WaitCommand(Constants.Shooter.SHOT_DEBOUNCE_TIME),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
   }
 }

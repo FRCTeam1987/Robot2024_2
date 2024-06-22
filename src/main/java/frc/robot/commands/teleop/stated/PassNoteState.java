@@ -8,7 +8,9 @@ import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.*;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
@@ -25,6 +27,7 @@ public class PassNoteState extends SequentialCommandGroup {
         new WaitUntilCommand(() -> ELEVATOR.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && WRIST.isAtSetpoint()),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.PASS)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
+        new WaitCommand(Constants.Shooter.PASS_DEBOUNCE_TIME),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
   }
 }

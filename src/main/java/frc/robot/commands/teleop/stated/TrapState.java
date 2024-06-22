@@ -28,7 +28,7 @@ public class TrapState extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-
+        new WaitCommand(0.8),
         new InstCmd(() -> {
           RobotContainer.setRobotState(RobotState.TRAP_ELEV_MIDWAY);
         }),
@@ -51,11 +51,11 @@ public class TrapState extends SequentialCommandGroup {
         new WaitUntilCommand(
             () -> SHOOTER.isShooterAtSetpoint()
                 && WRIST.isAtSetpoint()
-                && ELEVATOR.isAtSetpoint()),
+                && ELEVATOR.isAtSetpoint()).withTimeout(0.75),
 
         new InstCmd(() -> setRobotState(RobotState.TRAP_SCORE)),
         new WaitUntilCommand(() -> LINE_DEBOUNCER.calculate(!SHOOTER.isCenterBroken())),
-        new WaitCommand(1.0),
+        new WaitCommand(0.5),
         new InstCmd(() -> setRobotState(RobotState.TRAP_DOTHEJIGGLE))
 
     );
