@@ -61,7 +61,7 @@ public class AutoCommands {
     NamedCommands.registerCommands(namedCommands);
   }
 
-  private static Boolean isBluealliance() {
+  private static Boolean isBlueAlliance() {
     return DRIVETRAIN.getAlliance().equals(Alliance.Blue);
   }
 
@@ -81,13 +81,13 @@ public class AutoCommands {
     autoChooser.addOption("Madtown", new ConditionalCommand(
       wrap(new Madtown(Alliance.Blue)),
       wrap(new Madtown(Alliance.Red)),
-      AutoCommands::isBluealliance
+      AutoCommands::isBlueAlliance
     ));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
       wrap(new Source_5_4(Alliance.Blue)),
       wrap(new Source_5_4(Alliance.Red)),
-      AutoCommands::isBluealliance
+      AutoCommands::isBlueAlliance
     ));
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
