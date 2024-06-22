@@ -59,6 +59,8 @@ public class AutoCommands {
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
       put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
       put("AutoAimAndShoot", new AutoAimAndShoot());
+      put("StartLLPoseUpdate", new InstantCommand(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(true)));
+      put("StopLLPoseUpdate", new InstantCommand(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(false)));
     }
   });
 

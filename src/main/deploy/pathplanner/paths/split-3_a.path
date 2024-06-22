@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.100299850460456,
-        "y": 5.113390425116072
+        "x": 1.798100248363402,
+        "y": 5.063793599194549
       },
       "isLocked": false,
       "linkedName": "middle_sub_start"
@@ -132,7 +132,7 @@
         "y": 5.55
       },
       "prevControl": {
-        "x": 1.9,
+        "x": 1.4,
         "y": 5.55
       },
       "nextControl": null,
@@ -284,7 +284,7 @@
     },
     {
       "name": "First Prep Shoot",
-      "waypointRelativePos": 0.45,
+      "waypointRelativePos": 0.0,
       "command": {
         "type": "parallel",
         "data": {
@@ -293,6 +293,12 @@
               "type": "named",
               "data": {
                 "name": "PrepShoot"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
               }
             }
           ]
@@ -310,6 +316,23 @@
               "type": "named",
               "data": {
                 "name": "InstantShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Vision Update",
+      "waypointRelativePos": 2.5,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
               }
             }
           ]

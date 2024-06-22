@@ -120,7 +120,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
             this::seedFieldRelative,  // Consumer for seeding pose against auto
             this::getCurrentRobotChassisSpeeds,
             (speeds)->this.setControl(AutoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
-            new HolonomicPathFollowerConfig(new PIDConstants(10, 0, 0),
+            new HolonomicPathFollowerConfig(new PIDConstants(11, 0, 0),
                                             new PIDConstants(10, 0, 0),
                                             TunerConstants.kSpeedAt12VoltsMps,
                                             driveBaseRadius,
@@ -227,7 +227,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         for (String limelightName : Constants.Limelight.LL3GS) {
             LimelightHelpers.SetRobotOrientation(limelightName, yaw, 0, 0, 0, 0, 0);
         }
-        if (!shouldUpdatePoseFromVision()) {
+        if (!shouldUpdatePoseFromVision()) {    
             return;
         }
         final ChassisSpeeds chassisSpeeds = getCurrentRobotChassisSpeeds();
@@ -243,8 +243,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                 mt2.pose,
                 mt2.timestampSeconds,
                 VecBuilder.fill(
-                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist / 2.0),
-                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist / 2.0),
+                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
+                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
                     9999999
                 )
             );
