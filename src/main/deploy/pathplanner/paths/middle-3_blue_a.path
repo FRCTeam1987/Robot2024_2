@@ -129,9 +129,9 @@
     {
       "name": "First Shoot Zone",
       "minWaypointRelativePos": 0.65,
-      "maxWaypointRelativePos": 1.25,
+      "maxWaypointRelativePos": 1.35,
       "constraints": {
-        "maxVelocity": 1.5,
+        "maxVelocity": 1.0,
         "maxAcceleration": 4.25,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -139,10 +139,10 @@
     },
     {
       "name": "Second Shoot Zone",
-      "minWaypointRelativePos": 4.75,
-      "maxWaypointRelativePos": 5.05,
+      "minWaypointRelativePos": 4.6000000000000005,
+      "maxWaypointRelativePos": 5.1499999999999995,
       "constraints": {
-        "maxVelocity": 1.5,
+        "maxVelocity": 1.25,
         "maxAcceleration": 4.25,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -168,7 +168,7 @@
       }
     },
     {
-      "name": "Collect Firrst Note",
+      "name": "Collect First Note",
       "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
@@ -186,7 +186,7 @@
     },
     {
       "name": "Shoot First Note",
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 1.25,
       "command": {
         "type": "parallel",
         "data": {

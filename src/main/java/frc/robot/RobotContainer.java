@@ -86,9 +86,10 @@ public class RobotContainer {
 
     Controls.configureDriverController();
     Controls.configureCoDriverController();
+  }
 
+  public void teleopInit() {
     configureDefaultCommands();
-    CANDLES.setDefaultCommand(new DefaultCandles());
   }
 
   public void configureDefaultCommands() {
@@ -97,7 +98,7 @@ public class RobotContainer {
     INTAKE.setDefaultCommand(new DefaultIntake());
     ELEVATOR.setDefaultCommand(new DefaultElevator());
     WRIST.setDefaultCommand(new DefaultWrist());
-
+    CANDLES.setDefaultCommand(new DefaultCandles());
     if (DRIVETRAIN.getAlliance() == Alliance.Blue) {
       DRIVETRAIN.seedFieldRelative(
           new Pose2d(1.37, 5.52, Rotation2d.fromDegrees(0.0)));

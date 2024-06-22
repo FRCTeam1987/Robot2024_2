@@ -35,6 +35,6 @@ public class InstantShoot extends Command {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !m_shotDebouncer.calculate(RobotContainer.SHOOTER.isCenterBroken());
+    return !m_shotDebouncer.calculate(RobotContainer.SHOOTER.isCenterBroken() && RobotContainer.SHOOTER.isRearBroken());
   }
 }
