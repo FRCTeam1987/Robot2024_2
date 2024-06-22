@@ -10,6 +10,6 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 /** Add your docs here. */
 public class TabUtil {
   public static ShuffleboardTab createTab(final String name) {
-    return Shuffleboard.getTab("name");
+    return Shuffleboard.getTab(name);
   }
 }
