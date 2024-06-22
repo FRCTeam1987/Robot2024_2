@@ -20,7 +20,7 @@ public class PointsOfInterest {
 
   public static PointsOfInterest BLUE = new PointsOfInterest(
     new Pose2d(field.getTagPose(6).get().getTranslation().toTranslation2d().minus(new Translation2d(0, 0.76)), Rotation2d.fromDegrees(90)),
-    new Translation2d(1.84, 5.95),
+    new Translation2d(1.0, 7.05),
     field.getTagPose(4).get().getTranslation().toTranslation2d()
   );
 
