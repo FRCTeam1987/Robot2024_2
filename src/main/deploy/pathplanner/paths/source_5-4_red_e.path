@@ -63,7 +63,7 @@
             {
               "type": "named",
               "data": {
-                "name": "AutoCollectNote"
+                "name": "FollowCollectNote"
               }
             }
           ]

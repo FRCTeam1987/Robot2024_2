@@ -1,0 +1,32 @@
+{
+  "version": 1.0,
+  "startingPose": null,
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "deadline",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "WaitUntilHasNote"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "source_5-4_red_e"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "folder": "source_5-4_red",
+  "choreoAuto": false
+}

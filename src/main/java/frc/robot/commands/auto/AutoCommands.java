@@ -86,14 +86,17 @@ public class AutoCommands {
     autoChooser.setDefaultOption("Do Nothing", new InstantCommand());
     autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
     autoChooser.addOption("Madtown", new ConditionalCommand(
-    wrap(new Madtown(Alliance.Blue)),
-    wrap(new Madtown(Alliance.Red)),
-    AutoCommands::isBlueAlliance));
+      wrap(new Madtown(Alliance.Blue)),
+      wrap(new Madtown(Alliance.Red)),
+      AutoCommands::isBlueAlliance)
+    );
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    // autoChooser.addOption("Source 5-4", new ConditionalCommand(
-    // wrap(new Source_5_4(Alliance.Blue)),
-    // wrap(new Source_5_4(Alliance.Red)),
-    // AutoCommands::isBlueAlliance));
+    autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial")); 
+    autoChooser.addOption("Source 5-4", new ConditionalCommand(
+      wrap(new Source_5_4(Alliance.Blue)),
+      wrap(new Source_5_4(Alliance.Red)),
+      AutoCommands::isBlueAlliance)
+    );
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }

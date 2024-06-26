@@ -3,45 +3,45 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.0,
-        "y": 3.0
+        "x": 8.05,
+        "y": 2.4531510266000858
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.521002056073846,
-        "y": 2.584727322811128
+        "x": 7.005696013822126,
+        "y": 2.0730554601057953
       },
       "isLocked": false,
-      "linkedName": "source_5-4_b_end"
+      "linkedName": "source_5-4_a_end"
     },
     {
       "anchor": {
-        "x": 2.54,
-        "y": 1.57
+        "x": 5.561797226676051,
+        "y": 1.85
       },
       "prevControl": {
-        "x": 2.04,
-        "y": 1.57
+        "x": 6.1648145973768385,
+        "y": 1.85
       },
       "nextControl": {
-        "x": 2.9626590588333026,
-        "y": 1.57
+        "x": 4.958779855975263,
+        "y": 1.85
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.5,
-        "y": 1.57
+        "x": 4.0,
+        "y": 3.0
       },
       "prevControl": {
-        "x": 4.0,
-        "y": 1.57
+        "x": 4.883883476483184,
+        "y": 2.1161165235168156
       },
       "nextControl": null,
-      "isLocked": false,
-      "linkedName": null
+      "isLocked": true,
+      "linkedName": "source_5-4_b_end"
     }
   ],
   "rotationTargets": [
@@ -52,25 +52,7 @@
     }
   ],
   "constraintZones": [],
-  "eventMarkers": [
-    {
-      "name": "Collect Note",
-      "waypointRelativePos": 0.6,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "FollowCollectNote"
-              }
-            }
-          ]
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 5.0,
     "maxAcceleration": 4.0,
@@ -79,13 +61,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": -30.0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "source_5-4_blue",
+  "folder": "source_5-4",
   "previewStartingState": {
-    "rotation": -30.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

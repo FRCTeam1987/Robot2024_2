@@ -3,6 +3,7 @@
   "robotLength": 0.92,
   "holonomicMode": true,
   "pathFolders": [
+    "source_5-4",
     "amp_1-2",
     "madtown",
     "middle-3",
@@ -11,6 +12,7 @@
     "split-3"
   ],
   "autoFolders": [
+    "source_5-4",
     "amp_1-2",
     "madtown",
     "middle-3",
