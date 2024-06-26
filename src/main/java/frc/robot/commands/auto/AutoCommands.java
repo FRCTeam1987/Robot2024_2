@@ -44,7 +44,7 @@ public class AutoCommands {
       put("PrepShoot", new InstantCommand(() -> setAutoState(AutoState.SHOOT_PREP)));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
-      put("AutoCollectNote", new AutoCollectNote());
+      put("AutoCollectNote", new AutoCollectNote(() -> 2.75));
       put("PathFindToSourceShot", PathFind.toSourceShot());
       put("PathFindToAmpShot", PathFind.toAmpShot());
       put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
