@@ -5,6 +5,7 @@
 package frc.robot;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -29,7 +30,10 @@ public class Constants {
         public static class Limelight {
                 public static final String LEFT_LOW = "limelight-leftlo";
                 public static final String RIGHT_LOW = "limelight-rightlo";
-                public static final List<String> LL3GS = Arrays.asList(LEFT_LOW, RIGHT_LOW);
+                public static final List<String> LL3GS = Collections.unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW));
+                public static final String FRONT = "limelight-front";
+                public static final List<String> LL3S = Collections.unmodifiableList(Arrays.asList(FRONT));
+                public static final List<String> LLS = Collections.unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW, FRONT));
         }
 
         public static class Photon {
