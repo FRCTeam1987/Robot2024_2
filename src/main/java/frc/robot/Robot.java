@@ -16,8 +16,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     ROBOT_CONTAINER = new RobotContainer();
-
-    RobotContainer.DRIVETRAIN.getDaqThread().setThreadPriority(99);
+    ROBOT_CONTAINER.robotInit();
+    ROBOT_CONTAINER.robotPeriodic();
   }
 
   @Override

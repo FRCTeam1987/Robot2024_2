@@ -5,6 +5,7 @@
 package frc.robot;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+import com.pathplanner.lib.commands.PathfindingCommand;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -131,7 +132,7 @@ public class RobotContainer {
     return localizationState;
   }
 
-  public void updateLocalizationState() {
+  private static void updateLocalizationState() {
     final Alliance alliance = DRIVETRAIN.getAlliance();
     final PointsOfInterest poi = PointsOfInterest.get(alliance);
     final Translation2d robot = DRIVETRAIN.getState().Pose.getTranslation();
@@ -141,6 +142,11 @@ public class RobotContainer {
         robot.getDistance(poi.PASS_TARGET),
         LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
         robot.getDistance(poi.SPEAKER));
+  }
+
+  public void robotInit() {
+    DRIVETRAIN.getDaqThread().setThreadPriority(99);
+    PathfindingCommand.warmupCommand().schedule();
   }
 
   public void robotPeriodic() {

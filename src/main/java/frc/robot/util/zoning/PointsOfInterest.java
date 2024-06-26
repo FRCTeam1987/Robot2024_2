@@ -17,17 +17,17 @@ public class PointsOfInterest {
 
   private static final Translation2d AMP_ROBOT_OFFSET = new Translation2d(0, 0.76);
 
-  public static PointsOfInterest BLUE = new PointsOfInterest(
-      new Pose2d(field.getTagPose(6).get().getTranslation().toTranslation2d().minus(new Translation2d(0, 0.76)),
+  public static final PointsOfInterest BLUE = new PointsOfInterest(
+      new Pose2d(field.getTagPose(6).get().getTranslation().toTranslation2d().minus(AMP_ROBOT_OFFSET),
           Rotation2d.fromDegrees(90)),
       new Translation2d(1.0, 7.05),
       field.getTagPose(7).get().getTranslation().toTranslation2d());
 
-  public static PointsOfInterest RED = new PointsOfInterest(
+  public static final PointsOfInterest RED = new PointsOfInterest(
       new Pose2d(field.getTagPose(5).get().getTranslation().toTranslation2d().minus(AMP_ROBOT_OFFSET),
           BLUE.AMP_SCORE.getRotation()),
       LocalizationUtil.blueFlipToRed(BLUE.PASS_TARGET),
-      LocalizationUtil.blueFlipToRed(BLUE.SPEAKER));
+      field.getTagPose(4).get().getTranslation().toTranslation2d());
 
   public static PointsOfInterest get(final Alliance alliance) {
     return alliance == Alliance.Red ? RED : BLUE;
