@@ -6,12 +6,15 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 import com.ctre.phoenix6.SignalLogger;
+import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.Utils;
+import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrain;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveDrivetrainConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModuleConstants;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest.RobotCentric;
+import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.commands.PathPlannerAuto;
 import com.pathplanner.lib.controllers.PPHolonomicDriveController;
@@ -108,6 +111,19 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         if (Utils.isSimulation()) {
             startSimThread();
         }
+    }
+
+    public StatusCode configDriveAmps(double amps) {
+        var status = StatusCode.OK;
+        CurrentLimitsConfigs cfg = new CurrentLimitsConfigs();
+        cfg.StatorCurrentLimit = amps;
+        for (var module : Modules) {
+            var moduleStatus = module.getDriveMotor().getConfigurator().apply(cfg);
+            if (status.isOK()) {
+                status = moduleStatus;
+            }
+        }
+        return status;
     }
 
     private void configurePathPlanner() {

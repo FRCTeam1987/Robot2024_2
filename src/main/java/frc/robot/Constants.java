@@ -30,16 +30,23 @@ public class Constants {
         public static class Limelight {
                 public static final String LEFT_LOW = "limelight-leftlo";
                 public static final String RIGHT_LOW = "limelight-rightlo";
-                public static final List<String> LL3GS = Collections.unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW));
+                public static final List<String> LL3GS = Collections
+                                .unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW));
                 public static final String FRONT = "limelight-intake";
                 public static final List<String> LL3S = Collections.unmodifiableList(Arrays.asList(FRONT));
-                public static final List<String> LLS = Collections.unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW, FRONT));
+                public static final List<String> LLS = Collections
+                                .unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW, FRONT));
         }
 
         public static class Photon {
                 public static final String INTAKE_PHOTON_CAMERA_NAME = "Arducam_OV9782_USB_Camera";
                 public static final double INTAKE_CAMERA_HEIGHT_METERS = 0.651830;
                 public static final double INTAKE_CAMERA_ANGLE_DEGREES = 60.0;
+        }
+
+        public static class Drive {
+                public static final double DRIVE_MOTOR_AMPS_NORMAL = 80;
+                public static final double DRIVE_MOTOR_AMPS_DEFENSE = 100;
         }
 
         public static class IDs {

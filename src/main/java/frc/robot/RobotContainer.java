@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import javax.sound.sampled.SourceDataLine;
+
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.commands.PathfindingCommand;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;
@@ -52,6 +54,10 @@ public class RobotContainer {
   public static RobotState STATE = RobotState.DEFAULT;
   public static ScoreMode SCORE_MODE = ScoreMode.SPEAKER;
   public static DriveMode DRIVE_MODE = DriveMode.MANUAL;
+
+  private static RobotState PREV_STATE = RobotState.DEFAULT;
+  private static ScoreMode PREV_SCORE_MODE = ScoreMode.SPEAKER;
+  private static DriveMode PREV_DRIVE_MODE = DriveMode.MANUAL;
 
   public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
       Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
@@ -154,6 +160,16 @@ public class RobotContainer {
   public void robotPeriodic() {
     DRIVETRAIN.updatePoseFromVision();
     updateLocalizationState();
+    printMode();
+  }
+
+  public void printMode() {
+    if (DRIVE_MODE != PREV_DRIVE_MODE || SCORE_MODE != PREV_SCORE_MODE || STATE != PREV_STATE) {
+      System.out.println("ST: " + STATE + " SM: " + SCORE_MODE + " DM" + DRIVE_MODE);
+      PREV_STATE = STATE;
+      PREV_DRIVE_MODE = DRIVE_MODE;
+      PREV_SCORE_MODE = SCORE_MODE;
+    }
   }
 
   public static RobotState getRobotState() {

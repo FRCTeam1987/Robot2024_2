@@ -1,6 +1,7 @@
 package frc.robot.util.extensions;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
+import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.defaults.DefaultSwerve;
 import frc.robot.commands.teleop.logic.RobotState;
@@ -14,7 +15,6 @@ import frc.robot.commands.teleop.stated.PodiumState;
 import frc.robot.commands.teleop.stated.PoopNoteState;
 import frc.robot.commands.teleop.stated.ShootNoteState;
 import frc.robot.commands.teleop.stated.SubwooferState;
-import frc.robot.commands.teleop.stateless.MultiButton;
 import frc.robot.commands.teleop.stateless.ReLocalizeSub;
 import frc.robot.util.InstCmd;
 
@@ -48,17 +48,13 @@ public class Controls extends RobotContainer {
                 // DRIVER_CONTROLLER.leftStick().onTrue(new InstCmd(() ->
                 // setScoreMode(ScoreMode.SPEAKER)));
                 DRIVER_CONTROLLER.rightStick()
-                                .onTrue(new MultiButton(() -> DRIVER_CONTROLLER.rightStick().getAsBoolean(),
-                                                () -> DRIVER_CONTROLLER.leftStick().getAsBoolean(),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.AMP)),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.SPEAKER)),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE))));
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.AMP)));
                 DRIVER_CONTROLLER.leftStick()
-                                .onTrue(new MultiButton(() -> DRIVER_CONTROLLER.rightStick().getAsBoolean(),
-                                                () -> DRIVER_CONTROLLER.leftStick().getAsBoolean(),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.AMP)),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.SPEAKER)),
-                                                new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE))));
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.SPEAKER)));
+
+                new Trigger(DRIVER_CONTROLLER.leftStick()).and(DRIVER_CONTROLLER.rightStick())
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
+
                 DRIVER_CONTROLLER.x().onTrue(
                                 new ConditionalCommand(new PoopNoteState(), new InstCmd(),
                                                 () -> SHOOTER.isCenterBroken() && STATE == RobotState.DEFAULT));

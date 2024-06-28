@@ -105,6 +105,7 @@ public class DefaultShooter extends Command {
                 switch (getScoreMode()) {
                     case DEFENSE:
                         SHOOTER.stopFeeder();
+                        SHOOTER.stopShooter();
                         break;
                     case AMP:
                     case SPEAKER:
@@ -141,7 +142,7 @@ public class DefaultShooter extends Command {
                                                 new InterpolatingDouble(localizationState.getAmpPassDistance())).value);
                                 break;
                             default:
-                                WRIST.goHome();
+                                SHOOTER.stopFeeder();
                                 break;
 
                         }
