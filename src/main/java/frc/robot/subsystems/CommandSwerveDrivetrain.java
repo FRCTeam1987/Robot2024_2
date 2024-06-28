@@ -93,7 +93,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     /* Change this to the sysid routine you want to test */
     private final SysIdRoutine RoutineToApply = SysIdRoutineTranslation;
 
-    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, double OdometryUpdateFrequency, SwerveModuleConstants... modules) {
+    public CommandSwerveDrivetrain(SwerveDrivetrainConstants driveTrainConstants, double OdometryUpdateFrequency,
+            SwerveModuleConstants... modules) {
         super(driveTrainConstants, OdometryUpdateFrequency, modules);
         configurePathPlanner();
         if (Utils.isSimulation()) {
@@ -116,18 +117,21 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         }
 
         AutoBuilder.configureHolonomic(
-            ()->this.getState().Pose, // Supplier of current robot pose
-            this::seedFieldRelative,  // Consumer for seeding pose against auto
-            this::getCurrentRobotChassisSpeeds,
-            (speeds)->this.setControl(AutoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the robot
-            new HolonomicPathFollowerConfig(new PIDConstants(11, 0, 0),
-                                            new PIDConstants(10, 0, 0),
-                                            TunerConstants.kSpeedAt12VoltsMps,
-                                            driveBaseRadius,
-                                            new ReplanningConfig()),
-            () -> DriverStation.getAlliance().orElse(Alliance.Blue)==Alliance.Red, // Assume the path needs to be flipped for Red vs Blue, this is normally the case
-            this); // Subsystem for requirements
-            PPHolonomicDriveController.setRotationTargetOverride(this::getRotationTargetOverride);
+                () -> this.getState().Pose, // Supplier of current robot pose
+                this::seedFieldRelative, // Consumer for seeding pose against auto
+                this::getCurrentRobotChassisSpeeds,
+                (speeds) -> this.setControl(AutoRequest.withSpeeds(speeds)), // Consumer of ChassisSpeeds to drive the
+                                                                             // robot
+                new HolonomicPathFollowerConfig(new PIDConstants(11, 0, 0),
+                        new PIDConstants(10, 0, 0),
+                        TunerConstants.kSpeedAt12VoltsMps,
+                        driveBaseRadius,
+                        new ReplanningConfig()),
+                () -> DriverStation.getAlliance().orElse(Alliance.Blue) == Alliance.Red, // Assume the path needs to be
+                                                                                         // flipped for Red vs Blue,
+                                                                                         // this is normally the case
+                this); // Subsystem for requirements
+        PPHolonomicDriveController.setRotationTargetOverride(this::getRotationTargetOverride);
     }
 
     public Command applyRequest(Supplier<SwerveRequest> requestSupplier) {
@@ -172,10 +176,22 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     @Override
     public void periodic() {
         /* Periodically try to apply the operator perspective */
-        /* If we haven't applied the operator perspective before, then we should apply it regardless of DS state */
-        /* This allows us to correct the perspective in case the robot code restarts mid-match */
-        /* Otherwise, only check and apply the operator perspective if the DS is disabled */
-        /* This ensures driving behavior doesn't change until an explicit disable event occurs during testing*/
+        /*
+         * If we haven't applied the operator perspective before, then we should apply
+         * it regardless of DS state
+         */
+        /*
+         * This allows us to correct the perspective in case the robot code restarts
+         * mid-match
+         */
+        /*
+         * Otherwise, only check and apply the operator perspective if the DS is
+         * disabled
+         */
+        /*
+         * This ensures driving behavior doesn't change until an explicit disable event
+         * occurs during testing
+         */
         if (!hasAppliedOperatorPerspective || DriverStation.isDisabled()) {
             DriverStation.getAlliance().ifPresent((allianceColor) -> {
                 this.setOperatorPerspectiveForward(
@@ -190,48 +206,59 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
     /***** Begin Team Logic *****/
 
     private Boolean ppShouldPointAtSpeaker = false;
+
     public void setPPShouldPointAtSpeaker(final Boolean shouldPointAtSpeaker) {
         ppShouldPointAtSpeaker = shouldPointAtSpeaker;
     }
+
     private Boolean ppShouldPointAtNote = false;
+
     public void setPPShouldPointAtNote(final Boolean shouldPointAtNote) {
         ppShouldPointAtNote = shouldPointAtNote;
     }
+
     private Optional<Rotation2d> getRotationTargetOverride() {
         if (ppShouldPointAtSpeaker) {
             return Optional.of(RobotContainer.getLocalizationState().getSpeakerAngle());
         }
         if (ppShouldPointAtNote) {
-            return Optional.of(getState().Pose.getRotation().plus(Rotation2d.fromDegrees(RobotContainer.VISION.getYawVal())));
+            return Optional
+                    .of(getState().Pose.getRotation().plus(Rotation2d.fromDegrees(RobotContainer.VISION.getYawVal())));
         }
         return Optional.empty();
     }
 
     private Alliance alliance = Alliance.Red;
+
     public Alliance getAlliance() {
         return alliance;
     }
+
     public void setAlliance(final Alliance newAlliance) {
         alliance = newAlliance;
     }
 
     private boolean shouldUpdatePoseFromVision = true;
+
     public boolean shouldUpdatePoseFromVision() {
         return shouldUpdatePoseFromVision;
     }
+
     public void setShouldUpdatePoseFromVision(final boolean shouldUpdate) {
         shouldUpdatePoseFromVision = shouldUpdate;
     }
+
     public void updatePoseFromVision() {
         final double yaw = getState().Pose.getRotation().getDegrees();
-        for (String limelightName : Constants.Limelight.LL3GS) {
+        for (String limelightName : Constants.Limelight.LLS) {
             LimelightHelpers.SetRobotOrientation(limelightName, yaw, 0, 0, 0, 0, 0);
         }
-        if (!shouldUpdatePoseFromVision()) {    
+        if (!shouldUpdatePoseFromVision()) {
             return;
         }
         final ChassisSpeeds chassisSpeeds = getCurrentRobotChassisSpeeds();
-        if (Math.abs(getPigeon2().getRate()) > 540 || (Math.abs(chassisSpeeds.vxMetersPerSecond) > 2.0 || Math.abs(chassisSpeeds.vyMetersPerSecond) > 2.0)) {
+        if (Math.abs(getPigeon2().getRate()) > 540 || (Math.abs(chassisSpeeds.vxMetersPerSecond) > 2.0
+                || Math.abs(chassisSpeeds.vyMetersPerSecond) > 2.0)) {
             return;
         }
         for (String limelightName : Constants.Limelight.LL3GS) {
@@ -240,14 +267,12 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                 break;
             }
             addVisionMeasurement(
-                mt2.pose,
-                mt2.timestampSeconds,
-                VecBuilder.fill(
-                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
-                    Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
-                    9999999
-                )
-            );
+                    mt2.pose,
+                    mt2.timestampSeconds,
+                    VecBuilder.fill(
+                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
+                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
+                            9999999));
         }
     }
 

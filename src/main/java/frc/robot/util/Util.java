@@ -32,12 +32,12 @@ public class Util {
   public static final Pose2d MANUAL_RED_LOB = new Pose2d(14.7, 5.95, new Rotation2d(Math.toRadians(90.0))); // RED AMP
   public static final Pose2d MANUAL_BLUE_LOB = new Pose2d(1.84, 5.95, new Rotation2d(Math.toRadians(90.0))); // BLUE AMP
   public static final List<Pose2d> TRAP_TAGS = Collections.unmodifiableList(List.of(
-    field.getTagPose(11).get().toPose2d(),  // RED SOURCE
-    field.getTagPose(12).get().toPose2d(),  // RED AMP
-    field.getTagPose(13).get().toPose2d(),  // RED MIDDLE
-    field.getTagPose(14).get().toPose2d(),  // BLUE MIDDLE
-    field.getTagPose(15).get().toPose2d(),  // BLUE AMP
-    field.getTagPose(16).get().toPose2d()   // BLUE SOURCE
+      field.getTagPose(11).get().toPose2d(), // RED SOURCE
+      field.getTagPose(12).get().toPose2d(), // RED AMP
+      field.getTagPose(13).get().toPose2d(), // RED MIDDLE
+      field.getTagPose(14).get().toPose2d(), // BLUE MIDDLE
+      field.getTagPose(15).get().toPose2d(), // BLUE AMP
+      field.getTagPose(16).get().toPose2d() // BLUE SOURCE
   ));
   public static final List<Pose2d> AMP_TAGS = Collections.unmodifiableList(List.of(TAG_6_POSE, TAG_5_POSE));
   public static final double DEADBAND = 0.05;
@@ -97,7 +97,7 @@ public class Util {
   }
 
   public static boolean isLobShot() {
-    return RobotContainer.getLocalizationState().getPassDistance() > 5.5;
+    return RobotContainer.getLocalizationState().getAmpPassDistance() > 5.5;
   }
 
   public static double squareValue(double value) {
@@ -123,7 +123,7 @@ public class Util {
   public static boolean isPointedAtPass() {
     return Util.isWithinTolerance(
         RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
-        RobotContainer.getLocalizationState().getPassAngle().getDegrees(),
+        RobotContainer.getLocalizationState().getAmpPassAngle().getDegrees(),
         3.0);
   }
 }

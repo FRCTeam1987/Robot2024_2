@@ -1,11 +1,12 @@
 package frc.robot.commands.teleop.defaults;
 
-import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.teleop.logic.ScoreMode;
+import frc.robot.util.Util;
 import frc.robot.util.zoning.FieldZones;
 
 public class DefaultElevator extends Command {
@@ -60,20 +61,34 @@ public class DefaultElevator extends Command {
 
         break;
       default:
-        if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
-          ELEVATOR.goHome();
-        } else if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
-          if (SHOOTER.isCenterBroken()) {
-            ELEVATOR.setLengthInches(Constants.Elevator.PASS_ELEVATOR_HEIGHT);
-          } else {
+        switch (getScoreMode()) {
+          case DEFENSE:
             ELEVATOR.goHome();
-          }
-        } else {
-          ELEVATOR.goHome();
+            break;
+          case AMP:
+          case SPEAKER:
+          default:
+            switch (RobotContainer.getLocalizationState().getFieldZone()) {
+              case ALLIANCE_WING:
+                ELEVATOR.goHome();
+                break;
+              case OPPONENT_WING:
+              case NEUTRAL_WING:
+                if (SHOOTER.isCenterBroken()) {
+                  ELEVATOR.setLengthInches(Constants.Elevator.PASS_ELEVATOR_HEIGHT);
+                } else {
+                  ELEVATOR.goHome();
+                }
+                break;
+              default:
+                ELEVATOR.goHome();
+                break;
+
+            }
+            break;
+
         }
-
         break;
-
     }
   }
 

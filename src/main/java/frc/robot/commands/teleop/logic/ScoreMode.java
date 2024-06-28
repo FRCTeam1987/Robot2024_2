@@ -1,5 +1,5 @@
 package frc.robot.commands.teleop.logic;
 
 public enum ScoreMode {
-    SPEAKER, AMP
+    SPEAKER, AMP, DEFENSE
 }

@@ -52,7 +52,7 @@ public class DefaultShooter extends Command {
             case PASS:
                 SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
                         .getInterpolated(new InterpolatingDouble(
-                                RobotContainer.getLocalizationState().getPassDistance())).value);
+                                RobotContainer.getLocalizationState().getAmpPassDistance())).value);
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case SHOOTING:
@@ -102,27 +102,51 @@ public class DefaultShooter extends Command {
             default:
                 SHOOTER.stopFeeder();
                 final LocalizationState localizationState = RobotContainer.getLocalizationState();
-                if (localizationState.getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
-                    if (SCORE_MODE == ScoreMode.SPEAKER) {
-                        if (SHOOTER.hasNote()) {
-                            if (Util.isWithinTolerance(
-                                    RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
-                                    localizationState.getSpeakerAngle().getDegrees(),
-                                    15.0)) {
-                                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
-                            } else {
-                                SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
-                            }
-                        } else {
-                            SHOOTER.stopShooter();
-                        }
+                switch (getScoreMode()) {
+                    case DEFENSE:
+                        SHOOTER.stopFeeder();
+                        break;
+                    case AMP:
+                    case SPEAKER:
+                    default:
+                        switch (RobotContainer.getLocalizationState().getFieldZone()) {
+                            case ALLIANCE_WING:
+                                if (SCORE_MODE == ScoreMode.SPEAKER) {
+                                    if (SHOOTER.hasNote()) {
+                                        if (Util.isWithinTolerance(
+                                                RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
+                                                localizationState.getSpeakerAngle().getDegrees(),
+                                                15.0)) {
+                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                                        } else {
+                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                                        }
+                                    } else {
+                                        SHOOTER.stopShooter();
+                                    }
 
-                    } else {
-                        SHOOTER.stopShooter();
-                    }
-                } else if (localizationState.getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
-                    SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                            .getInterpolated(new InterpolatingDouble(localizationState.getPassDistance())).value);
+                                } else {
+                                    SHOOTER.stopShooter();
+                                }
+                                break;
+                            case OPPONENT_WING:
+                                SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
+                                        .getInterpolated(
+                                                new InterpolatingDouble(
+                                                        localizationState.getCenterPassDistance())).value);
+                                break;
+                            case NEUTRAL_WING:
+                                SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
+                                        .getInterpolated(
+                                                new InterpolatingDouble(localizationState.getAmpPassDistance())).value);
+                                break;
+                            default:
+                                WRIST.goHome();
+                                break;
+
+                        }
+                        break;
+
                 }
 
                 break;

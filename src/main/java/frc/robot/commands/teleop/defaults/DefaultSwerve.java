@@ -9,12 +9,15 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.DriveMode;
+import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.generated.TunerConstants;
 import frc.robot.util.Util;
 import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.zoning.LocalizationState;
 
 import static frc.robot.RobotContainer.*;
+
+import com.ctre.phoenix6.StatusCode;
 
 /**
  * This command, when executed, instructs the drivetrain subsystem to drive
@@ -52,6 +55,7 @@ public class DefaultSwerve extends Command {
 
   @Override
   public void execute() {
+
     double xPercentage = Util
         .squareValue(Constants.Limiters.TRANSLATION_X_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftY()))
         * TunerConstants.kSpeedAt12VoltsMps;
@@ -60,8 +64,10 @@ public class DefaultSwerve extends Command {
         * TunerConstants.kSpeedAt12VoltsMps;
     double rotationPercentage = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
     final LocalizationState localizationState = RobotContainer.getLocalizationState();
-    FieldZones.Zone zone = localizationState.getFieldZone();
-    System.out.println(STATE);
+    FieldZones.Zone zone = localizationState
+        .getFieldZone();
+    System.out.println(getRobotState());
+    System.out.println(getScoreMode());
     if (prevZone != FieldZones.Zone.ALLIANCE_WING && zone == FieldZones.Zone.ALLIANCE_WING) {
       setDriveMode(DriveMode.AUTOMATIC);
     } else if (prevZone == FieldZones.Zone.OPPONENT_WING && zone == FieldZones.Zone.NEUTRAL_WING) {
@@ -71,10 +77,14 @@ public class DefaultSwerve extends Command {
     if (Math.abs(rotationPercentage) > 0.25) {
       setDriveMode(DriveMode.MANUAL);
     }
-    if (DRIVER_CONTROLLER.getRightTriggerAxis() > 0.3 || getDriveMode() == DriveMode.AUTOMATIC) {
+    if (DRIVER_CONTROLLER.getRightTriggerAxis() > 0.3 ||
+
+        getDriveMode() == DriveMode.AUTOMATIC) {
       setDriveMode(DriveMode.AUTOMATIC);
       if (zone == FieldZones.Zone.NEUTRAL_WING) {
-        rotationPercentage = getRPS(localizationState.getPassAngle());
+        rotationPercentage = getRPS(localizationState.getAmpPassAngle());
+      } else if (zone == FieldZones.Zone.OPPONENT_WING) {
+        rotationPercentage = getRPS(localizationState.getCenterPassAngle());
       } else {
         switch (RobotContainer.getScoreMode()) {
           case SPEAKER:

@@ -126,7 +126,7 @@ public class RobotContainer {
   }
 
   private static LocalizationState localizationState = new LocalizationState(FieldZones.Zone.ALLIANCE_WING,
-      new Rotation2d(), 0.0, new Rotation2d(), 0.0);
+      new Rotation2d(), 0.0, new Rotation2d(), 0.0, new Rotation2d(), 0.0);
 
   public static LocalizationState getLocalizationState() {
     return localizationState;
@@ -138,8 +138,10 @@ public class RobotContainer {
     final Translation2d robot = DRIVETRAIN.getState().Pose.getTranslation();
     localizationState = new LocalizationState(
         FieldZones.getZoneFromTranslation(alliance, robot),
-        LocalizationUtil.getRotationTowards(robot, poi.PASS_TARGET),
-        robot.getDistance(poi.PASS_TARGET),
+        LocalizationUtil.getRotationTowards(robot, poi.AMP_PASS_TARGET),
+        robot.getDistance(poi.AMP_PASS_TARGET),
+        LocalizationUtil.getRotationTowards(robot, poi.CENTER_PASS_TARGET),
+        robot.getDistance(poi.CENTER_PASS_TARGET),
         LocalizationUtil.getRotationTowards(robot, poi.SPEAKER),
         robot.getDistance(poi.SPEAKER));
   }

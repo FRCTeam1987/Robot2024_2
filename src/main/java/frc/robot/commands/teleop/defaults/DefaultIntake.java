@@ -3,9 +3,10 @@ package frc.robot.commands.teleop.defaults;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.util.Util;
 
-import static frc.robot.RobotContainer.INTAKE;
+import static frc.robot.RobotContainer.*;
 
 public class DefaultIntake extends Command {
 
@@ -39,9 +40,24 @@ public class DefaultIntake extends Command {
         INTAKE.stopBoth();
         break;
       default:
-        INTAKE.stopBoth();
+        switch (getScoreMode()) {
+          case DEFENSE:
+            INTAKE.stopBoth();
+            break;
+          case AMP:
+          case SPEAKER:
+          default:
+            switch (RobotContainer.getLocalizationState().getFieldZone()) {
+              case ALLIANCE_WING:
+              case OPPONENT_WING:
+              case NEUTRAL_WING:
+              default:
+                INTAKE.stopBoth();
+                break;
+            }
+            break;
+        }
         break;
-
     }
   }
 

@@ -9,6 +9,8 @@ import frc.robot.util.zoning.FieldZones;
 
 import static frc.robot.RobotContainer.*;
 
+import com.ctre.phoenix6.StatusCode;
+
 public class DefaultWrist extends Command {
 
   private boolean doTheJiggle;
@@ -73,29 +75,43 @@ public class DefaultWrist extends Command {
         }
         break;
       default:
-        if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING) {
-          if (SCORE_MODE == ScoreMode.SPEAKER) {
-            if (SHOOTER.isCenterBroken()) {
-              if (!Util.isValidShot()) {
-                WRIST.setDegrees(35.0);
-              } else {
-                WRIST.setDegrees(Util.getInterpolatedWristAngleSpeaker());
-              }
-            } else {
-              WRIST.setDegrees(12.0);
-            }
-          }
-        } else if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.NEUTRAL_WING) {
-          if (SHOOTER.isCenterBroken()) {
-            WRIST.setDegrees(Constants.Wrist.PASS_WRIST_DEGREES);
-          } else {
+        switch (getScoreMode()) {
+          case DEFENSE:
             WRIST.goHome();
-          }
+            break;
+          case AMP:
+          case SPEAKER:
+          default:
+            switch (RobotContainer.getLocalizationState().getFieldZone()) {
+              case ALLIANCE_WING:
+                if (SCORE_MODE == ScoreMode.SPEAKER) {
+                  if (SHOOTER.isCenterBroken()) {
+                    if (!Util.isValidShot()) {
+                      WRIST.setDegrees(35.0);
+                    } else {
+                      WRIST.setDegrees(Util.getInterpolatedWristAngleSpeaker());
+                    }
+                  } else {
+                    WRIST.setDegrees(12.0);
+                  }
+                }
+                break;
+              case OPPONENT_WING:
+              case NEUTRAL_WING:
+                if (SHOOTER.isCenterBroken()) {
+                  WRIST.setDegrees(Constants.Wrist.PASS_WRIST_DEGREES);
+                } else {
+                  WRIST.goHome();
+                }
+                break;
+              default:
+                WRIST.goHome();
+                break;
 
-        } else {
-          WRIST.goHome();
+            }
+            break;
+
         }
-        break;
 
     }
   }

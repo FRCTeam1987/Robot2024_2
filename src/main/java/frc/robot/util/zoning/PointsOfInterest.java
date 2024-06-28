@@ -21,12 +21,14 @@ public class PointsOfInterest {
       new Pose2d(field.getTagPose(6).get().getTranslation().toTranslation2d().minus(AMP_ROBOT_OFFSET),
           Rotation2d.fromDegrees(90)),
       new Translation2d(1.0, 7.05),
+      new Translation2d(7.0, 6.75),
       field.getTagPose(7).get().getTranslation().toTranslation2d());
 
   public static final PointsOfInterest RED = new PointsOfInterest(
       new Pose2d(field.getTagPose(5).get().getTranslation().toTranslation2d().minus(AMP_ROBOT_OFFSET),
           BLUE.AMP_SCORE.getRotation()),
-      LocalizationUtil.blueFlipToRed(BLUE.PASS_TARGET),
+      LocalizationUtil.blueFlipToRed(BLUE.AMP_PASS_TARGET),
+      LocalizationUtil.blueFlipToRed(BLUE.CENTER_PASS_TARGET),
       field.getTagPose(4).get().getTranslation().toTranslation2d());
 
   public static PointsOfInterest get(final Alliance alliance) {
@@ -34,12 +36,15 @@ public class PointsOfInterest {
   }
 
   public final Pose2d AMP_SCORE;
-  public final Translation2d PASS_TARGET;
+  public final Translation2d AMP_PASS_TARGET;
+  public final Translation2d CENTER_PASS_TARGET;
   public final Translation2d SPEAKER;
 
-  public PointsOfInterest(final Pose2d ampScore, final Translation2d passTarget, final Translation2d speaker) {
+  public PointsOfInterest(final Pose2d ampScore, final Translation2d ampPassTarget,
+      final Translation2d centerPassTarget, final Translation2d speaker) {
     AMP_SCORE = ampScore;
-    PASS_TARGET = passTarget;
+    AMP_PASS_TARGET = ampPassTarget;
+    CENTER_PASS_TARGET = centerPassTarget;
     SPEAKER = speaker;
   }
 }

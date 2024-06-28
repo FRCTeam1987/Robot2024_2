@@ -16,11 +16,10 @@ import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class PointAtSpeaker extends Command {
-  private final SwerveRequest.FieldCentric drive =
-      new SwerveRequest.FieldCentric()
-          .withDeadband(RobotContainer.MaxSpeed * 0.1)
-          .withRotationalDeadband(RobotContainer.MaxAngularRate * 0.05) // Add a 5% deadband
-          .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
+  private final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
+      .withDeadband(RobotContainer.MaxSpeed * 0.1)
+      .withRotationalDeadband(RobotContainer.MaxAngularRate * 0.05) // Add a 5% deadband
+      .withDriveRequestType(DriveRequestType.OpenLoopVoltage); // I want field-centric
   private DoubleSupplier velocityXSupplier = () -> 0.0; // getAllianceLob
   private DoubleSupplier velocityYSupplier = () -> 0.0;
   private double desiredRotation;
@@ -55,7 +54,8 @@ public class PointAtSpeaker extends Command {
   }
 
   @Override
-  public void initialize() {}
+  public void initialize() {
+  }
 
   public double getRotationRate() {
     return rotationRate;
@@ -64,12 +64,10 @@ public class PointAtSpeaker extends Command {
   @Override
   public void execute() {
     Pose2d pose = RobotContainer.DRIVETRAIN.getPose();
-    desiredRotation =
-        shouldLob.getAsBoolean()
-            ? RobotContainer.getLocalizationState().getPassAngle().getDegrees()
-            : RobotContainer.getLocalizationState().getSpeakerAngle().getDegrees();
-    double rotationRate =
-        THETA_CONTROLLER.calculate(pose.getRotation().getDegrees(), desiredRotation);
+    desiredRotation = shouldLob.getAsBoolean()
+        ? RobotContainer.getLocalizationState().getAmpPassAngle().getDegrees()
+        : RobotContainer.getLocalizationState().getSpeakerAngle().getDegrees();
+    double rotationRate = THETA_CONTROLLER.calculate(pose.getRotation().getDegrees(), desiredRotation);
     RobotContainer.DRIVETRAIN.setControl(
         drive
             .withVelocityX(
@@ -80,7 +78,7 @@ public class PointAtSpeaker extends Command {
                 Util.squareValue(velocityYSupplier.getAsDouble())
                     * RobotContainer.MaxSpeed) // Drive left with negative X (left)
             .withRotationalRate(rotationRate) // Drive counterclockwise with negative X (left)
-        );
+    );
   }
 
   @Override
@@ -91,14 +89,14 @@ public class PointAtSpeaker extends Command {
   @Override
   public void end(boolean interrupted) {
     // System.out.println("Command Finished!");
-    FieldCentric driveRequest =
-        drive
-            .withVelocityX(0.0) // Drive forward with
-            // negative Y (forward)
-            .withVelocityY(0.0) // Drive left with negative X (left)
-            .withRotationalRate(0.0); // Drive counterclockwise with negative X (left)
+    FieldCentric driveRequest = drive
+        .withVelocityX(0.0) // Drive forward with
+        // negative Y (forward)
+        .withVelocityY(0.0) // Drive left with negative X (left)
+        .withRotationalRate(0.0); // Drive counterclockwise with negative X (left)
 
     RobotContainer.DRIVETRAIN.setControl(driveRequest);
-    if (interrupted) {}
+    if (interrupted) {
+    }
   }
 }
