@@ -73,16 +73,16 @@ public class DefaultShooter extends Command {
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_AGRESSIVE);
                 break;
             case CLIMB_INIT:
-                SHOOTER.stopShooter();
-                if (SHOOTER.isCenterBroken() && SHOOTER.getRPMLeader() < 1)
-                    SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
-                break;
+                // SHOOTER.stopShooter();
+                // if (SHOOTER.isCenterBroken() && SHOOTER.getRPMLeader() < 1)
+                //     SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
+                // break;
             case CLIMB_PULLDOWN:
             case CLIMB_LEVEL:
-                SHOOTER.stopShooter();
-                if (!SHOOTER.isRearBroken() && SHOOTER.isShooterAtSetpoint())
-                    SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDBACKWARD);
-                break;
+                // SHOOTER.stopShooter();
+                // if (!SHOOTER.isRearBroken() && SHOOTER.isShooterAtSetpoint())
+                //     SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDBACKWARD);
+                // break;
             case TRAP_ELEV_MIDWAY:
                 SHOOTER.stopFeeder();
                 SHOOTER.stopShooter();
