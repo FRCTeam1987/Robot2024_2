@@ -286,8 +286,8 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
                     mt2.pose,
                     mt2.timestampSeconds,
                     VecBuilder.fill(
-                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
-                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist),
+                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist) * 2,
+                            Math.pow(0.8, mt2.tagCount) * (mt2.avgTagDist) * 2,
                             9999999));
         }
     }

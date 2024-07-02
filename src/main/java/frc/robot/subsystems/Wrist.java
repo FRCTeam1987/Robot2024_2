@@ -4,6 +4,9 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -41,6 +44,9 @@ public class Wrist extends SubsystemBase {
     WRIST_MOTOR.setNeutralMode(NeutralModeValue.Brake);
 
     disableWristLockdown();
+
+    final ShuffleboardTab WRIST_TAB = Shuffleboard.getTab("WRIST");
+    WRIST_TAB.addNumber("Wrist Degrees", this::getDegrees);
   }
 
   public void goHome() {

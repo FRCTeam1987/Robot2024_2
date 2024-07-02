@@ -20,6 +20,12 @@
         {
           "type": "named",
           "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "AutoAimAndShoot"
           }
         },
@@ -27,6 +33,12 @@
           "type": "path",
           "data": {
             "pathName": "middle-3_blue_b"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoCollectNote"
           }
         },
         {

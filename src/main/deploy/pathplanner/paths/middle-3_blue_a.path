@@ -11,7 +11,7 @@
         "x": 1.6185367264415031,
         "y": 5.55
       },
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": "middle_sub_start"
     },
     {
@@ -96,15 +96,15 @@
     },
     {
       "anchor": {
-        "x": 2.6133387326815165,
-        "y": 6.891179886562609
+        "x": 1.7545441267821196,
+        "y": 6.353457591102104
       },
       "prevControl": {
-        "x": 1.7473133288970777,
-        "y": 6.391179886562609
+        "x": 1.4077857531438447,
+        "y": 5.960101966210876
       },
       "nextControl": null,
-      "isLocked": true,
+      "isLocked": false,
       "linkedName": "middle-3_blue_a_end"
     }
   ],
@@ -128,8 +128,8 @@
   "constraintZones": [
     {
       "name": "First Shoot Zone",
-      "minWaypointRelativePos": 0.65,
-      "maxWaypointRelativePos": 1.35,
+      "minWaypointRelativePos": 0.75,
+      "maxWaypointRelativePos": 1.0999999999999999,
       "constraints": {
         "maxVelocity": 1.0,
         "maxAcceleration": 4.25,
@@ -168,7 +168,7 @@
       }
     },
     {
-      "name": "Collect First Note",
+      "name": "Flow First Note",
       "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
@@ -177,24 +177,7 @@
             {
               "type": "named",
               "data": {
-                "name": "FollowCollectNote"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Shoot First Note",
-      "waypointRelativePos": 1.25,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "InstantShoot"
+                "name": "FlowShoot"
               }
             }
           ]
@@ -229,23 +212,6 @@
               "type": "named",
               "data": {
                 "name": "InstantShoot"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Collect Third note",
-      "waypointRelativePos": 5.6,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "FollowCollectNote"
               }
             }
           ]
@@ -312,7 +278,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 30.0,
+    "rotation": 28.839443906038632,
     "rotateFast": false
   },
   "reversed": false,

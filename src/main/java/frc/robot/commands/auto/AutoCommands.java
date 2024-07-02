@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.AutoCollectNote;
+import frc.robot.commands.auto.actions.FlowShoot;
 import frc.robot.commands.auto.actions.FollowCollectNote;
 import frc.robot.commands.auto.actions.InstantShoot;
 import frc.robot.commands.auto.actions.PathFind;
@@ -59,6 +60,7 @@ public class AutoCommands {
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
       put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
       put("AutoAimAndShoot", new AutoAimAndShoot());
+      put("FlowShoot", new FlowShoot());
       put("StartLLPoseUpdate", new InstantCommand(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(true)));
       put("StopLLPoseUpdate", new InstantCommand(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(false)));
     }

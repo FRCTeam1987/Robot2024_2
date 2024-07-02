@@ -6,5 +6,6 @@ public enum AutoState {
   POOP_PREP,
   POOPING,
   SHOOT_PREP,
-  SHOOTING
+  SHOOTING,
+  FLOWING
 }
