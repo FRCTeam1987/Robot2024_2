@@ -47,6 +47,7 @@ public class DefaultAutoShooter extends Command {
         SHOOTER.setFeederVoltage(FEEDER_FEEDFWD_VOLTS);
         SHOOTER.setRPMShootNoSpin(SHOOTER_POOP_RPM);
         break;
+      case FLOWING:
       case SHOOTING:
         SHOOTER.setFeederVoltage(FEEDER_SHOOT_VOLTS);
         SHOOTER.setRPMShoot(SHOOTER_RPM);

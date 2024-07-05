@@ -28,6 +28,7 @@ public class DefaultAutoIntake extends Command {
           INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
         }
         break;
+      case FLOWING:
       case POOP_PREP:
       case POOPING:
         INTAKE.setRPM(Constants.Intake.INTAKE_RPM);
