@@ -50,13 +50,22 @@ public class DefaultShooter extends Command {
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case PASS:
-                SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                        .getInterpolated(new InterpolatingDouble(
-                                RobotContainer.getLocalizationState().getAmpPassDistance())).value);
+                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
+                // SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
+                // .getInterpolated(new InterpolatingDouble(
+                // RobotContainer.getLocalizationState().getAmpPassDistance())).value);
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case SHOOTING:
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_SHOOT_VOLTS);
+                break;
+
+            case FAST_SUB_PREP:
+                SHOOTER.setShooterVoltage(18.0);
+                break;
+            case FAST_SUB:
+                SHOOTER.setShooterVoltage(18.0);
+                SHOOTER.setFeederVoltage(18.0);
                 break;
             case SUBWOOFER_PREP:
                 SHOOTER.setRPMShoot(Constants.Shooter.SUBWOOFER_SHOT_RPM);
@@ -75,13 +84,13 @@ public class DefaultShooter extends Command {
             case CLIMB_INIT:
                 // SHOOTER.stopShooter();
                 // if (SHOOTER.isCenterBroken() && SHOOTER.getRPMLeader() < 1)
-                //     SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
+                // SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 // break;
             case CLIMB_PULLDOWN:
             case CLIMB_LEVEL:
                 // SHOOTER.stopShooter();
                 // if (!SHOOTER.isRearBroken() && SHOOTER.isShooterAtSetpoint())
-                //     SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDBACKWARD);
+                // SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDBACKWARD);
                 // break;
             case TRAP_ELEV_MIDWAY:
                 SHOOTER.stopFeeder();
@@ -131,15 +140,12 @@ public class DefaultShooter extends Command {
                                 }
                                 break;
                             case OPPONENT_WING:
-                                SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                                        .getInterpolated(
-                                                new InterpolatingDouble(
-                                                        localizationState.getCenterPassDistance())).value);
+                                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
+                                System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
                                 break;
                             case NEUTRAL_WING:
-                                SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                                        .getInterpolated(
-                                                new InterpolatingDouble(localizationState.getAmpPassDistance())).value);
+                                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
+                                System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
                                 break;
                             default:
                                 SHOOTER.stopFeeder();

@@ -24,7 +24,8 @@ public class SubwooferState extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.SUBWOOFER_PREP)),
-        new WaitUntilCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && ELEVATOR.isAtSetpoint()),
+        new WaitUntilCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && ELEVATOR.isAtSetpoint())
+            .withTimeout(0.02),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.SUBWOOFER)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));

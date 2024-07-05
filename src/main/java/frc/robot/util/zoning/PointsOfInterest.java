@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 public class PointsOfInterest {
   private static final AprilTagFieldLayout field = AprilTagFields.k2024Crescendo.loadAprilTagLayoutField();
 
-  private static final Translation2d AMP_ROBOT_OFFSET = new Translation2d(0, 0.76);
+  private static final Translation2d AMP_ROBOT_OFFSET = new Translation2d(0, 1.25);
 
   public static final PointsOfInterest BLUE = new PointsOfInterest(
       new Pose2d(field.getTagPose(6).get().getTranslation().toTranslation2d().minus(AMP_ROBOT_OFFSET),

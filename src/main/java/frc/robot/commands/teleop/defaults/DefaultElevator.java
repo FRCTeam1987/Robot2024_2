@@ -32,9 +32,11 @@ public class DefaultElevator extends Command {
       case PASS:
         ELEVATOR.setLengthInches(Constants.Elevator.PASS_ELEVATOR_HEIGHT);
         break;
+      case FAST_SUB_PREP:
+      case FAST_SUB:
       case SUBWOOFER_PREP:
       case SUBWOOFER:
-        ELEVATOR.setLengthInches(Constants.Elevator.SUBWOOFER_SHOT_HEIGHT);
+        ELEVATOR.setLengthInches(Constants.Elevator.SUBWOOFER_SHOT_HEIGHT, 0);
         break;
       case PODIUM_PREP:
       case PODIUM:

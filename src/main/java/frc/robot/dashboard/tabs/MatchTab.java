@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.auto.AutoCommands;
+import frc.robot.dashboard.TabUtil;
 
 /** Add your docs here. */
 public class MatchTab {

@@ -7,6 +7,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.teleop.stated.FastSub;
 
 public class Robot extends TimedRobot {
   private Command AUTO_COMMAND;
@@ -18,6 +19,7 @@ public class Robot extends TimedRobot {
     ROBOT_CONTAINER = new RobotContainer();
     ROBOT_CONTAINER.robotInit();
     ROBOT_CONTAINER.robotPeriodic();
+    ROBOT_CONTAINER.teleopInit();
   }
 
   @Override
@@ -40,8 +42,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    AUTO_COMMAND = ROBOT_CONTAINER.getAutonomousCommand();
-
+    // AUTO_COMMAND = ROBOT_CONTAINER.getAutonomousCommand();
+    AUTO_COMMAND = new FastSub();
     if (AUTO_COMMAND != null) {
       AUTO_COMMAND.schedule();
     }
@@ -57,10 +59,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+
     if (AUTO_COMMAND != null) {
       AUTO_COMMAND.cancel();
     }
-    ROBOT_CONTAINER.teleopInit();
+
+    // CommandScheduler.getInstance().schedule(new FastSub());
   }
 
   @Override

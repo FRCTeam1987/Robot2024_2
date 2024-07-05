@@ -152,7 +152,7 @@ public class Constants {
                 public static final double AMP_ELEVATOR_HEIGHT = 30.5;
                 public static final double AMP_ELEVATOR_EXIT_HEIGHT = 4.2;
 
-                public static final double PASS_ELEVATOR_HEIGHT = 4.4;
+                public static final double PASS_ELEVATOR_HEIGHT = 6.4;
 
                 public static final double SUBWOOFER_SHOT_HEIGHT = 6.5;
                 public static final double PODIUM_SHOT_HEIGHT = 28;
@@ -181,6 +181,7 @@ public class Constants {
                 public static final double SHOOTER_IDLE_RPM_CLOSE = 4200; // 2500
                 public static final double SHOOTER_IDLE_CLOSERANGE_RPM = 2500; // NEEDS to be smaller
                 public static final double SPIN_RATIO = 0.66; // 0.85
+                public static final double LESS_SPIN_RATIO = 0.80; // 0.85
                 public static final double ANTI_SPIN_RATIO = 1.34; // 0.85
                 public static final int SHOOTER_AMP_RPM = 550;
 
@@ -195,8 +196,8 @@ public class Constants {
         }
 
         public static class Intake {
-                public static final double INTAKE_COLLECT_VOLTS = -6; // 6
-                public static final double INTAKE_COLLECT_SLOW_VOLTS = -5;
+                public static final double INTAKE_COLLECT_VOLTS = -8; // 6
+                public static final double INTAKE_COLLECT_SLOW_VOLTS = -6;
                 public static final double INTAKE_COLLECT_VOLTS_MANUAL = -8; // 6 //-9
                 public static final double INTAKE_RPM = -5000;
         }
@@ -253,11 +254,32 @@ public class Constants {
                 DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.put(
                                 new InterpolatingDouble(6.15), new InterpolatingDouble(21.45));
 
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new InterpolatingDouble(3000.0 * 1.07));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2750.0 * 1.07));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new InterpolatingDouble(2700.0 * 1.07));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new InterpolatingDouble(2620.0 * 1.07));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new InterpolatingDouble(2580.0 * 1.07));
-                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new InterpolatingDouble(2440.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.28), new
+                // InterpolatingDouble(3000.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new
+                // InterpolatingDouble(2750.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.6), new
+                // InterpolatingDouble(2700.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.3), new
+                // InterpolatingDouble(2620.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.0), new
+                // InterpolatingDouble(2580.0 * 1.07));
+                // DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.88), new
+                // InterpolatingDouble(2440.0 * 1.07));
+
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(5.2), new InterpolatingDouble(1500.0));
+
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(6.0), new InterpolatingDouble(1700.0));
+
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(6.6), new InterpolatingDouble(1800.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(7.17), new InterpolatingDouble(1900.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(8.5), new InterpolatingDouble(2200.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.0), new InterpolatingDouble(2350.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(9.5), new InterpolatingDouble(2450.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.0), new InterpolatingDouble(2550.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(10.5), new InterpolatingDouble(2650.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(11.0), new InterpolatingDouble(2725.0));
+                DISTANCE_TO_PASS_RPM.put(new InterpolatingDouble(11.5), new InterpolatingDouble(2825.0));
+
         }
 }

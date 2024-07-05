@@ -73,7 +73,6 @@ public class RobotContainer {
   public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
       Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
   public static PoopMonitor POOP_MONITOR = new PoopMonitor();
-  public static Dashboard DASHBOARD = new Dashboard();
 
   public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -160,16 +159,16 @@ public class RobotContainer {
   public void robotPeriodic() {
     DRIVETRAIN.updatePoseFromVision();
     updateLocalizationState();
-    printMode();
   }
 
-  public void printMode() {
+  public String getMode() {
     if (DRIVE_MODE != PREV_DRIVE_MODE || SCORE_MODE != PREV_SCORE_MODE || STATE != PREV_STATE) {
-      System.out.println("ST: " + STATE + " SM: " + SCORE_MODE + " DM" + DRIVE_MODE);
       PREV_STATE = STATE;
       PREV_DRIVE_MODE = DRIVE_MODE;
       PREV_SCORE_MODE = SCORE_MODE;
+      return "ST: " + STATE + " SM: " + SCORE_MODE + " DM" + DRIVE_MODE;
     }
+    return null;
   }
 
   public static RobotState getRobotState() {
@@ -195,4 +194,7 @@ public class RobotContainer {
   public static DriveMode getDriveMode() {
     return DRIVE_MODE;
   }
+
+  public static Dashboard DASHBOARD = new Dashboard();
+
 }

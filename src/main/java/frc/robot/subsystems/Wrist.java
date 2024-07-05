@@ -1,5 +1,7 @@
 package frc.robot.subsystems;
 
+import static frc.robot.RobotContainer.WRIST;
+
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
@@ -30,8 +32,7 @@ public class Wrist extends SubsystemBase {
     WRIST_CONFIG.CurrentLimits.StatorCurrentLimitEnable = true;
 
     WRIST_CONFIG.MotionMagic.MotionMagicCruiseVelocity = 15; // 50
-    WRIST_CONFIG.MotionMagic.MotionMagicAcceleration =
-    WRIST_CONFIG.MotionMagic.MotionMagicCruiseVelocity / 4.0;
+    WRIST_CONFIG.MotionMagic.MotionMagicAcceleration = WRIST_CONFIG.MotionMagic.MotionMagicCruiseVelocity / 4.0;
     WRIST_CONFIG.Feedback.SensorToMechanismRatio = (120.0 / 10.0) * (80.0 / 12.0);
 
     WRIST_MOTOR.getConfigurator().apply(WRIST_CONFIG);
@@ -64,8 +65,13 @@ public class Wrist extends SubsystemBase {
   }
 
   public boolean isAtSetpoint() {
-    return WRIST_MOTOR.getClosedLoopError().getValueAsDouble()
-        < Constants.Wrist.WRIST_ALLOWABLE_ERROR;
+
+    return WRIST_MOTOR.getClosedLoopError().getValueAsDouble() < Constants.Wrist.WRIST_ALLOWABLE_ERROR;
+  }
+
+  public boolean isAtSetpoint(double allowableError) {
+
+    return WRIST_MOTOR.getClosedLoopError().getValueAsDouble() < allowableError;
   }
 
   public double getVelocity() {

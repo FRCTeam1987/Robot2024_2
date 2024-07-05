@@ -9,6 +9,8 @@ public enum RobotState {
 
         SUBWOOFER_PREP, SUBWOOFER,
 
+        FAST_SUB_PREP, FAST_SUB,
+
         PODIUM_PREP, PODIUM,
 
         SHOOTING,
@@ -19,5 +21,7 @@ public enum RobotState {
 
         TRAP_ELEV_MIDWAY, TRAP_WRIST_MIDWAY, TRAP_ELEV_FULL, TRAP_WRIST_FULL, TRAP_SCORE, TRAP_DOTHEJIGGLE,
 
-        PASS
+        PASS,
+
+        RECOVERY_INIT, RECOVERY
 }

@@ -92,7 +92,7 @@ public class DefaultSwerve extends Command {
         }
         break;
       case OPPONENT_WING:
-        AUTO_ROT = getRPS(LOCAL_STATE.getCenterPassAngle());
+        AUTO_ROT = getRPS(LOCAL_STATE.getAmpPassAngle());
         break;
       case NEUTRAL_WING:
         if (prevZone == FieldZones.Zone.OPPONENT_WING)
@@ -118,6 +118,7 @@ public class DefaultSwerve extends Command {
     switch (getDriveMode()) {
       case AUTOMATIC:
         ROT = AUTO_ROT;
+        // ROT = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
         break;
       case CARDINAL_LOCKING:
 

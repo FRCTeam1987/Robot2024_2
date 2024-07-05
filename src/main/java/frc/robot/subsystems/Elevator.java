@@ -42,10 +42,8 @@ public class Elevator extends SubsystemBase {
     extensionConfig.MotorOutput.NeutralMode = NeutralModeValue.Brake;
     extensionConfig.Feedback.RotorToSensorRatio = -1;
 
-    extensionConfig.MotionMagic.MotionMagicAcceleration =
-        Constants.Elevator.EXTENSION_MOTION_ACCELERATION;
-    extensionConfig.MotionMagic.MotionMagicCruiseVelocity =
-        Constants.Elevator.EXTENSION_CRUISE_VELOCITY;
+    extensionConfig.MotionMagic.MotionMagicAcceleration = Constants.Elevator.EXTENSION_MOTION_ACCELERATION;
+    extensionConfig.MotionMagic.MotionMagicCruiseVelocity = Constants.Elevator.EXTENSION_CRUISE_VELOCITY;
 
     ELEVATOR_LEADER.getConfigurator().apply(extensionConfig);
     ELEVATOR_FOLLOWER.getConfigurator().apply(extensionConfig);
@@ -107,8 +105,11 @@ public class Elevator extends SubsystemBase {
   }
 
   public boolean isAtSetpoint() {
-    return ELEVATOR_LEADER.getClosedLoopError().getValueAsDouble()
-        < Constants.Elevator.EXTENSION_ALLOWABLE_ERROR;
+    return ELEVATOR_LEADER.getClosedLoopError().getValueAsDouble() < Constants.Elevator.EXTENSION_ALLOWABLE_ERROR;
+  }
+
+  public boolean isAtSetpoint(double allowableError) {
+    return ELEVATOR_LEADER.getClosedLoopError().getValueAsDouble() < allowableError;
   }
 
   public void setZero() {

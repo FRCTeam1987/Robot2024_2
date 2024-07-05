@@ -41,7 +41,7 @@ public class Shooter extends SubsystemBase {
     // Rotation per second
     SHOOTER_CONFIG.Slot0.kS = 0.05; // Add 0.05 V output to overcome static friction
     // Peak output of 10 volts
-    SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimit = 40;
+    SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
     SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimitEnable = true;
     SHOOTER_CONFIG.Voltage.PeakForwardVoltage = 10;
     SHOOTER_CONFIG.Voltage.PeakReverseVoltage = -10;
@@ -87,6 +87,18 @@ public class Shooter extends SubsystemBase {
     SHOOTER_LEADER.setControl(VOLTAGE_VELOCITY_LEADER.withVelocity((RPM) / 60.0));
     SHOOTER_FOLLOWER.setControl(
         VOLTAGE_VELOCITY_FOLLOWER.withVelocity((RPM * Constants.Shooter.ANTI_SPIN_RATIO) / 60.0));
+  }
+
+  public void setRPMShootLessSpin(double RPM, boolean invert) {
+    if (invert) {
+      SHOOTER_FOLLOWER.setControl(VOLTAGE_VELOCITY_LEADER.withVelocity(RPM / 60.0));
+      SHOOTER_LEADER.setControl(
+          VOLTAGE_VELOCITY_FOLLOWER.withVelocity((RPM * Constants.Shooter.LESS_SPIN_RATIO) / 60.0));
+      return;
+    }
+    SHOOTER_LEADER.setControl(VOLTAGE_VELOCITY_LEADER.withVelocity(RPM / 60.0));
+    SHOOTER_FOLLOWER.setControl(
+        VOLTAGE_VELOCITY_FOLLOWER.withVelocity((RPM * Constants.Shooter.LESS_SPIN_RATIO) / 60.0));
   }
 
   public void setRPMShootNoSpin(double RPM) {

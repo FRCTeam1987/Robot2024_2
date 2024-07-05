@@ -4,9 +4,11 @@
 
 package frc.robot.dashboard;
 
+import frc.robot.dashboard.tabs.DevTab;
 import frc.robot.dashboard.tabs.MatchTab;
 
 /** Add your docs here. */
 public class Dashboard {
   public final MatchTab MATCH_TAB = new MatchTab();
+  public final DevTab DEV_TAB = new DevTab();
 }
