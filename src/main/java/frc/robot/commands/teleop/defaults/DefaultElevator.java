@@ -5,6 +5,7 @@ import static frc.robot.RobotContainer.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.util.zoning.FieldZones;
 
 public class DefaultElevator extends Command {
   public DefaultElevator() {
@@ -71,8 +72,12 @@ public class DefaultElevator extends Command {
           default:
             switch (RobotContainer.getLocalizationState().getFieldZone()) {
               case ALLIANCE_WING:
+              case ALLIANCE_STAGE:
+              case OPPONENT_STAGE:
+              case ALLIANCE_YIELD:
                 ELEVATOR.goHome();
                 break;
+              case OPPONENT_YIELD:
               case OPPONENT_WING:
               case NEUTRAL_WING:
                 if (SHOOTER.isCenterBroken()) {

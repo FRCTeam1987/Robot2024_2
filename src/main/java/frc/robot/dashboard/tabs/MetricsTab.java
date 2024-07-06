@@ -34,5 +34,6 @@ public class MetricsTab {
         tab.addDouble("Elev Len", () -> ELEVATOR.getLengthInches());
         tab.addDouble("Int Top RPM", () -> INTAKE.getRPMTop());
         tab.addDouble("Int Bot RPM", () -> INTAKE.getRPMBottom());
+        tab.addString("Zone", () -> getLocalizationState().getFieldZone().toString());
     }
 }

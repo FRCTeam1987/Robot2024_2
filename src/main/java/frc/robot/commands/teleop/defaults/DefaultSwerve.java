@@ -76,6 +76,7 @@ public class DefaultSwerve extends Command {
 
     switch (RobotContainer.getLocalizationState().getFieldZone()) {
       case ALLIANCE_WING:
+      case ALLIANCE_STAGE:
         if (prevZone != FieldZones.Zone.ALLIANCE_WING)
           setDriveMode(DriveMode.AUTOMATIC);
         switch (RobotContainer.getScoreMode()) {
@@ -90,10 +91,13 @@ public class DefaultSwerve extends Command {
         }
         break;
       case OPPONENT_WING:
+      case OPPONENT_STAGE:
         AUTO_ROT = getRPS(LOCAL_STATE.getCenterPassAngle());
         break;
+      case ALLIANCE_YIELD:
+      case OPPONENT_YIELD:
       case NEUTRAL_WING:
-        if (prevZone == FieldZones.Zone.OPPONENT_WING)
+        if (prevZone == FieldZones.Zone.OPPONENT_WING || prevZone == FieldZones.Zone.OPPONENT_STAGE)
           setDriveMode(DriveMode.AUTOMATIC);
         AUTO_ROT = getRPS(LOCAL_STATE.getAmpPassAngle());
         break;

@@ -1,5 +1,6 @@
 package frc.robot.util.extensions;
 
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.RobotContainer;
@@ -15,9 +16,11 @@ import frc.robot.commands.teleop.stated.PassNoteState;
 import frc.robot.commands.teleop.stated.PodiumState;
 import frc.robot.commands.teleop.stated.PoopNoteState;
 import frc.robot.commands.teleop.stated.ShootNoteState;
+import frc.robot.commands.teleop.stateless.AsyncRumble;
 import frc.robot.commands.teleop.stateless.ReLocalizeSub;
 import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.util.InstCmd;
+import frc.robot.util.zoning.FieldZones.Zone;
 
 public class Controls extends RobotContainer {
 
@@ -27,14 +30,18 @@ public class Controls extends RobotContainer {
                 DRIVER_CONTROLLER
                                 .rightBumper()
                                 .onTrue(
-                                                new ConditionalCommand(new ShootNoteState(), new InstCmd(),
+                                                new ConditionalCommand(new ShootNoteState(),
+                                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(),
+                                                                                RumbleType.kBothRumble, 1.0, 400L),
                                                                 () -> SHOOTER.isCenterBroken()
-                                                                                && getRobotState() == RobotState.DEFAULT));
+                                                                                && getRobotState() == RobotState.DEFAULT
+                                                                                && getScoreMode() == ScoreMode.SPEAKER));
                 DRIVER_CONTROLLER
                                 .leftBumper().onTrue(
                                                 new ConditionalCommand(
                                                                 new IntakeNoteState(),
-                                                                new InstCmd(),
+                                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(),
+                                                                                RumbleType.kBothRumble, 1.0, 400L),
                                                                 () -> !SHOOTER.isCenterBroken()
                                                                                 && getRobotState() == RobotState.DEFAULT));
                 DRIVER_CONTROLLER.back().onTrue(new ReLocalizeSub());
@@ -45,7 +52,8 @@ public class Controls extends RobotContainer {
                                                                 || getRobotState() == RobotState.AMP_SCORE
                                                                 || getRobotState() == RobotState.AMP_EXIT
                                                                 || !SHOOTER.isCenterBroken()
-                                                                                && getRobotState() == RobotState.DEFAULT));
+                                                                                && getRobotState() == RobotState.DEFAULT
+                                                                                && getScoreMode() == ScoreMode.AMP));
                 // DRIVER_CONTROLLER.rightStick().onTrue(new InstCmd(() ->
                 // setScoreMode(ScoreMode.AMP)));
                 // DRIVER_CONTROLLER.leftStick().onTrue(new InstCmd(() ->
@@ -59,13 +67,21 @@ public class Controls extends RobotContainer {
                                 .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
 
                 DRIVER_CONTROLLER.x().onTrue(
-                                new ConditionalCommand(new PoopNoteState(), new InstCmd(),
+                                new ConditionalCommand(new PoopNoteState(),
+                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0,
+                                                                400L),
                                                 () -> SHOOTER.isCenterBroken()
                                                                 && getRobotState() == RobotState.DEFAULT));
                 DRIVER_CONTROLLER.leftTrigger().onTrue(
-                                new ConditionalCommand(new PassNoteState(), new InstCmd(),
+                                new ConditionalCommand(new PassNoteState(),
+                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0,
+                                                                400L),
                                                 () -> SHOOTER.isCenterBroken()
-                                                                && getRobotState() == RobotState.DEFAULT));
+                                                                && getRobotState() == RobotState.DEFAULT
+                                                                && getLocalizationState()
+                                                                                .getFieldZone() != Zone.ALLIANCE_WING
+                                                                && getLocalizationState()
+                                                                                .getFieldZone() != Zone.OPPONENT_STAGE));
                 DRIVER_CONTROLLER.b().onTrue(
                                 new ConditionalCommand(new FastSub(), new InstCmd(),
                                                 () -> SHOOTER.isCenterBroken()

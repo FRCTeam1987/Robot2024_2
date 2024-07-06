@@ -85,6 +85,8 @@ public class DefaultWrist extends Command {
           default:
             switch (RobotContainer.getLocalizationState().getFieldZone()) {
               case ALLIANCE_WING:
+              case ALLIANCE_STAGE:
+              case ALLIANCE_YIELD:
                 if (SCORE_MODE == ScoreMode.SPEAKER) {
                   if (SHOOTER.isCenterBroken()) {
                     if (!Util.isValidShot()) {
@@ -97,6 +99,7 @@ public class DefaultWrist extends Command {
                   }
                 }
                 break;
+              case OPPONENT_YIELD:
               case OPPONENT_WING:
               case NEUTRAL_WING:
                 if (SHOOTER.isCenterBroken()) {
@@ -105,6 +108,7 @@ public class DefaultWrist extends Command {
                   WRIST.goHome();
                 }
                 break;
+              case OPPONENT_STAGE:
               default:
                 WRIST.goHome();
                 break;

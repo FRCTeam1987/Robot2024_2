@@ -126,6 +126,7 @@ public class DefaultShooter extends Command {
                     default:
                         switch (RobotContainer.getLocalizationState().getFieldZone()) {
                             case ALLIANCE_WING:
+                            case ALLIANCE_STAGE:
                                 if (SCORE_MODE == ScoreMode.SPEAKER) {
                                     if (SHOOTER.hasNote()) {
                                         if (Util.isWithinTolerance(
@@ -153,6 +154,8 @@ public class DefaultShooter extends Command {
                                 // System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
                                 break;
                             case NEUTRAL_WING:
+                            case OPPONENT_YIELD:
+                            case ALLIANCE_YIELD:
                                 // SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
                                 SHOOTER.setRPMShootLessSpin(
                                         Constants.DISTANCE_TO_PASS_RPM.getInterpolated(
