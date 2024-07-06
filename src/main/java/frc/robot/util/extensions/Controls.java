@@ -18,6 +18,9 @@ import frc.robot.commands.teleop.stated.PoopNoteState;
 import frc.robot.commands.teleop.stated.ShootNoteState;
 import frc.robot.commands.teleop.stateless.AsyncRumble;
 import frc.robot.commands.teleop.stateless.ReLocalizeSub;
+import frc.robot.commands.teleop.stateless.recovery.AutoHomeElevator;
+import frc.robot.commands.teleop.stateless.recovery.AutoHomeWrist;
+import frc.robot.commands.teleop.stateless.recovery.ForceZeroAll;
 import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.util.InstCmd;
 import frc.robot.util.zoning.FieldZones.Zone;
@@ -105,5 +108,8 @@ public class Controls extends RobotContainer {
                                 .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
                 CODRIVER_CONTROLLER.povDown().onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
                 CODRIVER_CONTROLLER.a().onTrue(new ReverseIntake());
+                CODRIVER_CONTROLLER.b().onTrue(new AutoHomeWrist());
+                CODRIVER_CONTROLLER.x().onTrue(new AutoHomeElevator());
+                CODRIVER_CONTROLLER.start().onTrue(new ForceZeroAll());
         }
 }
