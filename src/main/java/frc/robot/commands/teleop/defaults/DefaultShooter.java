@@ -50,10 +50,14 @@ public class DefaultShooter extends Command {
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case PASS:
-                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
-                // SHOOTER.setRPMShoot(Constants.DISTANCE_TO_PASS_RPM
-                // .getInterpolated(new InterpolatingDouble(
-                // RobotContainer.getLocalizationState().getAmpPassDistance())).value);
+                final LocalizationState passLocalization = RobotContainer.getLocalizationState();
+                final double distance = passLocalization.getFieldZone() == FieldZones.Zone.OPPONENT_WING
+                    ? passLocalization.getCenterPassDistance()
+                    : passLocalization.getAmpPassDistance();
+                SHOOTER.setRPMShootLessSpin(
+                    Constants.DISTANCE_TO_PASS_RPM.getInterpolated(new InterpolatingDouble(distance)).value,
+                    true
+                );
                 SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS);
                 break;
             case SHOOTING:
@@ -140,12 +144,20 @@ public class DefaultShooter extends Command {
                                 }
                                 break;
                             case OPPONENT_WING:
-                                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
-                                System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
+                                // SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
+                                SHOOTER.setRPMShootLessSpin(
+                                    Constants.DISTANCE_TO_PASS_RPM.getInterpolated(new InterpolatingDouble(localizationState.getCenterPassDistance())).value,
+                                    true
+                                );
+                                // System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
                                 break;
                             case NEUTRAL_WING:
-                                SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
-                                System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
+                                // SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
+                                SHOOTER.setRPMShootLessSpin(
+                                    Constants.DISTANCE_TO_PASS_RPM.getInterpolated(new InterpolatingDouble(localizationState.getAmpPassDistance())).value,
+                                    true
+                                );
+                                // System.out.println(RobotContainer.DASHBOARD.DEV_TAB.getRPM());
                                 break;
                             default:
                                 SHOOTER.stopFeeder();

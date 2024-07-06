@@ -92,7 +92,7 @@ public class DefaultSwerve extends Command {
         }
         break;
       case OPPONENT_WING:
-        AUTO_ROT = getRPS(LOCAL_STATE.getAmpPassAngle());
+        AUTO_ROT = getRPS(LOCAL_STATE.getCenterPassAngle());
         break;
       case NEUTRAL_WING:
         if (prevZone == FieldZones.Zone.OPPONENT_WING)
