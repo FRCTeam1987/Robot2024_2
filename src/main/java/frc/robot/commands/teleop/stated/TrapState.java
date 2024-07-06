@@ -24,6 +24,9 @@ public class TrapState extends SequentialCommandGroup {
   private Debouncer LINE_DEBOUNCER;
 
   public TrapState() {
+
+    addRequirements(TELEOP);
+
     LINE_DEBOUNCER = new Debouncer(Constants.Debouncers.TRAP_DEBOUNCE_TIME, DebounceType.kFalling);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

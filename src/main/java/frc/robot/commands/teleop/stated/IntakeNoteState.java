@@ -20,6 +20,9 @@ import frc.robot.util.InstCmd;
 public class IntakeNoteState extends SequentialCommandGroup {
   /** Creates a new IntakeNoteState. */
   public IntakeNoteState() {
+
+    addRequirements(RobotContainer.TELEOP);
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

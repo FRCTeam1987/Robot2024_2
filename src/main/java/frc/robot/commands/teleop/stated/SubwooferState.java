@@ -10,9 +10,11 @@ import static frc.robot.RobotContainer.WRIST;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
+
+import static frc.robot.RobotContainer.setRobotState;
+import static frc.robot.RobotContainer.TELEOP;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -20,15 +22,18 @@ import frc.robot.util.InstCmd;
 public class SubwooferState extends SequentialCommandGroup {
   /** Creates a new PoopNoteState. */
   public SubwooferState() {
+
+    addRequirements(TELEOP);
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.SUBWOOFER_PREP)),
+        new InstCmd(() -> setRobotState(RobotState.SUBWOOFER_PREP)),
         new WaitUntilCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && ELEVATOR.isAtSetpoint())
             .withTimeout(0.02),
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.SUBWOOFER)),
+        new InstCmd(() -> setRobotState(RobotState.SUBWOOFER)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
+        new InstCmd(() -> setRobotState(RobotState.DEFAULT)));
   }
 
 }

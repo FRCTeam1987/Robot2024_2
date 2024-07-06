@@ -23,23 +23,26 @@ public class ClimbState extends SequentialCommandGroup {
 
   /** Creates a new ClimbState. */
   public ClimbState() {
+
+    addRequirements(TELEOP);
+
     A_DEBOUNCER = new Debouncer(0.05);
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.CLIMB_INIT);
+          setRobotState(RobotState.CLIMB_INIT);
         }),
         new WaitUntilCommand(() -> !DRIVER_CONTROLLER.a().getAsBoolean()),
         new WaitUntilCommand(
             () -> ELEVATOR.isAtSetpoint() && A_DEBOUNCER.calculate(DRIVER_CONTROLLER.a().getAsBoolean())),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.CLIMB_PULLDOWN);
+          setRobotState(RobotState.CLIMB_PULLDOWN);
         }),
         new WaitUntilCommand(ELEVATOR::isAtSetpoint),
         new WaitCommand(0.8),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.CLIMB_LEVEL);
+          setRobotState(RobotState.CLIMB_LEVEL);
         }),
         new WaitUntilCommand(ELEVATOR::isAtSetpoint),
         new ConditionalCommand(

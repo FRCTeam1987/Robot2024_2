@@ -8,10 +8,12 @@ import static frc.robot.RobotContainer.*;
 
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
 import frc.robot.util.WaitUntilDebounceCommand;
+
+import static frc.robot.RobotContainer.setRobotState;
+import static frc.robot.RobotContainer.TELEOP;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -19,16 +21,19 @@ import frc.robot.util.WaitUntilDebounceCommand;
 public class PodiumState extends SequentialCommandGroup {
   /** Creates a new PoopNoteState. */
   public PodiumState() {
+
+    addRequirements(TELEOP);
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.PODIUM_PREP)),
+        new InstCmd(() -> setRobotState(RobotState.PODIUM_PREP)),
         new WaitUntilDebounceCommand(
             () -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint() && ELEVATOR.isAtSetpoint(),
             0.04, DebounceType.kRising),
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.PODIUM)),
+        new InstCmd(() -> setRobotState(RobotState.PODIUM)),
         new WaitUntilDebounceCommand(() -> !SHOOTER.isCenterBroken(), 0.02, DebounceType.kBoth),
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
+        new InstCmd(() -> setRobotState(RobotState.DEFAULT)));
   }
 
 }

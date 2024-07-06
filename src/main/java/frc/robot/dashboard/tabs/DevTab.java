@@ -9,6 +9,7 @@ import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.actions.AimAtSpeaker;
+import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.dashboard.TabUtil;
 
 /** Add your docs here. */
@@ -24,6 +25,7 @@ public class DevTab {
         tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
         tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
         tab.add(new AimAtSpeaker());
+        tab.add(new AutoCollectNote());
     }
 
     public double getRPM() {

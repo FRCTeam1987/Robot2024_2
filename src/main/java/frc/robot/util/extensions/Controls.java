@@ -80,5 +80,10 @@ public class Controls extends RobotContainer {
                                 .onTrue(
                                                 new ConditionalCommand(new ClimbState(), new InstCmd(),
                                                                 () -> getRobotState() == RobotState.DEFAULT));
+                CODRIVER_CONTROLLER.rightBumper()
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.AMP)));
+                CODRIVER_CONTROLLER.leftBumper()
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.SPEAKER)));
+                CODRIVER_CONTROLLER.povDown().onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
         }
 }

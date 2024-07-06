@@ -19,6 +19,9 @@ import static frc.robot.RobotContainer.*;
 public class AmpNoteState extends SequentialCommandGroup {
   /** Creates a new AmpNoteState. */
   public AmpNoteState() {
+
+    addRequirements(RobotContainer.TELEOP);
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(

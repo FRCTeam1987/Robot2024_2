@@ -10,9 +10,11 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
+
+import static frc.robot.RobotContainer.setRobotState;
+import static frc.robot.RobotContainer.TELEOP;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -20,12 +22,15 @@ import frc.robot.util.InstCmd;
 public class ShootNoteState extends SequentialCommandGroup {
   /** Creates a new ShootNoteState. */
   public ShootNoteState() {
+
+    addRequirements(TELEOP);
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.SHOOTING)),
+        new InstCmd(() -> setRobotState(RobotState.SHOOTING)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
         new WaitCommand(Constants.Shooter.SHOT_DEBOUNCE_TIME),
-        new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
+        new InstCmd(() -> setRobotState(RobotState.DEFAULT)));
   }
 }

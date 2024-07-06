@@ -86,6 +86,11 @@
       "waypointRelativePos": 1.0,
       "rotationDegrees": 0,
       "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 3.5,
+      "rotationDegrees": -30.0,
+      "rotateFast": false
     }
   ],
   "constraintZones": [
@@ -121,7 +126,7 @@
     },
     {
       "name": "Stop Poop Monitor",
-      "waypointRelativePos": 3.5,
+      "waypointRelativePos": 3.6,
       "command": {
         "type": "parallel",
         "data": {
@@ -223,7 +228,7 @@
     },
     {
       "name": "Shoot Preload",
-      "waypointRelativePos": 2.0,
+      "waypointRelativePos": 1.95,
       "command": {
         "type": "parallel",
         "data": {
