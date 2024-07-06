@@ -4,13 +4,16 @@
 
 package frc.robot.util.zoning;
 
+import static frc.robot.RobotContainer.DRIVETRAIN;
+
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 /** Adds your docs here. */
 public class FieldZones {
   public enum Zone {
-    ALLIANCE_WING, NEUTRAL_WING, OPPONENT_WING
+    ALLIANCE_WING, NEUTRAL_WING, OPPONENT_WING, ALLIANCE_STAGE, OPPONENT_STAGE, ALLIANCE_YIELD, OPPONENT_YIELD
   }
 
   public static final double X_MIN = 0.0;
@@ -40,26 +43,59 @@ public class FieldZones {
   public static final RectanglePoseArea WING_RED = new RectanglePoseArea(new Translation2d(RED_WING_LINE_X, Y_MIN),
       new Translation2d(LocalizationUtil.FIELD_LENGTH, LocalizationUtil.FIELD_WIDTH));
 
+  public static final RectanglePoseArea STAGE_BLUE = new RectanglePoseArea(
+      new Translation2d(BLUE_WING_LINE_X - 3.0, 2.7),
+      new Translation2d(BLUE_WING_LINE_X, 5.6));
+
+  public static final RectanglePoseArea STAGE_RED = new RectanglePoseArea(
+      new Translation2d(RED_WING_LINE_X, 2.7),
+      new Translation2d(RED_WING_LINE_X + 3.0, 5.6));
+
+  public static final RectanglePoseArea YIELD_BLUE = new RectanglePoseArea(
+      new Translation2d(BLUE_WING_LINE_X, 2.7),
+      new Translation2d(BLUE_WING_LINE_X + 1.5, 5.6));
+
+  public static final RectanglePoseArea YIELD_RED = new RectanglePoseArea(
+      new Translation2d(RED_WING_LINE_X - 1.5, 2.7),
+      new Translation2d(RED_WING_LINE_X, 5.6));
+
   public static Zone getZoneFromTranslation(final Alliance alliance, final Translation2d translation) {
     final double x = translation.getX();
+    final Pose2d pose = DRIVETRAIN.getPose();
     if (alliance == Alliance.Red) {
       if (x > RED_WING_LINE_X) {
+        if (STAGE_RED.isPoseWithinArea(pose))
+          return Zone.ALLIANCE_STAGE;
         return Zone.ALLIANCE_WING;
       }
       if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
+        if (YIELD_RED.isPoseWithinArea(pose))
+          return Zone.ALLIANCE_YIELD;
+        if (YIELD_BLUE.isPoseWithinArea(pose))
+          return Zone.OPPONENT_YIELD;
         return Zone.NEUTRAL_WING;
       }
       if (x < BLUE_WING_LINE_X) {
+        if (STAGE_BLUE.isPoseWithinArea(pose))
+          return Zone.OPPONENT_STAGE;
         return Zone.OPPONENT_WING;
       }
     } else {
       if (x < BLUE_WING_LINE_X) {
+        if (STAGE_BLUE.isPoseWithinArea(pose))
+          return Zone.ALLIANCE_STAGE;
         return Zone.ALLIANCE_WING;
       }
       if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
+        if (YIELD_BLUE.isPoseWithinArea(pose))
+          return Zone.ALLIANCE_YIELD;
+        if (YIELD_RED.isPoseWithinArea(pose))
+          return Zone.OPPONENT_YIELD;
         return Zone.NEUTRAL_WING;
       }
       if (x > RED_WING_LINE_X) {
+        if (STAGE_RED.isPoseWithinArea(pose))
+          return Zone.OPPONENT_STAGE;
         return Zone.OPPONENT_WING;
       }
     }
