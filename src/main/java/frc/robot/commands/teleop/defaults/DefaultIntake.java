@@ -20,6 +20,8 @@ public class DefaultIntake extends Command {
   @Override
   public void execute() {
     switch (RobotContainer.STATE) {
+      case RECOVERY:
+        break;
       case COLLECTING:
         INTAKE.setVolts(Constants.Intake.INTAKE_COLLECT_VOLTS);
         break;

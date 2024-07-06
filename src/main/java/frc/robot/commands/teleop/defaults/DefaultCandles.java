@@ -21,13 +21,13 @@ public class DefaultCandles extends Command {
     public void execute() {
         switch (getScoreMode()) {
             case AMP:
-                CANDLES.setColor(CandleSide.LEFT, new Color8Bit(255, 0, 0));
+                CANDLES.setColor(CandleSide.BOTH, new Color8Bit(255, 0, 0));
                 break;
             case DEFENSE:
-                CANDLES.setColor(CandleSide.LEFT, new Color8Bit(0, 255, 0));
+                CANDLES.setColor(CandleSide.BOTH, new Color8Bit(0, 255, 0));
                 break;
             case SPEAKER:
-                CANDLES.setColor(CandleSide.LEFT, new Color8Bit(0, 0, 255));
+                CANDLES.setColor(CandleSide.BOTH, new Color8Bit(0, 0, 255));
                 break;
             default:
                 break;

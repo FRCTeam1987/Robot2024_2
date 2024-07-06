@@ -16,6 +16,7 @@ import frc.robot.commands.teleop.stated.PodiumState;
 import frc.robot.commands.teleop.stated.PoopNoteState;
 import frc.robot.commands.teleop.stated.ShootNoteState;
 import frc.robot.commands.teleop.stateless.ReLocalizeSub;
+import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.util.InstCmd;
 
 public class Controls extends RobotContainer {
@@ -34,7 +35,7 @@ public class Controls extends RobotContainer {
                                                 new ConditionalCommand(
                                                                 new IntakeNoteState(),
                                                                 new InstCmd(),
-                                                                () -> !SHOOTER.isRearBroken()
+                                                                () -> !SHOOTER.isCenterBroken()
                                                                                 && getRobotState() == RobotState.DEFAULT));
                 DRIVER_CONTROLLER.back().onTrue(new ReLocalizeSub());
                 DRIVER_CONTROLLER.start().onTrue(new DefaultState());
@@ -76,7 +77,7 @@ public class Controls extends RobotContainer {
         }
 
         public static void configureCoDriverController() {
-                CODRIVER_CONTROLLER.y().and(CODRIVER_CONTROLLER.leftStick()).and(CODRIVER_CONTROLLER.rightStick())
+                CODRIVER_CONTROLLER.y().and(CODRIVER_CONTROLLER.leftTrigger()).and(CODRIVER_CONTROLLER.rightTrigger())
                                 .onTrue(
                                                 new ConditionalCommand(new ClimbState(), new InstCmd(),
                                                                 () -> getRobotState() == RobotState.DEFAULT));
@@ -84,6 +85,9 @@ public class Controls extends RobotContainer {
                                 .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.AMP)));
                 CODRIVER_CONTROLLER.leftBumper()
                                 .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.SPEAKER)));
+                new Trigger(CODRIVER_CONTROLLER.rightBumper()).and(CODRIVER_CONTROLLER.leftBumper())
+                                .onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
                 CODRIVER_CONTROLLER.povDown().onTrue(new InstCmd(() -> setScoreMode(ScoreMode.DEFENSE)));
+                CODRIVER_CONTROLLER.a().onTrue(new ReverseIntake());
         }
 }

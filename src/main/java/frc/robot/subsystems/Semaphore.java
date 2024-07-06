@@ -6,7 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class Teleop extends SubsystemBase {
+public class Semaphore extends SubsystemBase {
   /** Creates a new Teleop. */
-  public Teleop() {}
+  public Semaphore() {
+  }
 }

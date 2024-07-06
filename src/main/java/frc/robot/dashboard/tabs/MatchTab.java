@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.auto.AutoCommands;
+import frc.robot.commands.teleop.stateless.recovery.AutoHomeElevator;
+import frc.robot.commands.teleop.stateless.recovery.AutoHomeWrist;
+import frc.robot.commands.teleop.stateless.recovery.ForceZeroAll;
+import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.dashboard.TabUtil;
 
 /** Add your docs here. */
@@ -20,6 +24,10 @@ public class MatchTab {
     tab = TabUtil.createTab("MATCH");
     autoSelector = AutoCommands.getRoutines();
     tab.add("Auto Chooser", autoSelector);
+    tab.add("Reverse Intake", new ReverseIntake());
+    tab.add("Auto Home Wrist", new AutoHomeWrist());
+    tab.add("Auto Home Elev", new AutoHomeElevator());
+    tab.add("Force Zero", new ForceZeroAll());
   }
 
   public Command getSelectedAuto() {

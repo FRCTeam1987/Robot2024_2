@@ -24,11 +24,7 @@ public class DefaultWrist extends Command {
   @Override
   public void execute() {
     switch (RobotContainer.STATE) {
-      case RECOVERY_INIT:
-        WRIST.goHome();
-        break;
       case RECOVERY:
-
         break;
       case SHOOTING:
         WRIST.setDegrees(Util.getInterpolatedWristAngleSpeaker());

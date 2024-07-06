@@ -23,5 +23,5 @@ public enum RobotState {
 
         PASS,
 
-        RECOVERY_INIT, RECOVERY
+        RECOVERY
 }

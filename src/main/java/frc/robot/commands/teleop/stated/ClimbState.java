@@ -33,9 +33,10 @@ public class ClimbState extends SequentialCommandGroup {
         new InstCmd(() -> {
           setRobotState(RobotState.CLIMB_INIT);
         }),
-        new WaitUntilCommand(() -> !DRIVER_CONTROLLER.a().getAsBoolean()),
+        new WaitUntilCommand(() -> !CODRIVER_CONTROLLER.y().getAsBoolean()),
         new WaitUntilCommand(
-            () -> ELEVATOR.isAtSetpoint() && A_DEBOUNCER.calculate(DRIVER_CONTROLLER.a().getAsBoolean())),
+            () -> ELEVATOR.isAtSetpoint() && A_DEBOUNCER
+                .calculate(CODRIVER_CONTROLLER.y().getAsBoolean())),
         new InstCmd(() -> {
           setRobotState(RobotState.CLIMB_PULLDOWN);
         }),

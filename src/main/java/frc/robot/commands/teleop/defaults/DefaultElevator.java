@@ -19,6 +19,8 @@ public class DefaultElevator extends Command {
   @Override
   public void execute() {
     switch (RobotContainer.STATE) {
+      case RECOVERY:
+        break;
       case AMP_PREP:
       case AMP_SCORE:
         ELEVATOR.setLengthInches(Constants.Elevator.AMP_ELEVATOR_HEIGHT, 0);
