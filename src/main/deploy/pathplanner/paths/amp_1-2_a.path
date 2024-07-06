@@ -88,9 +88,9 @@
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 3.5,
+      "waypointRelativePos": 3.4,
       "rotationDegrees": -30.0,
-      "rotateFast": false
+      "rotateFast": true
     }
   ],
   "constraintZones": [
@@ -99,7 +99,7 @@
       "minWaypointRelativePos": 1.4,
       "maxWaypointRelativePos": 2.1,
       "constraints": {
-        "maxVelocity": 1.5,
+        "maxVelocity": 1.0,
         "maxAcceleration": 2.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -119,6 +119,12 @@
               "data": {
                 "name": "StartPoopMonitor"
               }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartPoop"
+              }
             }
           ]
         }
@@ -135,6 +141,12 @@
               "type": "named",
               "data": {
                 "name": "StopPoopMonitor"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoop"
               }
             }
           ]
@@ -177,7 +189,7 @@
     },
     {
       "name": "Start Vision Update",
-      "waypointRelativePos": 2.25,
+      "waypointRelativePos": 1.5,
       "command": {
         "type": "parallel",
         "data": {
@@ -194,7 +206,7 @@
     },
     {
       "name": "Start Point At Speaker",
-      "waypointRelativePos": 1.45,
+      "waypointRelativePos": 1.35,
       "command": {
         "type": "parallel",
         "data": {
@@ -228,7 +240,7 @@
     },
     {
       "name": "Shoot Preload",
-      "waypointRelativePos": 1.95,
+      "waypointRelativePos": 2.0,
       "command": {
         "type": "parallel",
         "data": {
