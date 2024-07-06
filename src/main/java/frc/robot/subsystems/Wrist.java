@@ -1,7 +1,5 @@
 package frc.robot.subsystems;
 
-import static frc.robot.RobotContainer.WRIST;
-
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.MotionMagicVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;

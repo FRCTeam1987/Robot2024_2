@@ -4,8 +4,6 @@
 
 package frc.robot;
 
-import javax.sound.sampled.SourceDataLine;
-
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import com.pathplanner.lib.commands.PathfindingCommand;
 import com.ctre.phoenix6.mechanisms.swerve.SwerveModule.DriveRequestType;

@@ -6,10 +6,8 @@ package frc.robot.commands.teleop.stated;
 
 import static frc.robot.RobotContainer.*;
 
-import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;

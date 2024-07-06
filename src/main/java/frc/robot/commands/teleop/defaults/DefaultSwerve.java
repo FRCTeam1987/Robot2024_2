@@ -19,8 +19,6 @@ import frc.robot.util.zoning.LocalizationState;
 
 import static frc.robot.RobotContainer.*;
 
-import com.ctre.phoenix6.StatusCode;
-
 /**
  * This command, when executed, instructs the drivetrain subsystem to drive
  * based on the specified

@@ -8,14 +8,11 @@ import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.SHOOTER;
 import static frc.robot.RobotContainer.WRIST;
 
-import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
-import frc.robot.util.WaitUntilDebounceCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

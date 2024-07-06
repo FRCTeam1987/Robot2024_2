@@ -1,7 +1,6 @@
 package frc.robot.util.extensions;
 
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.defaults.DefaultSwerve;
@@ -16,7 +15,6 @@ import frc.robot.commands.teleop.stated.PassNoteState;
 import frc.robot.commands.teleop.stated.PodiumState;
 import frc.robot.commands.teleop.stated.PoopNoteState;
 import frc.robot.commands.teleop.stated.ShootNoteState;
-import frc.robot.commands.teleop.stated.SubwooferState;
 import frc.robot.commands.teleop.stateless.ReLocalizeSub;
 import frc.robot.util.InstCmd;
 

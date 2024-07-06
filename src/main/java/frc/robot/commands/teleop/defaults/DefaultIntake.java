@@ -3,8 +3,6 @@ package frc.robot.commands.teleop.defaults;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.commands.teleop.logic.ScoreMode;
-import frc.robot.util.Util;
 
 import static frc.robot.RobotContainer.*;
 

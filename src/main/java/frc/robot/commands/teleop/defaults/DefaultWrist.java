@@ -5,11 +5,8 @@ import frc.robot.Constants;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.ScoreMode;
 import frc.robot.util.Util;
-import frc.robot.util.zoning.FieldZones;
 
 import static frc.robot.RobotContainer.*;
-
-import com.ctre.phoenix6.StatusCode;
 
 public class DefaultWrist extends Command {
 
