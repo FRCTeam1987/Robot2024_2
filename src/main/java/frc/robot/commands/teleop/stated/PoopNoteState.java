@@ -7,11 +7,13 @@ package frc.robot.commands.teleop.stated;
 import static frc.robot.RobotContainer.SHOOTER;
 import static frc.robot.RobotContainer.WRIST;
 
+import edu.wpi.first.math.filter.Debouncer.DebounceType;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
+import frc.robot.util.WaitUntilDebounceCommand;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -23,7 +25,7 @@ public class PoopNoteState extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.POOPING_PREP)),
-        new WaitUntilCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint()),
+        new WaitUntilDebounceCommand(() -> WRIST.isAtSetpoint() && SHOOTER.isShooterAtSetpoint(), 0.02, DebounceType.kRising),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.POOPING)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken()),
         new InstCmd(() -> RobotContainer.setRobotState(RobotState.DEFAULT)));
