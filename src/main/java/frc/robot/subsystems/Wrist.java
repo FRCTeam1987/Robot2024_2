@@ -44,8 +44,6 @@ public class Wrist extends SubsystemBase {
 
     disableWristLockdown();
 
-    final ShuffleboardTab WRIST_TAB = Shuffleboard.getTab("WRIST");
-    WRIST_TAB.addNumber("Wrist Degrees", this::getDegrees);
   }
 
   public void goHome() {
