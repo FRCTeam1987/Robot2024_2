@@ -3,60 +3,44 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3977293798771628,
-        "y": 7.32
+        "x": 1.3978379419432452,
+        "y": 7.322065046546181
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.017363524983602,
-        "y": 7.677745940476281
+        "x": 2.077568782220733,
+        "y": 7.639028742851706
       },
-      "isLocked": true,
-      "linkedName": null
+      "isLocked": false,
+      "linkedName": "amp_race_start"
     },
     {
       "anchor": {
-        "x": 2.88,
-        "y": 7.69
+        "x": 2.883763127769311,
+        "y": 7.694986878110331
       },
       "prevControl": {
-        "x": 2.38,
-        "y": 7.69
+        "x": 1.8837631277693112,
+        "y": 7.694986878110331
       },
       "nextControl": {
-        "x": 3.88,
-        "y": 7.69
+        "x": 3.6837631277693115,
+        "y": 7.694986878110331
       },
       "isLocked": true,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.579559200712731,
-        "y": 7.45
-      },
-      "prevControl": {
-        "x": 3.8297206379508784,
-        "y": 7.465560520403886
-      },
-      "nextControl": {
-        "x": 5.579343951061867,
-        "y": 7.429252639461485
-      },
-      "isLocked": true,
-      "linkedName": null
-    },
-    {
-      "anchor": {
-        "x": 8.1,
+        "x": 4.3,
         "y": 7.25
       },
       "prevControl": {
-        "x": 8.1,
-        "y": 7.75
+        "x": 3.650480947161671,
+        "y": 7.625
       },
       "nextControl": {
-        "x": 8.1,
+        "x": 5.166025403784439,
         "y": 6.75
       },
       "isLocked": true,
@@ -64,38 +48,54 @@
     },
     {
       "anchor": {
-        "x": 8.1,
-        "y": 5.78
+        "x": 8.050677235469054,
+        "y": 5.9
       },
       "prevControl": {
-        "x": 6.35,
-        "y": 5.78
+        "x": 8.050677235469054,
+        "y": 5.4
+      },
+      "nextControl": {
+        "x": 8.050677235469054,
+        "y": 6.4
+      },
+      "isLocked": true,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.050677235469054,
+        "y": 7.47
+      },
+      "prevControl": {
+        "x": 6.634450940334386,
+        "y": 7.47
       },
       "nextControl": null,
       "isLocked": true,
-      "linkedName": "amp_1-2_a_end"
+      "linkedName": "amp_2-1_a_end"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 3.0,
+      "waypointRelativePos": 1,
       "rotationDegrees": 0,
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 3,
       "rotationDegrees": 0,
       "rotateFast": false
     }
   ],
   "constraintZones": [
     {
-      "name": "Slow Shoot Zone",
-      "minWaypointRelativePos": 1.4,
+      "name": "Shoot Preload Zone",
+      "minWaypointRelativePos": 1.6,
       "maxWaypointRelativePos": 2.1,
       "constraints": {
         "maxVelocity": 1.5,
-        "maxAcceleration": 2.0,
+        "maxAcceleration": 4.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
       }
@@ -103,58 +103,7 @@
   ],
   "eventMarkers": [
     {
-      "name": "Start Poop Monitor",
-      "waypointRelativePos": 2.55,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StartPoopMonitor"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Stop Poop Monitor",
-      "waypointRelativePos": 3.5,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StopPoopMonitor"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Collect Note",
-      "waypointRelativePos": 3.75,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "FollowCollectNote"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Stop Vision Update",
+      "name": "Stop Vision Updates",
       "waypointRelativePos": 0,
       "command": {
         "type": "parallel",
@@ -171,8 +120,8 @@
       }
     },
     {
-      "name": "Start Vision Update",
-      "waypointRelativePos": 2.25,
+      "name": "Prep Shoot Preload",
+      "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
         "data": {
@@ -180,7 +129,7 @@
             {
               "type": "named",
               "data": {
-                "name": "StartLLPoseUpdate"
+                "name": "PrepShoot"
               }
             }
           ]
@@ -189,7 +138,7 @@
     },
     {
       "name": "Start Point At Speaker",
-      "waypointRelativePos": 1.45,
+      "waypointRelativePos": 1.3,
       "command": {
         "type": "parallel",
         "data": {
@@ -198,6 +147,23 @@
               "type": "named",
               "data": {
                 "name": "StartRotationOverrideSpeaker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Shoot Preload",
+      "waypointRelativePos": 1.9,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "InstantShoot"
               }
             }
           ]
@@ -222,8 +188,8 @@
       }
     },
     {
-      "name": "Shoot Preload",
-      "waypointRelativePos": 2.0,
+      "name": "Start Poop",
+      "waypointRelativePos": 2.6,
       "command": {
         "type": "parallel",
         "data": {
@@ -231,7 +197,53 @@
             {
               "type": "named",
               "data": {
-                "name": "InstantShoot"
+                "name": "StartPoop"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartPoopMonitor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Poop",
+      "waypointRelativePos": 3.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoop"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoopMonitor"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collect Note 1",
+      "waypointRelativePos": 3.55,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "FollowCollectNote"
               }
             }
           ]
@@ -246,14 +258,14 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0,
+    "velocity": 0.0,
     "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "amp_1-2",
+  "folder": "amp_2-1",
   "previewStartingState": {
-    "rotation": 0.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true

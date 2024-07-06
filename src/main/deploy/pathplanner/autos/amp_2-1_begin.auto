@@ -1,0 +1,25 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.393844342520861,
+      "y": 7.329611965900726
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "amp_2-1_a"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "amp_2-1",
+  "choreoAuto": false
+}

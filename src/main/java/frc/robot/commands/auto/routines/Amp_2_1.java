@@ -15,22 +15,22 @@ import static frc.robot.RobotContainer.SHOOTER;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Amp_1_2 extends SequentialCommandGroup {
-  /** Creates a new Amp_1_2. */
-  public Amp_1_2() {
+public class Amp_2_1 extends SequentialCommandGroup {
+  /** Creates a new Amp_2_1. */
+  public Amp_2_1() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      AutoBuilder.buildAuto("amp_1-2_begin"),
+      AutoBuilder.buildAuto("amp_2-1_begin"),
       new ConditionalCommand(
-        AutoBuilder.buildAuto("amp_1-2_1y2y"),
+        AutoBuilder.buildAuto("amp_2-1_2y1y"),
         new ConditionalCommand(
-          AutoBuilder.buildAuto("amp_1-2_1y2n"),
+          AutoBuilder.buildAuto("amp_2-1_2y1n"),
           new ConditionalCommand(
-            AutoBuilder.buildAuto("amp_1-2_1n2y"),
-            AutoBuilder.buildAuto("amp_1-2_1n2n"),
-            () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
-            ),
+            AutoBuilder.buildAuto("amp_2-1_2n1y"),
+            AutoBuilder.buildAuto("amp_2-1_2n1n"),
+            () -> !POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
+          ),
           () -> POOP_MONITOR.hasPooped() && !SHOOTER.hasNote()
         ),
         () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()

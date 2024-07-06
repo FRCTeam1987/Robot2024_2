@@ -17,13 +17,13 @@ import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.actions.RotateUntilNote;
 
+import static frc.robot.commands.auto.AutoCommands.INITIAL_WAS_INTERRUPTED;
+import static frc.robot.commands.auto.AutoCommands.SHOULD_WATCH_FOR_NOTE;
+
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class Madtown extends SequentialCommandGroup {
-
-  public static boolean SHOULD_WATCH_FOR_NOTE = false;
-  private static boolean INITIAL_WAS_INTERRUPTED = false;
 
   /** Creates a new Madtown. */
   public Madtown(final Alliance alliance) {
@@ -42,19 +42,19 @@ public class Madtown extends SequentialCommandGroup {
           return shouldInterrupt;
       })),
       new ConditionalCommand(
-        new AutoCollectNote(() -> 2.75).withTimeout(1.0)
+        new AutoCollectNote(() -> 2.0).withTimeout(1.0)
           .andThen(PathFind.toSourceShot())
           .andThen(new AutoAimAndShoot()),
         new InstCmd(),
         () -> INITIAL_WAS_INTERRUPTED
       ),
       new RotateUntilNote(() -> isBlue),
-      new AutoCollectNote(() -> 2.25),
+      new AutoCollectNote(() -> 2.0),
       PathFind.toMadtownshot(),
       new AutoAimAndShoot(),
       // new InstantShoot(RobotContainer.SHOOTER),
       new RotateUntilNote(() -> isBlue),
-      new AutoCollectNote(() -> 2.75),
+      new AutoCollectNote(() -> 2.0),
       PathFind.toMadtownshot(),
       new AutoAimAndShoot()
     );

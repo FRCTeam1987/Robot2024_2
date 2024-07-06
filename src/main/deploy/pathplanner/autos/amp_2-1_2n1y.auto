@@ -8,19 +8,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_1-2_c"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoCollectNote"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "PathFindToAmpShot"
+            "pathName": "amp_2-1_b"
           }
         },
         {
@@ -32,6 +20,6 @@
       ]
     }
   },
-  "folder": "amp_1-2",
+  "folder": "amp_2-1",
   "choreoAuto": false
 }

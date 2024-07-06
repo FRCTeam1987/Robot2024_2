@@ -6,32 +6,20 @@
     "data": {
       "commands": [
         {
-          "type": "path",
-          "data": {
-            "pathName": "amp_1-2_c"
-          }
-        },
-        {
           "type": "named",
           "data": {
             "name": "AutoCollectNote"
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "PathFindToAmpShot"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoAimAndShoot"
+            "pathName": "_source_5-4-e"
           }
         }
       ]
     }
   },
-  "folder": "amp_1-2",
+  "folder": "_source_5-4",
   "choreoAuto": false
 }

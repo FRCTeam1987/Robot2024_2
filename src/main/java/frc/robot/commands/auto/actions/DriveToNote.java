@@ -5,9 +5,11 @@
 package frc.robot.commands.auto.actions;
 
 import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
+
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.RobotContainer;
@@ -18,7 +20,7 @@ import frc.robot.RobotContainer;
 public class DriveToNote extends PIDCommand {
 
   private static Debouncer createNoteDebouncer() {
-    return new Debouncer(0.4, DebounceType.kFalling); // 0.6
+    return new Debouncer(0.6, DebounceType.kFalling);
   }
 
   private static final SwerveRequest.ApplyChassisSpeeds swerveRequest =
@@ -41,12 +43,21 @@ public class DriveToNote extends PIDCommand {
             RobotContainer.DRIVETRAIN.setControl(swerveRequest.withSpeeds(new ChassisSpeeds()));
             return;
           }
+          double xSpeed = 0.0;
+          double ySpeed = 0.0;
+          if (canSeeNoteDebouncer.calculate(RobotContainer.VISION.hasTargets())) {
+            xSpeed = initialVelocity;
+            if (Math.abs(output) > 5.0) {
+              xSpeed /= 2.0;
+              ySpeed = Math.copySign(0.25, output);
+            }
+          }
           RobotContainer.DRIVETRAIN.setControl(
               swerveRequest.withSpeeds(
                   new ChassisSpeeds(
-                      canSeeNoteDebouncer.calculate(RobotContainer.VISION.hasTargets()) ? initialVelocity : 0.0,
-                      0,
-                      output * 0.75)));
+                      xSpeed,
+                      ySpeed,
+                      Rotation2d.fromDegrees(output).getRadians())));
         });
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.

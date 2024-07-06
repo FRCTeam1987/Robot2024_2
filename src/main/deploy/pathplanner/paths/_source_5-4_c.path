@@ -1,0 +1,108 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.558638692508866,
+        "y": 1.6910490342248048
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 6.8515319113223185,
+        "y": 2.3981558154113523
+      },
+      "isLocked": false,
+      "linkedName": "_source_5-4_a_end"
+    },
+    {
+      "anchor": {
+        "x": 8.1,
+        "y": 2.25
+      },
+      "prevControl": {
+        "x": 8.1,
+        "y": 2.75
+      },
+      "nextControl": {
+        "x": 8.1,
+        "y": 1.5
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.850112093525691,
+        "y": 0.8715409059145671
+      },
+      "prevControl": {
+        "x": 6.850112093525691,
+        "y": 0.871540905914567
+      },
+      "nextControl": {
+        "x": 4.850112093525691,
+        "y": 0.8715409059145672
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 3.6451330221092153,
+        "y": 3.2002176367633988
+      },
+      "prevControl": {
+        "x": 3.165734048929748,
+        "y": 2.0886680906521846
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [],
+  "eventMarkers": [
+    {
+      "name": "Collect Note 4",
+      "waypointRelativePos": 0.2,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "FollowCollectNote"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": -26.839009632422826,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "_source_5-4",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 1.5
+  },
+  "useDefaultConstraints": true
+}

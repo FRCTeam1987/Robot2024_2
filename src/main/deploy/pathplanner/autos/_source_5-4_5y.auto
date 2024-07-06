@@ -1,0 +1,19 @@
+{
+  "version": 1.0,
+  "startingPose": null,
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "_source_5-4_b"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "_source_5-4",
+  "choreoAuto": false
+}

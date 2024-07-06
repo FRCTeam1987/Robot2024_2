@@ -8,6 +8,7 @@ import static frc.robot.RobotContainer.getScoreMode;
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.RobotContainer;
+import frc.robot.commands.auto.actions.AimAtSpeaker;
 import frc.robot.dashboard.TabUtil;
 
 /** Add your docs here. */
@@ -22,6 +23,7 @@ public class DevTab {
         tab.addString("State", () -> getRobotState() + " " + getScoreMode() + " " + getDriveMode());
         tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
         tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
+        tab.add(new AimAtSpeaker());
     }
 
     public double getRPM() {

@@ -6,27 +6,33 @@
     "data": {
       "commands": [
         {
-          "type": "deadline",
+          "type": "race",
           "data": {
             "commands": [
               {
                 "type": "named",
                 "data": {
-                  "name": "FollowCollectNote"
+                  "name": "WaitUntilHasNote"
                 }
               },
               {
                 "type": "path",
                 "data": {
-                  "pathName": "amp_1-2_e"
+                  "pathName": "amp_2-1_d"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToAmpShot"
           }
         }
       ]
     }
   },
-  "folder": "amp_1-2",
+  "folder": "amp_2-1",
   "choreoAuto": false
 }

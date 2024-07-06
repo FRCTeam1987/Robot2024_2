@@ -8,45 +8,29 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.960689967097528,
-        "y": 6.326628378625681
+        "x": 6.080813906998184,
+        "y": 6.998565399655395
       },
       "isLocked": false,
       "linkedName": "amp_1-2_a_end"
     },
     {
       "anchor": {
-        "x": 5.500654514329862,
-        "y": 6.45
-      },
-      "prevControl": {
-        "x": 5.886300414319036,
-        "y": 6.438662501806612
-      },
-      "nextControl": {
-        "x": 5.115008614340688,
-        "y": 6.461337498193388
-      },
-      "isLocked": false,
-      "linkedName": null
-    },
-    {
-      "anchor": {
         "x": 4.1,
-        "y": 6.400605075732721
+        "y": 6.2
       },
       "prevControl": {
-        "x": 4.847146023568809,
-        "y": 6.465971882793465
+        "x": 5.095500883710101,
+        "y": 6.628198024227357
       },
       "nextControl": null,
-      "isLocked": true,
-      "linkedName": "amp_1-2_b_end"
+      "isLocked": false,
+      "linkedName": "amp_shoot"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1,
+      "waypointRelativePos": 0.5,
       "rotationDegrees": 0,
       "rotateFast": false
     }
