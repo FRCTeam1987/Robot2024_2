@@ -21,7 +21,6 @@ public class DevTab {
         tab = TabUtil.createTab("DEV");
         SHOOTER_RPM = tab.add("SHOOTER_RPM", 300).getEntry();
         tab.addDouble("DIST_TO_AMP", () -> getLocalizationState().getAmpPassDistance());
-        tab.addString("State", () -> getRobotState() + " " + getScoreMode() + " " + getDriveMode());
         tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
         tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
         tab.add(new AimAtSpeaker());

@@ -4,6 +4,10 @@
 
 package frc.robot.dashboard.tabs;
 
+import static frc.robot.RobotContainer.getDriveMode;
+import static frc.robot.RobotContainer.getRobotState;
+import static frc.robot.RobotContainer.getScoreMode;
+
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -28,6 +32,7 @@ public class MatchTab {
     tab.add("Auto Home Wrist", new AutoHomeWrist());
     tab.add("Auto Home Elev", new AutoHomeElevator());
     tab.add("Force Zero", new ForceZeroAll());
+    tab.addString("State | Score | Drive", () -> getRobotState() + " | " + getScoreMode() + " | " + getDriveMode());
   }
 
   public Command getSelectedAuto() {

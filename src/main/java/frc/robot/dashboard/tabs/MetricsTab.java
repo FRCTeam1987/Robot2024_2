@@ -23,7 +23,6 @@ public class MetricsTab {
 
     public MetricsTab() {
         tab = TabUtil.createTab("METRICS");
-        tab.addString("State | Score | Drive", () -> getRobotState() + " | " + getScoreMode() + " | " + getDriveMode());
         tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
         tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
         tab.addDouble("Left RPM", () -> SHOOTER.getRPMLeader());
