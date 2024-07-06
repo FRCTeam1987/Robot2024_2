@@ -23,8 +23,7 @@ public class DriveToNote extends PIDCommand {
     return new Debouncer(0.6, DebounceType.kFalling);
   }
 
-  private static final SwerveRequest.ApplyChassisSpeeds swerveRequest =
-      new SwerveRequest.ApplyChassisSpeeds();
+  private static final SwerveRequest.ApplyChassisSpeeds swerveRequest = new SwerveRequest.ApplyChassisSpeeds();
   private static Debouncer canSeeNoteDebouncer = createNoteDebouncer();
 
   /** Creates a new DriveToNote2. */
@@ -32,13 +31,14 @@ public class DriveToNote extends PIDCommand {
     // FIXME probably mixing degrees and radians
     super(
         // The controller that the command will use
-        new PIDController(0.1, 0.0, 0.0),
+        new PIDController(7.0, 0.0, 0.0),
         // This should return the measurement
         () -> RobotContainer.VISION.getYawVal(),
         // This should return the setpoint (can also be a constant)
         () -> 0.0,
         // This uses the output
         output -> {
+          System.out.println(output);
           if (RobotContainer.SHOOTER.isRearBroken()) {
             RobotContainer.DRIVETRAIN.setControl(swerveRequest.withSpeeds(new ChassisSpeeds()));
             return;
@@ -48,7 +48,7 @@ public class DriveToNote extends PIDCommand {
           if (canSeeNoteDebouncer.calculate(RobotContainer.VISION.hasTargets())) {
             xSpeed = initialVelocity;
             if (Math.abs(output) > 5.0) {
-              xSpeed /= 2.0;
+              xSpeed *= 0.75;
               ySpeed = Math.copySign(0.25, output);
             }
           }
@@ -57,7 +57,7 @@ public class DriveToNote extends PIDCommand {
                   new ChassisSpeeds(
                       xSpeed,
                       ySpeed,
-                      Rotation2d.fromDegrees(output).getRadians())));
+                      Math.toRadians(output))));
         });
     // Use addRequirements() here to declare subsystem dependencies.
     // Configure additional PID options by calling `getController` here.

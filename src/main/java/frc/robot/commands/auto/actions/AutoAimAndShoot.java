@@ -19,11 +19,11 @@ public class AutoAimAndShoot extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ParallelDeadlineGroup(
-        new WaitUntilCommand(() -> Util.isPointedAtSpeaker() || RobotContainer.SHOOTER.isShooterAtSetpoint())
-          .withTimeout(0.375),
-        new PointAtSpeaker(() -> 0.0, () -> 0.0)),
-      new InstantShoot()
-    );
+        new ParallelDeadlineGroup(
+            new WaitUntilCommand(() -> Util.isPointedAtSpeaker() && RobotContainer.SHOOTER.isShooterAtSetpoint())
+                .withTimeout(0.375),
+            new AimAtSpeaker()),
+
+        new InstantShoot());
   }
 }

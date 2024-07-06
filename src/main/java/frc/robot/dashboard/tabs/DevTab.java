@@ -24,7 +24,7 @@ public class DevTab {
         tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
         tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
         tab.add(new AimAtSpeaker());
-        tab.add(new AutoCollectNote());
+        tab.add(new AutoCollectNote(() -> 2.75));
     }
 
     public double getRPM() {

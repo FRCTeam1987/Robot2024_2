@@ -32,16 +32,16 @@
     },
     {
       "anchor": {
-        "x": 4.579559200712731,
-        "y": 7.45
+        "x": 4.617087392842759,
+        "y": 7.32
       },
       "prevControl": {
-        "x": 3.8297206379508784,
-        "y": 7.465560520403886
+        "x": 3.8672488300809067,
+        "y": 7.335560520403886
       },
       "nextControl": {
-        "x": 5.579343951061867,
-        "y": 7.429252639461485
+        "x": 5.6168721431918955,
+        "y": 7.299252639461485
       },
       "isLocked": true,
       "linkedName": null
@@ -83,14 +83,19 @@
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 1.3,
       "rotationDegrees": 0,
       "rotateFast": false
     },
     {
-      "waypointRelativePos": 3.4,
+      "waypointRelativePos": 3.3,
       "rotationDegrees": -30.0,
       "rotateFast": true
+    },
+    {
+      "waypointRelativePos": 2.0,
+      "rotationDegrees": 22.0,
+      "rotateFast": false
     }
   ],
   "constraintZones": [
@@ -98,6 +103,17 @@
       "name": "Slow Shoot Zone",
       "minWaypointRelativePos": 1.4,
       "maxWaypointRelativePos": 2.1,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 2.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Slow Poop Zone",
+      "minWaypointRelativePos": 2.8,
+      "maxWaypointRelativePos": 3.15,
       "constraints": {
         "maxVelocity": 1.0,
         "maxAcceleration": 2.0,
@@ -206,7 +222,7 @@
     },
     {
       "name": "Start Point At Speaker",
-      "waypointRelativePos": 1.35,
+      "waypointRelativePos": 1.5,
       "command": {
         "type": "parallel",
         "data": {

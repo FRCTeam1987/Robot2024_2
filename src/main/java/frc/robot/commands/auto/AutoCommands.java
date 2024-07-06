@@ -53,7 +53,7 @@ public class AutoCommands {
       put("PrepShoot", new InstCmd(() -> setAutoState(AutoState.SHOOT_PREP)));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
-      put("AutoCollectNote", new AutoCollectNote(() -> 2.75));
+      put("AutoCollectNote", new AutoCollectNote(() -> 3.0));
       put("PathFindToSourceShot", PathFind.toSourceShot());
       put("PathFindToAmpShot", PathFind.toAmpShot());
       put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
@@ -70,14 +70,12 @@ public class AutoCommands {
       put("AutoAimAndShoot", new AutoAimAndShoot());
       put("FlowShoot", new FlowShoot());
       put("StartLLPoseUpdate", new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(true)));
-      put("StopLLPoseUpdate", new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(false)));
+      put("StopLLPoseUpdate", new InstCmd(/* () -> DRIVETRAIN.setShouldUpdatePoseFromVision(false) */));
       put("PoopIfSeesNote", new ConditionalCommand(
-        new InstCmd(() -> setAutoState(AutoState.POOPING)).andThen(
-          new WaitUntilDebounceCommand(() -> SHOOTER.hasNote(), 0.1, DebounceType.kFalling)
-        ),
-        new InstCmd(),
-        () -> VISION.hasTargets()
-      ));
+          new InstCmd(() -> setAutoState(AutoState.POOPING)).andThen(
+              new WaitUntilDebounceCommand(() -> SHOOTER.hasNote(), 0.1, DebounceType.kFalling)),
+          new InstCmd(),
+          () -> VISION.hasTargets()));
     }
   });
 
@@ -91,12 +89,11 @@ public class AutoCommands {
 
   private static Command wrap(final Command autoCommand) {
     return new ParallelCommandGroup(
-      autoCommand,
-      new DefaultAutoIntake(),
-      new DefaultAutoWrist(),
-      new DefaultAutoShooter(),
-      new DefaultAutoElevator()
-    );
+        autoCommand,
+        new DefaultAutoIntake(),
+        new DefaultAutoWrist(),
+        new DefaultAutoShooter(),
+        new DefaultAutoElevator());
   }
 
   public static SendableChooser<Command> getRoutines() {
@@ -105,17 +102,15 @@ public class AutoCommands {
     autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
     autoChooser.addOption("Amp 2-1", wrap(new Amp_2_1()));
     autoChooser.addOption("Madtown", new ConditionalCommand(
-      wrap(new Madtown(Alliance.Blue)),
-      wrap(new Madtown(Alliance.Red)),
-      AutoCommands::isBlueAlliance)
-    );
+        wrap(new Madtown(Alliance.Blue)),
+        wrap(new Madtown(Alliance.Red)),
+        AutoCommands::isBlueAlliance));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial")); 
+    autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial"));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
-      wrap(new Source_5_4(Alliance.Blue)),
-      wrap(new Source_5_4(Alliance.Red)),
-      AutoCommands::isBlueAlliance)
-    );
+        wrap(new Source_5_4(Alliance.Blue)),
+        wrap(new Source_5_4(Alliance.Red)),
+        AutoCommands::isBlueAlliance));
     autoChooser.addOption("_Source_5_4", new _Source_5_4());
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;

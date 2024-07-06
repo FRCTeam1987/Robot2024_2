@@ -25,7 +25,7 @@ public class AimAtSpeaker extends ProfiledPIDCommand {
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(MaxAngularRate * 0.75, MaxAngularRate * 0.5)),
+            new TrapezoidProfile.Constraints(MaxAngularRate * 0.9, MaxAngularRate * 0.75)),
         // This should return the measurement
         () -> DRIVETRAIN.getPose().getRotation().getRadians(),
         // This should return the goal (can also be a constant)
@@ -39,9 +39,8 @@ public class AimAtSpeaker extends ProfiledPIDCommand {
     // Configure additional PID options by calling `getController` here.
     getController().enableContinuousInput(-Math.PI, Math.PI);
     getController().setTolerance(
-      Rotation2d.fromDegrees(2.5).getRadians(),
-      Rotation2d.fromDegrees(2.5).getRadians()
-    );
+        Rotation2d.fromDegrees(2.5).getRadians(),
+        Rotation2d.fromDegrees(2.5).getRadians());
   }
 
   // Returns true when the command should end.

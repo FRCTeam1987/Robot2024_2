@@ -77,7 +77,7 @@ public class DefaultSwerve extends Command {
     switch (RobotContainer.getLocalizationState().getFieldZone()) {
       case ALLIANCE_WING:
       case ALLIANCE_STAGE:
-        if (prevZone != FieldZones.Zone.ALLIANCE_WING)
+        if (prevZone != FieldZones.Zone.ALLIANCE_WING && prevZone != FieldZones.Zone.ALLIANCE_STAGE)
           setDriveMode(DriveMode.AUTOMATIC);
         switch (RobotContainer.getScoreMode()) {
           case SPEAKER:
