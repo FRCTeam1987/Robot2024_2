@@ -1,0 +1,27 @@
+DRIVER:
+Left Stick: Translate
+Right Stick: Rotate, Cancel Auto Rotate
+Right Bumper: Shoot Note (MUST BE SPEAKER MODE)
+Left Bumper: Intake Note
+Right Trigger: Enable Auto Rotate
+Left Trigger: Pass Note
+Back (left small button): Gyro Home Subwoofer
+Start (right small button): Default Robot State Override 
+Y: Amp Score (1x = Raise, 2x = Score, 3x = Home) (MUST BE AMP MODE)
+X: Poop Note
+B: Subwoofer Shot
+A: Podium Shot
+Left Stick Press: Speaker Score Mode
+Right Stick Press: Amp Score Mode
+Both Stick Press: Defense Mode
+DPad: Cardinal Lock to AMP (manual override)
+
+CODRIVER:
+Right Bumper: Amp Score Mode
+Left Bumper: Speaker Score Mode
+Both Bumper: Defense Score Mode
+Y: Climb (Requires Left and Right TRIGGERS to be pressed)
+X: Auto Home Elevator
+B: Auto Home Wrist
+A: Reverse Intake
+Start (right small button): Force Zero All
