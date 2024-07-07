@@ -27,7 +27,19 @@
         {
           "type": "named",
           "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "PathFindToAmpShot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
           }
         }
       ]

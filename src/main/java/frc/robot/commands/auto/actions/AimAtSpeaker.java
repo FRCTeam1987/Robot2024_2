@@ -39,8 +39,8 @@ public class AimAtSpeaker extends ProfiledPIDCommand {
     // Configure additional PID options by calling `getController` here.
     getController().enableContinuousInput(-Math.PI, Math.PI);
     getController().setTolerance(
-        Rotation2d.fromDegrees(2.5).getRadians(),
-        Rotation2d.fromDegrees(2.5).getRadians());
+        Rotation2d.fromDegrees(1.5).getRadians(),
+        Rotation2d.fromDegrees(1.5).getRadians());
   }
 
   // Returns true when the command should end.

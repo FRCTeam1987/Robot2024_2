@@ -117,7 +117,7 @@ public class Util {
     return Util.isWithinTolerance(
         RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
         RobotContainer.getLocalizationState().getSpeakerAngle().getDegrees(),
-        1.5);
+        2.5);
   }
 
   public static boolean isPointedAtPass() {

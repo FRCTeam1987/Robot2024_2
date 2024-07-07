@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.AutoCollectNote;
@@ -35,7 +36,9 @@ import frc.robot.commands.auto.routines.Madtown;
 import frc.robot.commands.auto.routines.Source_5_4;
 import frc.robot.commands.auto.routines._Source_5_4;
 import frc.robot.util.InstCmd;
+import frc.robot.util.Util;
 import frc.robot.util.WaitUntilDebounceCommand;
+import frc.robot.util.zoning.LocalizationUtil;
 
 import static frc.robot.RobotContainer.*;
 
@@ -62,7 +65,10 @@ public class AutoCommands {
       put("StartWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = true));
       put("StopWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = false));
       put("FollowCollectNote", new FollowCollectNote());
-      put("InstantShoot", new InstantShoot());
+      put("InstantShoot", new SequentialCommandGroup(
+        new WaitUntilCommand(() -> Util.isPointedAtSpeaker()).withTimeout(0.3),
+        new InstantShoot()
+      ));
       put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
       put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
