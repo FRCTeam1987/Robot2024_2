@@ -14,7 +14,7 @@ import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
 
 import static frc.robot.RobotContainer.setRobotState;
-import static frc.robot.RobotContainer.TELEOP;
+import static frc.robot.RobotContainer.SEMAPHORE;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -23,7 +23,7 @@ public class SubwooferState extends SequentialCommandGroup {
   /** Creates a new PoopNoteState. */
   public SubwooferState() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
 import frc.robot.Constants;
-import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
 
@@ -25,7 +24,7 @@ public class TrapState extends SequentialCommandGroup {
 
   public TrapState() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
 
     LINE_DEBOUNCER = new Debouncer(Constants.Debouncers.TRAP_DEBOUNCE_TIME, DebounceType.kFalling);
     // Add your commands in the addCommands() call, e.g.
@@ -33,22 +32,22 @@ public class TrapState extends SequentialCommandGroup {
     addCommands(
         new WaitCommand(0.8),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.TRAP_ELEV_MIDWAY);
+          setRobotState(RobotState.TRAP_ELEV_MIDWAY);
         }),
         new WaitUntilCommand(ELEVATOR::isAtSetpoint),
         new WaitCommand(0.5),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.TRAP_WRIST_MIDWAY);
+          setRobotState(RobotState.TRAP_WRIST_MIDWAY);
         }),
         new WaitUntilCommand(() -> WRIST.isAtSetpoint() && ELEVATOR.isAtSetpoint()),
         new WaitCommand(0.5),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.TRAP_ELEV_FULL);
+          setRobotState(RobotState.TRAP_ELEV_FULL);
         }),
         new WaitUntilCommand(() -> WRIST.isAtSetpoint() && ELEVATOR.isAtSetpoint()),
         new WaitCommand(0.7),
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.TRAP_WRIST_FULL);
+          setRobotState(RobotState.TRAP_WRIST_FULL);
         }),
         new WaitCommand(0.3),
         new WaitUntilCommand(

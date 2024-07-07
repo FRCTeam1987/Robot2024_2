@@ -72,7 +72,7 @@ public class RobotContainer {
   public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
       Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
   public static PoopMonitor POOP_MONITOR = new PoopMonitor();
-  public static Semaphore TELEOP = new Semaphore();
+  public static Semaphore SEMAPHORE = new Semaphore();
 
   public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband

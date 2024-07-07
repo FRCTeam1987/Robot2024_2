@@ -4,7 +4,6 @@
 
 package frc.robot.commands.teleop.stated;
 
-import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.*;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -21,7 +20,7 @@ public class PassNoteState extends SequentialCommandGroup {
   /** Creates a new PassNoteState. */
   public PassNoteState() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

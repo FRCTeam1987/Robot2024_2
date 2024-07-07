@@ -15,7 +15,7 @@ import frc.robot.util.InstCmd;
 import frc.robot.util.WaitUntilDebounceCommand;
 
 import static frc.robot.RobotContainer.setRobotState;
-import static frc.robot.RobotContainer.TELEOP;
+import static frc.robot.RobotContainer.SEMAPHORE;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -24,7 +24,7 @@ public class PoopNoteState extends SequentialCommandGroup {
   /** Creates a new PoopNoteState. */
   public PoopNoteState() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());

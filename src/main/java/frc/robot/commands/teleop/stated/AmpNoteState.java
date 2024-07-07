@@ -20,13 +20,13 @@ public class AmpNoteState extends SequentialCommandGroup {
   /** Creates a new AmpNoteState. */
   public AmpNoteState() {
 
-    addRequirements(RobotContainer.TELEOP);
+    addRequirements(RobotContainer.SEMAPHORE);
 
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new InstCmd(() -> {
-          RobotContainer.setRobotState(RobotState.AMP_PREP);
+          setRobotState(RobotState.AMP_PREP);
         }),
         new WaitUntilCommand(
             () -> !DRIVER_CONTROLLER.y().getAsBoolean() && ELEVATOR.isAtSetpoint() && WRIST.isAtSetpoint()),

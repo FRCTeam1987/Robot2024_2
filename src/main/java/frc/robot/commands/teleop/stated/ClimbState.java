@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.RobotContainer;
 import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
 
@@ -24,7 +23,7 @@ public class ClimbState extends SequentialCommandGroup {
   /** Creates a new ClimbState. */
   public ClimbState() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
 
     A_DEBOUNCER = new Debouncer(0.05);
     // Add your commands in the addCommands() call, e.g.

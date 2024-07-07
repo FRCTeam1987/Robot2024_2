@@ -7,7 +7,7 @@ package frc.robot.commands.teleop.stated;
 import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.SHOOTER;
 import static frc.robot.RobotContainer.WRIST;
-import static frc.robot.RobotContainer.TELEOP;
+import static frc.robot.RobotContainer.SEMAPHORE;
 import static frc.robot.RobotContainer.setRobotState;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
@@ -24,7 +24,7 @@ public class FastSub extends SequentialCommandGroup {
   /** Creates a new PoopNoteState. */
   public FastSub() {
 
-    addRequirements(TELEOP);
+    addRequirements(SEMAPHORE);
     
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
