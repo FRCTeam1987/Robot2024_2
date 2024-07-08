@@ -33,7 +33,7 @@ public class Constants {
                 public static final List<String> LL3GS = Collections
                                 .unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW));
                 public static final String FRONT = "limelight-intake";
-                public static final List<String> LL3S = Collections.unmodifiableList(Arrays.asList(FRONT));
+                public static final List<String> LL3S = Collections.unmodifiableList(List.of(FRONT));
                 public static final List<String> LLS = Collections
                                 .unmodifiableList(Arrays.asList(LEFT_LOW, RIGHT_LOW, FRONT));
         }

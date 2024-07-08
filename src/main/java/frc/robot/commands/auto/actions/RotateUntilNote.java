@@ -16,7 +16,7 @@ public class RotateUntilNote extends Command {
       new SwerveRequest.ApplyChassisSpeeds();
 
   private double shouldTurnClockwise;
-  private BooleanSupplier isClockwise;
+  private final BooleanSupplier isClockwise;
 
   /** Creates a new RotateInPlace. */
   public RotateUntilNote(final BooleanSupplier isClockwise) {

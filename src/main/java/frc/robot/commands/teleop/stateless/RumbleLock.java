@@ -14,10 +14,10 @@ import edu.wpi.first.wpilibj2.command.button.Trigger;
 
 public class RumbleLock extends Command {
   /** Creates a new RumbleLock. */
-  private XboxController CONTROLLER;
-  private BooleanSupplier CONDITIONAL;
-  private Trigger BUTTON;
-  private Runnable FINISH;
+  private final XboxController CONTROLLER;
+  private final BooleanSupplier CONDITIONAL;
+  private final Trigger BUTTON;
+  private final Runnable FINISH;
   private boolean isFinished = false;
 
   public RumbleLock(XboxController CONTROLLER, Trigger BUTTON, BooleanSupplier CONDITIONAL, Runnable FINISH) {

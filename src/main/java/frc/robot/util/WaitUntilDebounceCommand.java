@@ -19,8 +19,8 @@ import java.util.function.BooleanSupplier;
 public class WaitUntilDebounceCommand extends Command {
     private final BooleanSupplier m_condition;
     private Debouncer debouncer;
-    private double debounceTime;
-    private DebounceType type;
+    private final double debounceTime;
+    private final DebounceType type;
 
     /**
      * Creates a new WaitUntilCommand that ends after a given condition becomes

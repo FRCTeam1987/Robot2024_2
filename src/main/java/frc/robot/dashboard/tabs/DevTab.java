@@ -15,7 +15,7 @@ import frc.robot.dashboard.TabUtil;
 /** Add your docs here. */
 public class DevTab {
     private final ShuffleboardTab tab;
-    private GenericEntry SHOOTER_RPM;
+    private final GenericEntry SHOOTER_RPM;
 
     public DevTab() {
         tab = TabUtil.createTab("DEV");

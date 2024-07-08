@@ -17,7 +17,7 @@ public class FlowShoot extends Command {
 
   private Debouncer m_shotDebouncer;
   private boolean hasCollected = false;
-  private boolean isFinished = false;
+  private final boolean isFinished = false;
   /** Creates a new InstantShoot. */
   public FlowShoot() {
   }

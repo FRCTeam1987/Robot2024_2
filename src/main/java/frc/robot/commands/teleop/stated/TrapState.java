@@ -20,7 +20,7 @@ import static frc.robot.RobotContainer.*;
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class TrapState extends SequentialCommandGroup {
   /** Creates a new TrapState. */
-  private Debouncer LINE_DEBOUNCER;
+  private final Debouncer LINE_DEBOUNCER;
 
   public TrapState() {
 

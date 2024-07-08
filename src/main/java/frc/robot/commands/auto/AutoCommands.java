@@ -124,4 +124,4 @@ public class AutoCommands {
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
-};
+}
