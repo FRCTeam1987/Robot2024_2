@@ -42,7 +42,6 @@ public class DefaultShooter extends Command {
             case COLLECTING_SLOW:
                 if (!SHOOTER.isCenterBroken())
                     SHOOTER.setFeederVoltage(Constants.Shooter.FEEDER_FEEDFWD_VOLTS_SLOW);
-
                 break;
             case POOPING_PREP:
                 SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_POOP_RPM);
@@ -53,7 +52,7 @@ public class DefaultShooter extends Command {
                 break;
             case PASS:
                 final LocalizationState passLocalization = RobotContainer.getLocalizationState();
-                final double distance = passLocalization.fieldZone() == FieldZones.Zone.OPPONENT_WING
+                final double distance = passLocalization.fieldZone() == FieldZones.Zone.OPPONENT_HOME
                         ? passLocalization.centerPassDistance()
                         : passLocalization.ampPassDistance();
                 SHOOTER.setRPMShootLessSpin(

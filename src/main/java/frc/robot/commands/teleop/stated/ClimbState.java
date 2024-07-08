@@ -18,7 +18,7 @@ import static frc.robot.RobotContainer.*;
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
 public class ClimbState extends SequentialCommandGroup {
-  private final Debouncer A_DEBOUNCER;
+  private Debouncer A_DEBOUNCER;
 
   /** Creates a new ClimbState. */
   public ClimbState() {
