@@ -29,7 +29,7 @@ public class AimAtSpeaker extends ProfiledPIDCommand {
         // This should return the measurement
         () -> DRIVETRAIN.getPose().getRotation().getRadians(),
         // This should return the goal (can also be a constant)
-        () -> new TrapezoidProfile.State(getLocalizationState().getSpeakerAngle().getRadians(), 0.0),
+        () -> new TrapezoidProfile.State(getLocalizationState().speakerAngle().getRadians(), 0.0),
         // This uses the output
         (output, setpoint) -> {
           // Use the output (and setpoint, if desired) here

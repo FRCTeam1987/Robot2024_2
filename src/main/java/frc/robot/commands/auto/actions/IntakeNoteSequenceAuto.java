@@ -20,12 +20,8 @@ public class IntakeNoteSequenceAuto extends SequentialCommandGroup {
   /** Creates a new IntakeNoteSequence. */
   public IntakeNoteSequenceAuto() {
     addCommands(
-      new InstCmd(() -> {
-        RobotContainer.setAutoState(AutoState.COLLECTING);
-      }),
-      new WaitUntilCommand(() -> RobotContainer.SHOOTER.isCenterBroken()),
-      new InstCmd(() -> {
-        RobotContainer.setAutoState(AutoState.DEFAULT);
-      }));
+      new InstCmd(() -> RobotContainer.setAutoState(AutoState.COLLECTING)),
+      new WaitUntilCommand(RobotContainer.SHOOTER::isCenterBroken),
+      new InstCmd(() -> RobotContainer.setAutoState(AutoState.DEFAULT)));
   }
 }

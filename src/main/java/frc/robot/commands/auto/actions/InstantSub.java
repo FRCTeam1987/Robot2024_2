@@ -6,14 +6,11 @@ package frc.robot.commands.auto.actions;
 
 import frc.robot.util.InstCmd;
 
-import static frc.robot.RobotContainer.setAutoState;
 import static frc.robot.RobotContainer.*;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
-import frc.robot.RobotContainer;
 import frc.robot.commands.auto.logic.AutoState;
-import frc.robot.commands.teleop.logic.RobotState;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:

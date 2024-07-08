@@ -9,7 +9,6 @@ import com.ctre.phoenix6.mechanisms.swerve.SwerveRequest;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.filter.Debouncer.DebounceType;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.PIDCommand;
 import frc.robot.RobotContainer;
@@ -33,7 +32,7 @@ public class DriveToNote extends PIDCommand {
         // The controller that the command will use
         new PIDController(7.0, 0.0, 0.0),
         // This should return the measurement
-        () -> RobotContainer.VISION.getYawVal(),
+            RobotContainer.VISION::getYawVal,
         // This should return the setpoint (can also be a constant)
         () -> 0.0,
         // This uses the output

@@ -82,13 +82,13 @@ public class Controls extends RobotContainer {
                                                 () -> SHOOTER.isCenterBroken()
                                                                 && getRobotState() == RobotState.DEFAULT
                                                                 && getLocalizationState()
-                                                                                .getFieldZone() != Zone.ALLIANCE_WING
+                                                                                .fieldZone() != Zone.ALLIANCE_WING
                                                                 && getLocalizationState()
-                                                                                .getFieldZone() != Zone.OPPONENT_STAGE
+                                                                                .fieldZone() != Zone.OPPONENT_STAGE
                                                                 && getLocalizationState()
-                                                                                .getFieldZone() != Zone.ALLIANCE_STAGE
+                                                                                .fieldZone() != Zone.ALLIANCE_STAGE
                                                                 && getLocalizationState()
-                                                                                .getFieldZone() != Zone.ALLIANCE_HOME));
+                                                                                .fieldZone() != Zone.ALLIANCE_HOME));
                 DRIVER_CONTROLLER.b().onTrue(
                                 new ConditionalCommand(new FastSub(),
                                                 new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0,

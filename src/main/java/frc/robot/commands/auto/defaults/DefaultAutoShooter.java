@@ -23,7 +23,7 @@ public class DefaultAutoShooter extends Command {
   @Override
   public void execute() {
     final AutoState state = RobotContainer.getAutoState();
-    final Zone currentZone = RobotContainer.getLocalizationState().getFieldZone();
+    final Zone currentZone = RobotContainer.getLocalizationState().fieldZone();
     switch (state) {
       case COLLECTING:
         if (SHOOTER.isCenterBroken()) {

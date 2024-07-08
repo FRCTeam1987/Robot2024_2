@@ -87,7 +87,7 @@ public class DefaultWrist extends Command {
           case AMP:
           case SPEAKER:
           default:
-            switch (RobotContainer.getLocalizationState().getFieldZone()) {
+            switch (RobotContainer.getLocalizationState().fieldZone()) {
               case ALLIANCE_HOME:
               case ALLIANCE_WING:
               case ALLIANCE_STAGE:

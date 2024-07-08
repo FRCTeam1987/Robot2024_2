@@ -75,7 +75,7 @@ public class DefaultSwerve extends Command {
 
     final LocalizationState LOCAL_STATE = RobotContainer.getLocalizationState();
 
-    switch (RobotContainer.getLocalizationState().getFieldZone()) {
+    switch (RobotContainer.getLocalizationState().fieldZone()) {
       case ALLIANCE_WING:
       case ALLIANCE_STAGE:
       case ALLIANCE_HOME:
@@ -85,7 +85,7 @@ public class DefaultSwerve extends Command {
         }
         switch (RobotContainer.getScoreMode()) {
           case SPEAKER:
-            AUTO_ROT = getRPS(LOCAL_STATE.getSpeakerAngle());
+            AUTO_ROT = getRPS(LOCAL_STATE.speakerAngle());
             break;
           case AMP:
             AUTO_ROT = getRPS(new Rotation2d(Math.toRadians(90.0)));
@@ -95,7 +95,7 @@ public class DefaultSwerve extends Command {
         }
         break;
       case OPPONENT_HOME:
-        AUTO_ROT = getRPS(LOCAL_STATE.getCenterPassAngle());
+        AUTO_ROT = getRPS(LOCAL_STATE.centerPassAngle());
         break;
       case OPPONENT_STAGE:
       case OPPONENT_WING:
@@ -110,7 +110,7 @@ public class DefaultSwerve extends Command {
         // if (prevZone == FieldZones.Zone.OPPONENT_WING
         // || prevZone == FieldZones.Zone.OPPONENT_STAGE || prevZone !=
         // FieldZones.Zone.OPPONENT_HOME)
-        AUTO_ROT = getRPS(LOCAL_STATE.getAmpPassAngle());
+        AUTO_ROT = getRPS(LOCAL_STATE.ampPassAngle());
         break;
       default:
         break;
@@ -128,25 +128,17 @@ public class DefaultSwerve extends Command {
       setDriveMode(DriveMode.MANUAL);
     }
 
-    switch (getDriveMode()) {
-      case AUTOMATIC:
-        ROT = AUTO_ROT;
-        // ROT = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
-        break;
-      case CARDINAL_LOCKING:
-
-        ROT = CARDINAL_ROT;
-        break;
-      case MANUAL:
-      default:
-        ROT = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
-        break;
-    }
+      ROT = switch (getDriveMode()) {
+          case AUTOMATIC -> AUTO_ROT;
+          // ROT = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
+          case CARDINAL_LOCKING -> CARDINAL_ROT;
+          default -> Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
+      };
 
     DRIVETRAIN
         .setControl(drive.withVelocityX(X_PERCENTAGE).withVelocityY(Y_PERCENTAGE).withRotationalRate(ROT));
 
-    prevZone = LOCAL_STATE.getFieldZone();
+    prevZone = LOCAL_STATE.fieldZone();
   }
 
   @Override
@@ -160,17 +152,12 @@ public class DefaultSwerve extends Command {
   }
 
   public int calculateSetpoint(int point) {
-    switch (point) {
-      case 0:
-        return 180;
-      case 90:
-        return 90;
-      case 180:
-        return 0;
-      case 270:
-        return -90;
-      default:
-        return 0;
-    }
+      return switch (point) {
+          case 0 -> 180;
+          case 90 -> 90;
+          case 180 -> 0;
+          case 270 -> -90;
+          default -> 0;
+      };
   }
 }

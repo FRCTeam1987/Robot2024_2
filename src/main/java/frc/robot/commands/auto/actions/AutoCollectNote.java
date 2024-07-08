@@ -22,9 +22,9 @@ public class AutoCollectNote extends ParallelDeadlineGroup {
   public AutoCollectNote(final DoubleSupplier initialVelocity) {
     super(new IntakeNoteSequenceAuto());
     addCommands(
-      new InstCmd(() -> WRIST.enableWristLockdown())
+      new InstCmd(WRIST::enableWristLockdown)
         .andThen(new DriveToNote(initialVelocity.getAsDouble()))
-        .finallyDo(() -> WRIST.disableWristLockdown())
+        .finallyDo(WRIST::disableWristLockdown)
     );
   }
 

@@ -47,12 +47,8 @@ public class DefaultIntake extends Command {
           case AMP:
           case SPEAKER:
           default:
-            switch (RobotContainer.getLocalizationState().getFieldZone()) {
-              default:
-                INTAKE.stopBoth();
-                break;
-            }
-            break;
+              INTAKE.stopBoth();
+              break;
         }
         break;
     }

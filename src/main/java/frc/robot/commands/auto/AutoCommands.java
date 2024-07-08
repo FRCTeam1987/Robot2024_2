@@ -39,7 +39,6 @@ import frc.robot.commands.auto.routines._Source_5_4;
 import frc.robot.util.InstCmd;
 import frc.robot.util.Util;
 import frc.robot.util.WaitUntilDebounceCommand;
-import frc.robot.util.zoning.LocalizationUtil;
 
 import static frc.robot.RobotContainer.*;
 
@@ -55,19 +54,17 @@ public class AutoCommands {
       put("StartPoop", new InstCmd(() -> setAutoState(AutoState.POOPING)));
       put("StopPoop", new InstCmd(() -> setAutoState(AutoState.DEFAULT)));
       put("PrepShoot", new InstCmd(() -> setAutoState(AutoState.SHOOT_PREP)));
-      put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
-      put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
       put("AutoCollectNote", new AutoCollectNote(() -> 3.0));
       put("PathFindToSourceShot", PathFind.toSourceShot());
       put("PathFindToAmpShot", PathFind.toAmpShot());
-      put("WaitUntilHasNote", new WaitUntilCommand(() -> SHOOTER.hasNote()));
+      put("WaitUntilHasNote", new WaitUntilCommand(SHOOTER::hasNote));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
       put("StartWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = true));
       put("StopWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = false));
       put("FollowCollectNote", new FollowCollectNote());
       put("InstantShoot", new SequentialCommandGroup(
-          new WaitUntilCommand(() -> Util.isPointedAtSpeaker()).withTimeout(0.5),
+          new WaitUntilCommand(Util::isPointedAtSpeaker).withTimeout(0.5),
           new InstantShoot()));
       put("DumbInstantShoot",
           new InstantShoot());
@@ -82,9 +79,9 @@ public class AutoCommands {
       put("StopLLPoseUpdate", new InstCmd(/* () -> DRIVETRAIN.setShouldUpdatePoseFromVision(false) */));
       put("PoopIfSeesNote", new ConditionalCommand(
           new InstCmd(() -> setAutoState(AutoState.POOPING)).andThen(
-              new WaitUntilDebounceCommand(() -> SHOOTER.hasNote(), 0.1, DebounceType.kFalling)),
+              new WaitUntilDebounceCommand(SHOOTER::hasNote, 0.1, DebounceType.kFalling)),
           new InstCmd(),
-          () -> VISION.hasTargets()));
+              VISION::hasTargets));
     }
   });
 
@@ -106,7 +103,7 @@ public class AutoCommands {
   }
 
   public static SendableChooser<Command> getRoutines() {
-    final SendableChooser<Command> autoChooser = new SendableChooser<Command>();
+    final SendableChooser<Command> autoChooser = new SendableChooser<>();
     autoChooser.setDefaultOption("Do Nothing", new InstCmd());
     autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
     autoChooser.addOption("Amp 2-1", wrap(new Amp_2_1()));

@@ -31,11 +31,11 @@ public class _Source_5_4 extends SequentialCommandGroup {
           new ConditionalCommand(
             AutoBuilder.buildAuto("_source_5-4_4vis"),  // auto collect note 4, got to shooting pose
             AutoBuilder.buildAuto("_source_5-4_5y4novis"),  // Note 4 not visible, go to shooting pose
-            () -> VISION.hasTargets()
+                  VISION::hasTargets
           )
         ),
         AutoBuilder.buildAuto("_source_5-4_5n"),  // Did not get note 5, immediately try to get note 4
-        () -> SHOOTER.hasNote()
+              SHOOTER::hasNote
       ),
       new RepeatCommand(new SequentialCommandGroup(
         new AutoCollectNote(),

@@ -12,9 +12,6 @@ import frc.robot.commands.teleop.logic.RobotState;
 import frc.robot.util.InstCmd;
 import frc.robot.util.WaitUntilDebounceCommand;
 
-import static frc.robot.RobotContainer.setRobotState;
-import static frc.robot.RobotContainer.SEMAPHORE;
-
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html

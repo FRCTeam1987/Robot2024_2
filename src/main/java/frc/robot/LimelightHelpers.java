@@ -432,14 +432,14 @@ public class LimelightHelpers {
     }
 
     public static class PoseEstimate {
-        public Pose2d pose;
-        public double timestampSeconds;
-        public double latency;
-        public int tagCount;
-        public double tagSpan;
-        public double avgTagDist;
-        public double avgTagArea;
-        public RawFiducial[] rawFiducials; 
+        public final Pose2d pose;
+        public final double timestampSeconds;
+        public final double latency;
+        public final int tagCount;
+        public final double tagSpan;
+        public final double avgTagDist;
+        public final double avgTagArea;
+        public final RawFiducial[] rawFiducials;
 
         public PoseEstimate(Pose2d pose, double timestampSeconds, double latency, 
             int tagCount, double tagSpan, double avgTagDist, 
@@ -461,7 +461,7 @@ public class LimelightHelpers {
     /**
      * Print JSON Parse time to the console in milliseconds
      */
-    static boolean profileJSON = false;
+    static final boolean profileJSON = false;
 
     static final String sanitizeName(String name) {
         if (name == "" || name == null) {
@@ -1112,9 +1112,7 @@ public class LimelightHelpers {
      * Asynchronously take snapshot.
      */
     public static CompletableFuture<Boolean> takeSnapshot(String tableName, String snapshotName) {
-        return CompletableFuture.supplyAsync(() -> {
-            return SYNCH_TAKESNAPSHOT(tableName, snapshotName);
-        });
+        return CompletableFuture.supplyAsync(() -> SYNCH_TAKESNAPSHOT(tableName, snapshotName));
     }
 
     private static boolean SYNCH_TAKESNAPSHOT(String tableName, String snapshotName) {

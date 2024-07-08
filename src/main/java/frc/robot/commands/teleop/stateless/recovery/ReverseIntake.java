@@ -10,15 +10,10 @@ import static frc.robot.RobotContainer.SHOOTER;
 import static frc.robot.RobotContainer.WRIST;
 import static frc.robot.RobotContainer.setRobotState;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import frc.robot.Constants;
 import frc.robot.commands.teleop.logic.RobotState;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Shooter;
-import frc.robot.subsystems.Wrist;
 import frc.robot.util.InstCmd;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more

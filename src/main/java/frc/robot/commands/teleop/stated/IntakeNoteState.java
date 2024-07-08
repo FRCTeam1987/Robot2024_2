@@ -30,16 +30,12 @@ public class IntakeNoteState extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+        new InstCmd(() -> setRobotState(RobotState.COLLECTING)),
+        new WaitUntilCommand(SHOOTER::isRearBroken),
+        new InstCmd(() -> setRobotState(RobotState.COLLECTING_SLOW)),
+        new WaitUntilCommand(SHOOTER::isCenterBroken),
         new InstCmd(() -> {
-          setRobotState(RobotState.COLLECTING);
-        }),
-        new WaitUntilCommand(() -> SHOOTER.isRearBroken()),
-        new InstCmd(() -> {
-          setRobotState(RobotState.COLLECTING_SLOW);
-        }),
-        new WaitUntilCommand(() -> SHOOTER.isCenterBroken()),
-        new InstCmd(() -> {
-          if (getLocalizationState().getFieldZone() != FieldZones.Zone.OPPONENT_WING) {
+          if (getLocalizationState().fieldZone() != FieldZones.Zone.OPPONENT_WING) {
             setDriveMode(DriveMode.AUTOMATIC);
           }
           setRobotState(RobotState.DEFAULT);

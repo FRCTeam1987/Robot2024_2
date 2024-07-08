@@ -31,24 +31,16 @@ public class TrapState extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new WaitCommand(0.8),
-        new InstCmd(() -> {
-          setRobotState(RobotState.TRAP_ELEV_MIDWAY);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.TRAP_ELEV_MIDWAY)),
         new WaitUntilCommand(ELEVATOR::isAtSetpoint),
         new WaitCommand(0.5),
-        new InstCmd(() -> {
-          setRobotState(RobotState.TRAP_WRIST_MIDWAY);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.TRAP_WRIST_MIDWAY)),
         new WaitUntilCommand(() -> WRIST.isAtSetpoint() && ELEVATOR.isAtSetpoint()),
         new WaitCommand(0.5),
-        new InstCmd(() -> {
-          setRobotState(RobotState.TRAP_ELEV_FULL);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.TRAP_ELEV_FULL)),
         new WaitUntilCommand(() -> WRIST.isAtSetpoint() && ELEVATOR.isAtSetpoint()),
         new WaitCommand(0.7),
-        new InstCmd(() -> {
-          setRobotState(RobotState.TRAP_WRIST_FULL);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.TRAP_WRIST_FULL)),
         new WaitCommand(0.3),
         new WaitUntilCommand(
             () -> SHOOTER.isShooterAtSetpoint()

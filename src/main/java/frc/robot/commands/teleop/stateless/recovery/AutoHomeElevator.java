@@ -7,7 +7,6 @@ package frc.robot.commands.teleop.stateless.recovery;
 import static frc.robot.RobotContainer.ELEVATOR;
 import static frc.robot.RobotContainer.setRobotState;
 
-import edu.wpi.first.math.controller.ElevatorFeedforward;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;

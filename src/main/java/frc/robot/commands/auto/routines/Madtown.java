@@ -29,7 +29,7 @@ public class Madtown extends SequentialCommandGroup {
   public Madtown(final Alliance alliance) {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    Boolean isBlue = alliance == Alliance.Blue;
+    boolean isBlue = alliance == Alliance.Blue;
     final String color = alliance.toString().toLowerCase();
     addCommands(
       new ParallelRaceGroup(

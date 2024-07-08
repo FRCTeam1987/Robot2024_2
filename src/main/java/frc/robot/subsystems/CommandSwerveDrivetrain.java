@@ -233,7 +233,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
 
     private Optional<Rotation2d> getRotationTargetOverride() {
         if (ppShouldPointAtSpeaker) {
-            return Optional.of(RobotContainer.getLocalizationState().getSpeakerAngle());
+            return Optional.of(RobotContainer.getLocalizationState().speakerAngle());
         }
         if (ppShouldPointAtNote) {
             return Optional

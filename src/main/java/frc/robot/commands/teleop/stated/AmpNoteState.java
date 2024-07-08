@@ -25,9 +25,7 @@ public class AmpNoteState extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-        new InstCmd(() -> {
-          setRobotState(RobotState.AMP_PREP);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.AMP_PREP)),
         new WaitUntilCommand(
             () -> !DRIVER_CONTROLLER.y().getAsBoolean() && ELEVATOR.isAtSetpoint() && WRIST.isAtSetpoint()),
         new WaitUntilCommand(() -> DRIVER_CONTROLLER.y().getAsBoolean()),
@@ -35,12 +33,8 @@ public class AmpNoteState extends SequentialCommandGroup {
             () -> AMP_SENSORS.getBothSensors(true),
             () -> setRobotState(RobotState.AMP_SCORE)),
         new WaitUntilCommand(() -> !SHOOTER.isCenterBroken() && !SHOOTER.isRearBroken()),
-        new InstCmd(() -> {
-          setRobotState(RobotState.AMP_EXIT);
-        }),
+        new InstCmd(() -> setRobotState(RobotState.AMP_EXIT)),
         new WaitUntilCommand(() -> DRIVER_CONTROLLER.y().getAsBoolean()),
-        new InstCmd(() -> {
-          setRobotState(RobotState.DEFAULT);
-        }));
+        new InstCmd(() -> setRobotState(RobotState.DEFAULT)));
   }
 }

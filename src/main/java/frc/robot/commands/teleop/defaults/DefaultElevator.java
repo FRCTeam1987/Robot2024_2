@@ -5,7 +5,6 @@ import static frc.robot.RobotContainer.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants;
 import frc.robot.RobotContainer;
-import frc.robot.util.zoning.FieldZones;
 
 public class DefaultElevator extends Command {
   public DefaultElevator() {
@@ -70,7 +69,7 @@ public class DefaultElevator extends Command {
           case AMP:
           case SPEAKER:
           default:
-            switch (RobotContainer.getLocalizationState().getFieldZone()) {
+            switch (RobotContainer.getLocalizationState().fieldZone()) {
               case ALLIANCE_WING:
               case ALLIANCE_STAGE:
               case ALLIANCE_HOME:

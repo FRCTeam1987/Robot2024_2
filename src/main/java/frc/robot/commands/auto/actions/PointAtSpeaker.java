@@ -26,7 +26,7 @@ public class PointAtSpeaker extends Command {
   private final PIDController THETA_CONTROLLER;
   private BooleanSupplier shouldLob = () -> false;
   private BooleanSupplier shouldStop = () -> false;
-  double rotationRate = 0;
+  final double rotationRate = 0;
 
   public PointAtSpeaker(
       DoubleSupplier velocityXSupplier,
@@ -65,8 +65,8 @@ public class PointAtSpeaker extends Command {
   public void execute() {
     Pose2d pose = RobotContainer.DRIVETRAIN.getPose();
     desiredRotation = shouldLob.getAsBoolean()
-        ? RobotContainer.getLocalizationState().getAmpPassAngle().getDegrees()
-        : RobotContainer.getLocalizationState().getSpeakerAngle().getDegrees();
+        ? RobotContainer.getLocalizationState().ampPassAngle().getDegrees()
+        : RobotContainer.getLocalizationState().speakerAngle().getDegrees();
     double rotationRate = THETA_CONTROLLER.calculate(pose.getRotation().getDegrees(), desiredRotation);
     RobotContainer.DRIVETRAIN.setControl(
         drive

@@ -1,9 +1,6 @@
 package frc.robot.dashboard.tabs;
 
-import static frc.robot.RobotContainer.getDriveMode;
 import static frc.robot.RobotContainer.getLocalizationState;
-import static frc.robot.RobotContainer.getRobotState;
-import static frc.robot.RobotContainer.getScoreMode;
 
 import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -20,9 +17,9 @@ public class DevTab {
     public DevTab() {
         tab = TabUtil.createTab("DEV");
         SHOOTER_RPM = tab.add("SHOOTER_RPM", 300).getEntry();
-        tab.addDouble("DIST_TO_AMP", () -> getLocalizationState().getAmpPassDistance());
-        tab.addBoolean("Rear LB", () -> RobotContainer.SHOOTER.isRearBroken());
-        tab.addBoolean("Center LB", () -> RobotContainer.SHOOTER.isCenterBroken());
+        tab.addDouble("DIST_TO_AMP", () -> getLocalizationState().ampPassDistance());
+        tab.addBoolean("Rear LB", RobotContainer.SHOOTER::isRearBroken);
+        tab.addBoolean("Center LB", RobotContainer.SHOOTER::isCenterBroken);
         tab.add(new AimAtSpeaker());
         tab.add(new AutoCollectNote(() -> 2.75));
     }

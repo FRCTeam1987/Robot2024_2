@@ -42,8 +42,8 @@ import frc.robot.util.zoning.LocalizationUtil;
 import frc.robot.util.zoning.PointsOfInterest;
 
 public class RobotContainer {
-  public static double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
-  public static double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
+  public static final double MaxSpeed = TunerConstants.kSpeedAt12VoltsMps; // kSpeedAt12VoltsMps desired top speed
+  public static final double MaxAngularRate = 1.5 * Math.PI; // 3/4 of a rotation per second max angular velocity
 
   public static final CommandXboxController DRIVER_CONTROLLER = new CommandXboxController(0); // My joystick
   public static final CommandXboxController CODRIVER_CONTROLLER = new CommandXboxController(1); // My joystick
@@ -58,21 +58,21 @@ public class RobotContainer {
   private static ScoreMode PREV_SCORE_MODE = ScoreMode.SPEAKER;
   private static DriveMode PREV_DRIVE_MODE = DriveMode.MANUAL;
 
-  public static Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
+  public static final Shooter SHOOTER = new Shooter(Constants.IDs.SHOOTER_LEADER_ID, Constants.IDs.SHOOTER_FOLLOWER_ID,
       Constants.IDs.SHOOTER_FEEDER_ID, Constants.IDs.CANBUS_DETACHED);
-  public static Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID,
+  public static final Elevator ELEVATOR = new Elevator(Constants.IDs.ELEVATOR_LEADER_ID, Constants.IDs.ELEVATOR_FOLLOWER_ID,
       Constants.IDs.CANBUS_ATTACHED);
-  public static Intake INTAKE = new Intake(Constants.IDs.INTAKE_BOTTOM_ID, Constants.IDs.INTAKE_TOP_ID,
+  public static final Intake INTAKE = new Intake(Constants.IDs.INTAKE_BOTTOM_ID, Constants.IDs.INTAKE_TOP_ID,
       Constants.IDs.CANBUS_ATTACHED);
-  public static Wrist WRIST = new Wrist(Constants.IDs.WRIST_ID, Constants.IDs.CANBUS_DETACHED);
-  public static AmpSensors AMP_SENSORS = new AmpSensors(Constants.IDs.PROXIMITY_SENSOR_LEFT_ID,
+  public static final Wrist WRIST = new Wrist(Constants.IDs.WRIST_ID, Constants.IDs.CANBUS_DETACHED);
+  public static final AmpSensors AMP_SENSORS = new AmpSensors(Constants.IDs.PROXIMITY_SENSOR_LEFT_ID,
       Constants.IDs.PROXIMITY_SENSOR_RIGHT_ID);
-  public static Candles CANDLES = new Candles(Constants.IDs.LEFT_CANDLE, Constants.IDs.RIGHT_CANDLE,
+  public static final Candles CANDLES = new Candles(Constants.IDs.LEFT_CANDLE, Constants.IDs.RIGHT_CANDLE,
       Constants.IDs.CANBUS_ATTACHED);
-  public static Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
+  public static final Vision VISION = new Vision(Constants.Photon.INTAKE_PHOTON_CAMERA_NAME,
       Constants.Photon.INTAKE_CAMERA_HEIGHT_METERS, Constants.Photon.INTAKE_CAMERA_ANGLE_DEGREES);
-  public static PoopMonitor POOP_MONITOR = new PoopMonitor();
-  public static Semaphore SEMAPHORE = new Semaphore();
+  public static final PoopMonitor POOP_MONITOR = new PoopMonitor();
+  public static final Semaphore SEMAPHORE = new Semaphore();
 
   public static final SwerveRequest.FieldCentric drive = new SwerveRequest.FieldCentric()
       .withDeadband(MaxSpeed * 0.1).withRotationalDeadband(MaxAngularRate * 0.1) // Add a 10% deadband
@@ -195,6 +195,6 @@ public class RobotContainer {
     return DRIVE_MODE;
   }
 
-  public static Dashboard DASHBOARD = new Dashboard();
+  public static final Dashboard DASHBOARD = new Dashboard();
 
 }

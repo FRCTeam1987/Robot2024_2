@@ -29,8 +29,8 @@ public class DefaultAutoWrist extends Command {
         WRIST.setDegrees(Constants.Wrist.SUBWOOFER_SHOT_DEG);
         break;
       case COLLECTING:
-        if (RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_WING
-            || RobotContainer.getLocalizationState().getFieldZone() == FieldZones.Zone.ALLIANCE_HOME) {
+        if (RobotContainer.getLocalizationState().fieldZone() == FieldZones.Zone.ALLIANCE_WING
+            || RobotContainer.getLocalizationState().fieldZone() == FieldZones.Zone.ALLIANCE_HOME) {
           WRIST.setDegrees(MathUtil.clamp(Util.getInterpolatedWristAngleSpeaker(), WRIST_MIN_DEG, MAX_SHOOT_DEG));
         } else {
           WRIST.setDegrees(COLLECT_DEG);

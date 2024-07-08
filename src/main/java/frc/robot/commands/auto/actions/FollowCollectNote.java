@@ -21,7 +21,7 @@ public class FollowCollectNote extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
       new InstantCommand(() -> setAutoState(AutoState.COLLECTING)),
-      new WaitUntilCommand(() -> SHOOTER.isCenterBroken()),
+      new WaitUntilCommand(SHOOTER::isCenterBroken),
       new InstantCommand(() -> setAutoState(AutoState.DEFAULT))
     );
   }
