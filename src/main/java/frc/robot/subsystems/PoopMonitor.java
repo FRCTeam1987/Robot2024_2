@@ -31,15 +31,15 @@ public class PoopMonitor extends SubsystemBase {
   }
 
   public Command StartPoopMonitorCommand() {
-    return new InstCmd(() -> startMonitor());
+    return new InstCmd(this::startMonitor);
   }
 
   public Command StopPoopMonitorCommand() {
-    return new InstCmd(() -> stopMonitor());
+    return new InstCmd(this::stopMonitor);
   }
 
   public Command ResetPoopMonitorCommand() {
-    return new InstCmd(() -> resetPooped());
+    return new InstCmd(this::resetPooped);
   }
 
   /** Creates a new PoopMonitor. */

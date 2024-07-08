@@ -9,12 +9,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class AmpSensors extends SubsystemBase {
 
-  private DigitalInput LEFT_SENSOR;
-  private DigitalInput RIGHT_SENSOR;
+  private final DigitalInput LEFT_SENSOR;
+  private final DigitalInput RIGHT_SENSOR;
 
-  public AmpSensors(int PROX_LEFT, int PROX_RIGHT) {
-    LEFT_SENSOR = new DigitalInput(PROX_LEFT);
-    RIGHT_SENSOR = new DigitalInput(PROX_RIGHT);
+  public AmpSensors(int PROXIMITY_LEFT, int PROXIMITY_RIGHT) {
+    LEFT_SENSOR = new DigitalInput(PROXIMITY_LEFT);
+    RIGHT_SENSOR = new DigitalInput(PROXIMITY_RIGHT);
   }
 
   public boolean getSensorLeft() {

@@ -14,7 +14,7 @@ public class LocalizationState {
   private final Rotation2d centerPassAngle;
   private final double centerPassDistance;
   private final Rotation2d speakerAngle;
-  private final double speakerDisance;
+  private final double speakerDistance;
 
   public LocalizationState(final FieldZones.Zone fieldZone, final Rotation2d ampPassAngle, final double ampPassDistance,
       final Rotation2d centerPassAngle, final double centerPassDistance,
@@ -25,7 +25,7 @@ public class LocalizationState {
     this.centerPassAngle = centerPassAngle;
     this.centerPassDistance = centerPassDistance;
     this.speakerAngle = speakerAngle;
-    this.speakerDisance = speakerDistance;
+    this.speakerDistance = speakerDistance;
   }
 
   public FieldZones.Zone getFieldZone() {
@@ -53,6 +53,6 @@ public class LocalizationState {
   }
 
   public double getSpeakerDistance() {
-    return speakerDisance;
+    return speakerDistance;
   }
 }

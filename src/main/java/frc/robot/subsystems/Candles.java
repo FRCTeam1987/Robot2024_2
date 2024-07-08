@@ -16,7 +16,7 @@ public class Candles extends SubsystemBase {
     LEFT(1),
     RIGHT(2);
 
-    private int candle;
+    private final int candle;
 
     CandleSide(int i) {
       this.candle = i;
