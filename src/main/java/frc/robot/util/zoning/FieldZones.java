@@ -13,13 +13,15 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 /** Adds your docs here. */
 public class FieldZones {
   public enum Zone {
-    ALLIANCE_WING, NEUTRAL_WING, OPPONENT_WING, ALLIANCE_STAGE, OPPONENT_STAGE, ALLIANCE_YIELD, OPPONENT_YIELD
+    ALLIANCE_WING, NEUTRAL_WING, OPPONENT_WING, ALLIANCE_HOME, OPPONENT_HOME, ALLIANCE_STAGE, OPPONENT_STAGE, ALLIANCE_YIELD, OPPONENT_YIELD
   }
 
   public static final double X_MIN = 0.0;
   public static final double Y_MIN = 0.0;
   public static final double BLUE_WING_LINE_X = 5.85 + 0.30;
   public static final double RED_WING_LINE_X = 10.72 - 0.30;
+  public static final double BLUE_HOME_LINE_X = 1.9 + 1.5;
+  public static final double RED_HOME_LINE_X = 14.65 - 1.5;
 
   public static final RectanglePoseArea AMP_BLUE = new RectanglePoseArea(new Translation2d(X_MIN, 6.0),
       new Translation2d(4.7, LocalizationUtil.FIELD_WIDTH));
@@ -66,6 +68,8 @@ public class FieldZones {
       if (x > RED_WING_LINE_X) {
         if (STAGE_RED.isPoseWithinArea(pose))
           return Zone.ALLIANCE_STAGE;
+        if (x > RED_HOME_LINE_X)
+          return Zone.ALLIANCE_HOME;
         return Zone.ALLIANCE_WING;
       }
       if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
@@ -78,12 +82,16 @@ public class FieldZones {
       if (x < BLUE_WING_LINE_X) {
         if (STAGE_BLUE.isPoseWithinArea(pose))
           return Zone.OPPONENT_STAGE;
+        if (x < BLUE_HOME_LINE_X)
+          return Zone.OPPONENT_HOME;
         return Zone.OPPONENT_WING;
       }
     } else {
       if (x < BLUE_WING_LINE_X) {
         if (STAGE_BLUE.isPoseWithinArea(pose))
           return Zone.ALLIANCE_STAGE;
+        if (x < BLUE_HOME_LINE_X)
+          return Zone.ALLIANCE_HOME;
         return Zone.ALLIANCE_WING;
       }
       if (x < RED_WING_LINE_X && x > BLUE_WING_LINE_X) {
@@ -96,6 +104,8 @@ public class FieldZones {
       if (x > RED_WING_LINE_X) {
         if (STAGE_RED.isPoseWithinArea(pose))
           return Zone.OPPONENT_STAGE;
+        if (x > RED_HOME_LINE_X)
+          return Zone.OPPONENT_HOME;
         return Zone.OPPONENT_WING;
       }
     }

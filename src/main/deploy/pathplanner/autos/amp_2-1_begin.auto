@@ -16,6 +16,12 @@
           "data": {
             "pathName": "amp_2-1_a"
           }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
         }
       ]
     }

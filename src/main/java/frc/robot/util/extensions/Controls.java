@@ -84,14 +84,24 @@ public class Controls extends RobotContainer {
                                                                 && getLocalizationState()
                                                                                 .getFieldZone() != Zone.ALLIANCE_WING
                                                                 && getLocalizationState()
-                                                                                .getFieldZone() != Zone.OPPONENT_STAGE));
+                                                                                .getFieldZone() != Zone.OPPONENT_STAGE
+                                                                && getLocalizationState()
+                                                                                .getFieldZone() != Zone.ALLIANCE_STAGE
+                                                                && getLocalizationState()
+                                                                                .getFieldZone() != Zone.ALLIANCE_HOME));
                 DRIVER_CONTROLLER.b().onTrue(
-                                new ConditionalCommand(new FastSub(), new InstCmd(),
+                                new ConditionalCommand(new FastSub(),
+                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0,
+                                                                400L),
                                                 () -> SHOOTER.isCenterBroken()
-                                                                && getRobotState() == RobotState.DEFAULT));
+                                                                && getRobotState() == RobotState.DEFAULT
+                                                                && getScoreMode() == ScoreMode.SPEAKER));
                 DRIVER_CONTROLLER.a().onTrue(
-                                new ConditionalCommand(new PodiumState(), new InstCmd(),
-                                                () -> SHOOTER.isCenterBroken() && STATE == RobotState.DEFAULT));
+                                new ConditionalCommand(new PodiumState(),
+                                                new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0,
+                                                                400L),
+                                                () -> SHOOTER.isCenterBroken() && STATE == RobotState.DEFAULT
+                                                                && getScoreMode() == ScoreMode.SPEAKER));
 
         }
 

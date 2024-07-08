@@ -4,6 +4,7 @@
 
 package frc.robot.dashboard.tabs;
 
+import static frc.robot.RobotContainer.getAutoState;
 import static frc.robot.RobotContainer.getDriveMode;
 import static frc.robot.RobotContainer.getRobotState;
 import static frc.robot.RobotContainer.getScoreMode;
@@ -33,6 +34,7 @@ public class MatchTab {
     tab.add("Auto Home Elev", new AutoHomeElevator());
     tab.add("Force Zero", new ForceZeroAll());
     tab.addString("State | Score | Drive", () -> getRobotState() + " | " + getScoreMode() + " | " + getDriveMode());
+    tab.addString("Auto State", () -> getAutoState().toString());
   }
 
   public Command getSelectedAuto() {

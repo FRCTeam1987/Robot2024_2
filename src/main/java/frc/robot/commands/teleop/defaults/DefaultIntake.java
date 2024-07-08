@@ -48,9 +48,6 @@ public class DefaultIntake extends Command {
           case SPEAKER:
           default:
             switch (RobotContainer.getLocalizationState().getFieldZone()) {
-              case ALLIANCE_WING:
-              case OPPONENT_WING:
-              case NEUTRAL_WING:
               default:
                 INTAKE.stopBoth();
                 break;

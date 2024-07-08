@@ -24,6 +24,10 @@ public class DefaultWrist extends Command {
   @Override
   public void execute() {
     switch (RobotContainer.STATE) {
+      case COLLECTING:
+      case COLLECTING_SLOW:
+        WRIST.setDegrees(15.0);
+        break;
       case RECOVERY:
         break;
       case SHOOTING:
@@ -84,6 +88,7 @@ public class DefaultWrist extends Command {
           case SPEAKER:
           default:
             switch (RobotContainer.getLocalizationState().getFieldZone()) {
+              case ALLIANCE_HOME:
               case ALLIANCE_WING:
               case ALLIANCE_STAGE:
               case ALLIANCE_YIELD:
@@ -100,6 +105,7 @@ public class DefaultWrist extends Command {
                 }
                 break;
               case OPPONENT_YIELD:
+              case OPPONENT_HOME:
               case OPPONENT_WING:
               case NEUTRAL_WING:
                 if (SHOOTER.isCenterBroken()) {

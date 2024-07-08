@@ -22,6 +22,12 @@
           "data": {
             "name": "PathFindToAmpShot"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
         }
       ]
     }

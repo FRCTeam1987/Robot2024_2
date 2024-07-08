@@ -127,25 +127,22 @@ public class DefaultShooter extends Command {
                         switch (RobotContainer.getLocalizationState().getFieldZone()) {
                             case ALLIANCE_WING:
                             case ALLIANCE_STAGE:
+                            case ALLIANCE_HOME:
                                 if (SCORE_MODE == ScoreMode.SPEAKER) {
-                                    if (SHOOTER.hasNote()) {
-                                        if (Util.isWithinTolerance(
-                                                RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
-                                                localizationState.getSpeakerAngle().getDegrees(),
-                                                15.0)) {
-                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
-                                        } else {
-                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
-                                        }
+                                    if (Util.isWithinTolerance(
+                                            RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
+                                            localizationState.getSpeakerAngle().getDegrees(),
+                                            25.0)) {
+                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
                                     } else {
-                                        SHOOTER.stopShooter();
+                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
                                     }
 
                                 } else {
                                     SHOOTER.stopShooter();
                                 }
                                 break;
-                            case OPPONENT_WING:
+                            case OPPONENT_HOME:
                                 // SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
                                 SHOOTER.setRPMShootLessSpin(
                                         Constants.DISTANCE_TO_PASS_RPM.getInterpolated(new InterpolatingDouble(
@@ -155,7 +152,9 @@ public class DefaultShooter extends Command {
                                 break;
                             case NEUTRAL_WING:
                             case OPPONENT_YIELD:
+                            case OPPONENT_STAGE:
                             case ALLIANCE_YIELD:
+                            case OPPONENT_WING:
                                 // SHOOTER.setRPMShootLessSpin(RobotContainer.DASHBOARD.DEV_TAB.getRPM(), true);
                                 SHOOTER.setRPMShootLessSpin(
                                         Constants.DISTANCE_TO_PASS_RPM.getInterpolated(

@@ -66,9 +66,8 @@ public class AutoCommands {
       put("StopWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = false));
       put("FollowCollectNote", new FollowCollectNote());
       put("InstantShoot", new SequentialCommandGroup(
-        new WaitUntilCommand(() -> Util.isPointedAtSpeaker()).withTimeout(0.3),
-        new InstantShoot()
-      ));
+          new WaitUntilCommand(() -> Util.isPointedAtSpeaker()).withTimeout(0.5),
+          new InstantShoot()));
       put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
       put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));

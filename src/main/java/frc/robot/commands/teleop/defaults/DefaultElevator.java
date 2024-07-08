@@ -73,11 +73,13 @@ public class DefaultElevator extends Command {
             switch (RobotContainer.getLocalizationState().getFieldZone()) {
               case ALLIANCE_WING:
               case ALLIANCE_STAGE:
+              case ALLIANCE_HOME:
               case OPPONENT_STAGE:
               case ALLIANCE_YIELD:
                 ELEVATOR.goHome();
                 break;
               case OPPONENT_YIELD:
+              case OPPONENT_HOME:
               case OPPONENT_WING:
               case NEUTRAL_WING:
                 if (SHOOTER.isCenterBroken()) {

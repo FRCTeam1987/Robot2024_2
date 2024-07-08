@@ -16,6 +16,7 @@ import frc.robot.util.InstCmd;
 import frc.robot.util.Util;
 import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.zoning.LocalizationState;
+import frc.robot.util.zoning.FieldZones.Zone;
 
 import static frc.robot.RobotContainer.*;
 
@@ -43,7 +44,7 @@ public class DefaultSwerve extends Command {
   public DefaultSwerve() {
     this.HOLONOMIC_CONTROLLER = new HolonomicDriveController(new PIDController(1, 0, 0), new PIDController(1.0, 0, 0),
         new ProfiledPIDController(9.0, 0, 0,
-            new TrapezoidProfile.Constraints(TunerConstants.kSpeedAt12VoltsMps, 4.2)));
+            new TrapezoidProfile.Constraints(TunerConstants.kSpeedAt12VoltsMps, 3.8)));
     addRequirements(DRIVETRAIN);
   }
 
@@ -77,8 +78,11 @@ public class DefaultSwerve extends Command {
     switch (RobotContainer.getLocalizationState().getFieldZone()) {
       case ALLIANCE_WING:
       case ALLIANCE_STAGE:
-        if (prevZone != FieldZones.Zone.ALLIANCE_WING && prevZone != FieldZones.Zone.ALLIANCE_STAGE)
-          setDriveMode(DriveMode.AUTOMATIC);
+      case ALLIANCE_HOME:
+        if (SHOOTER.hasNote()) {
+          if (prevZone != Zone.ALLIANCE_WING && prevZone != Zone.ALLIANCE_STAGE && prevZone != Zone.ALLIANCE_HOME)
+            setDriveMode(DriveMode.AUTOMATIC);
+        }
         switch (RobotContainer.getScoreMode()) {
           case SPEAKER:
             AUTO_ROT = getRPS(LOCAL_STATE.getSpeakerAngle());
@@ -90,15 +94,22 @@ public class DefaultSwerve extends Command {
             break;
         }
         break;
-      case OPPONENT_WING:
-      case OPPONENT_STAGE:
+      case OPPONENT_HOME:
         AUTO_ROT = getRPS(LOCAL_STATE.getCenterPassAngle());
         break;
+      case OPPONENT_STAGE:
+      case OPPONENT_WING:
       case ALLIANCE_YIELD:
       case OPPONENT_YIELD:
       case NEUTRAL_WING:
-        if (prevZone == FieldZones.Zone.OPPONENT_WING || prevZone == FieldZones.Zone.OPPONENT_STAGE)
-          setDriveMode(DriveMode.AUTOMATIC);
+        if (SHOOTER.hasNote()) {
+          if (prevZone != Zone.OPPONENT_STAGE && prevZone != Zone.OPPONENT_WING && prevZone != Zone.ALLIANCE_YIELD
+              && prevZone != Zone.NEUTRAL_WING)
+            setDriveMode(DriveMode.AUTOMATIC);
+        }
+        // if (prevZone == FieldZones.Zone.OPPONENT_WING
+        // || prevZone == FieldZones.Zone.OPPONENT_STAGE || prevZone !=
+        // FieldZones.Zone.OPPONENT_HOME)
         AUTO_ROT = getRPS(LOCAL_STATE.getAmpPassAngle());
         break;
       default:
