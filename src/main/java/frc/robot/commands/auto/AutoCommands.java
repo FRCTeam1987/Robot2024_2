@@ -24,6 +24,7 @@ import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.FlowShoot;
 import frc.robot.commands.auto.actions.FollowCollectNote;
 import frc.robot.commands.auto.actions.InstantShoot;
+import frc.robot.commands.auto.actions.InstantSub;
 import frc.robot.commands.auto.actions.PathFind;
 import frc.robot.commands.auto.defaults.DefaultAutoElevator;
 import frc.robot.commands.auto.defaults.DefaultAutoIntake;
@@ -68,6 +69,9 @@ public class AutoCommands {
       put("InstantShoot", new SequentialCommandGroup(
           new WaitUntilCommand(() -> Util.isPointedAtSpeaker()).withTimeout(0.5),
           new InstantShoot()));
+      put("DumbInstantShoot",
+          new InstantShoot());
+      put("InstantSub", new InstantSub());
       put("StartRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(true)));
       put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));

@@ -160,7 +160,7 @@
             {
               "type": "named",
               "data": {
-                "name": "InstantShoot"
+                "name": "DumbInstantShoot"
               }
             }
           ]

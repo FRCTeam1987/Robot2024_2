@@ -33,7 +33,8 @@ public class DefaultAutoShooter extends Command {
         } else {
           SHOOTER.setFeederVoltage(FEEDER_FEEDFWD_VOLTS);
         }
-        if (currentZone == Zone.ALLIANCE_WING) {
+        if (currentZone == Zone.ALLIANCE_WING || currentZone == Zone.ALLIANCE_HOME
+            || currentZone == Zone.ALLIANCE_STAGE) {
           SHOOTER.setRPMShoot(SHOOTER_RPM);
         } else {
           SHOOTER.setRPMShootNoSpin(SHOOTER_POOP_RPM);
@@ -52,19 +53,28 @@ public class DefaultAutoShooter extends Command {
         SHOOTER.setFeederVoltage(FEEDER_SHOOT_VOLTS);
         SHOOTER.setRPMShoot(SHOOTER_RPM);
         break;
+      case INSTANT_SUB_PREP:
+        SHOOTER.setShooterVoltage(18.0);
+        break;
+      case INSTANT_SUB:
+        SHOOTER.setShooterVoltage(18.0);
+        SHOOTER.setFeederVoltage(18.0);
+        break;
       default:
         if (SHOOTER.isCenterBroken()) {
           SHOOTER.stopFeeder();
           if (state != AutoState.SHOOTING && state != AutoState.SHOOT_PREP) {
             RobotContainer.setAutoState(AutoState.SHOOT_PREP);
           }
-          if (currentZone == Zone.ALLIANCE_WING) {
+          if (currentZone == Zone.ALLIANCE_WING || currentZone == Zone.ALLIANCE_HOME
+              || currentZone == Zone.ALLIANCE_STAGE) {
             SHOOTER.setRPMShoot(SHOOTER_RPM);
           } else {
             SHOOTER.setRPMShootNoSpin(SHOOTER_POOP_RPM);
           }
         } else {
           if (SHOOTER.isRearBroken()) {
+
             SHOOTER.setFeederVoltage(FEEDER_FEEDFWD_VOLTS_SLOW);
           }
           SHOOTER.setRPMShootNoSpin(SHOOTER_POOP_RPM);

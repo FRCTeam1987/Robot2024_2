@@ -27,6 +27,7 @@ public class DefaultCandles extends Command {
                 CANDLES.setColor(CandleSide.BOTH, new Color8Bit(0, 255, 0));
                 break;
             case SPEAKER:
+                // CANDLES.setAnimation(CandleSide.BOTH, new );
                 CANDLES.setColor(CandleSide.BOTH, new Color8Bit(0, 0, 255));
                 break;
             default:
