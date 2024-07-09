@@ -23,6 +23,7 @@ import frc.robot.commands.teleop.stateless.recovery.AutoHomeWrist;
 import frc.robot.commands.teleop.stateless.recovery.ForceZeroAll;
 import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.util.InstCmd;
+import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.zoning.FieldZones.Zone;
 
 public class Controls extends RobotContainer {
@@ -36,9 +37,16 @@ public class Controls extends RobotContainer {
                                                 new ConditionalCommand(new ShootNoteState(),
                                                                 new AsyncRumble(DRIVER_CONTROLLER.getHID(),
                                                                                 RumbleType.kBothRumble, 1.0, 400L),
-                                                                () -> SHOOTER.isCenterBroken()
+                                                                () -> {
+                                                                        final FieldZones.Zone zone = getLocalizationState().fieldZone();
+                                                                        return SHOOTER.isCenterBroken()
                                                                                 && getRobotState() == RobotState.DEFAULT
-                                                                                && getScoreMode() == ScoreMode.SPEAKER));
+                                                                                && getScoreMode() == ScoreMode.SPEAKER
+                                                                                && (zone == FieldZones.Zone.ALLIANCE_HOME
+                                                                                        || zone == FieldZones.Zone.ALLIANCE_STAGE
+                                                                                        || zone == FieldZones.Zone.ALLIANCE_WING
+                                                                                );
+                                                                }));
                 DRIVER_CONTROLLER
                                 .leftBumper().onTrue(
                                                 new ConditionalCommand(
@@ -85,6 +93,8 @@ public class Controls extends RobotContainer {
                                                                                 .fieldZone() != Zone.ALLIANCE_WING
                                                                 && getLocalizationState()
                                                                                 .fieldZone() != Zone.OPPONENT_STAGE
+                                                                && getLocalizationState()
+                                                                                .fieldZone() != Zone.OPPONENT_WING
                                                                 && getLocalizationState()
                                                                                 .fieldZone() != Zone.ALLIANCE_STAGE
                                                                 && getLocalizationState()

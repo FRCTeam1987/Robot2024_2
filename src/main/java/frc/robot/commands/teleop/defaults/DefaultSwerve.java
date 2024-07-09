@@ -38,7 +38,7 @@ import static frc.robot.RobotContainer.*;
  */
 public class DefaultSwerve extends Command {
 
-  private final HolonomicDriveController HOLONOMIC_CONTROLLER;
+  private HolonomicDriveController HOLONOMIC_CONTROLLER;
   private FieldZones.Zone prevZone = FieldZones.Zone.ALLIANCE_WING;
 
   public DefaultSwerve() {
