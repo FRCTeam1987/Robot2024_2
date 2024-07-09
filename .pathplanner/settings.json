@@ -5,6 +5,7 @@
   "pathFolders": [
     "_source_5-4",
     "amp_1-2",
+    "amp_2-1_NoPoop",
     "amp_2-1",
     "madtown",
     "middle-3",
@@ -14,6 +15,7 @@
     "split-3"
   ],
   "autoFolders": [
+    "amp_2-1_NoPoop",
     "_source_5-4",
     "amp_1-2",
     "amp_2-1",

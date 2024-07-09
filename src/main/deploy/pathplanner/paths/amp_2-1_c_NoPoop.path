@@ -3,43 +3,37 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.1,
-        "y": 5.75
+        "x": 7.189837580051318,
+        "y": 6.805564779242984
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.387658828881021,
-        "y": 6.783386526760864
+        "x": 6.8068153584918285,
+        "y": 7.126958584086254
       },
       "isLocked": false,
-      "linkedName": "amp_1-2_a_end"
+      "linkedName": "amp_2-1_a_NoPoopEnd"
     },
     {
       "anchor": {
-        "x": 4.1,
-        "y": 6.2
+        "x": 8.1,
+        "y": 7.439836102316133
       },
       "prevControl": {
-        "x": 5.113876376676995,
-        "y": 6.422459516196389
+        "x": 6.6,
+        "y": 7.439836102316133
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "amp_shoot"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": 0,
-      "rotateFast": false
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [],
   "eventMarkers": [
     {
-      "name": "Prep Shoot",
-      "waypointRelativePos": 0.5,
+      "name": "CollectNote",
+      "waypointRelativePos": 0.35,
       "command": {
         "type": "parallel",
         "data": {
@@ -47,7 +41,7 @@
             {
               "type": "named",
               "data": {
-                "name": "PrepShoot"
+                "name": "FollowCollectNote"
               }
             }
           ]
@@ -63,11 +57,11 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 12.5,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "amp_1-2",
+  "folder": "amp_2-1_NoPoop",
   "previewStartingState": {
     "rotation": 0,
     "velocity": 0

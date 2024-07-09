@@ -8,7 +8,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_b"
+            "pathName": "source_5-4_e2"
           }
         },
         {
@@ -20,12 +20,18 @@
         {
           "type": "named",
           "data": {
-            "name": "PathFindToAmpShot"
+            "name": "PathFindToSourceShot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
           }
         }
       ]
     }
   },
-  "folder": "amp_2-1",
+  "folder": "source_5-4",
   "choreoAuto": false
 }

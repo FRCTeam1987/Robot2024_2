@@ -8,7 +8,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_b"
+            "pathName": "amp_2-1_d"
           }
         },
         {
@@ -22,10 +22,16 @@
           "data": {
             "name": "PathFindToAmpShot"
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
         }
       ]
     }
   },
-  "folder": "amp_2-1",
+  "folder": "amp_2-1_NoPoop",
   "choreoAuto": false
 }

@@ -1,12 +1,6 @@
 {
   "version": 1.0,
-  "startingPose": {
-    "position": {
-      "x": 1.393844342520861,
-      "y": 7.329611965900726
-    },
-    "rotation": 0
-  },
+  "startingPose": null,
   "command": {
     "type": "sequential",
     "data": {
@@ -14,12 +8,12 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_a"
+            "pathName": "amp_2-1_c_NoPoop"
           }
         }
       ]
     }
   },
-  "folder": "amp_2-1",
+  "folder": "amp_2-1_NoPoop",
   "choreoAuto": false
 }

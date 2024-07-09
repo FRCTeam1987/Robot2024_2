@@ -88,20 +88,20 @@
         "y": 5.49594910954237
       },
       "nextControl": {
-        "x": 1.307461877691406,
-        "y": 5.6276821362236475
+        "x": 1.6151033767773468,
+        "y": 5.609381598352316
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.7545441267821196,
-        "y": 6.353457591102104
+        "x": 1.66219619705727,
+        "y": 4.67887541638155
       },
       "prevControl": {
-        "x": 1.4077857531438447,
-        "y": 5.960101966210876
+        "x": 1.331909216953292,
+        "y": 4.89001388248365
       },
       "nextControl": null,
       "isLocked": false,
@@ -129,9 +129,9 @@
     {
       "name": "First Shoot Zone",
       "minWaypointRelativePos": 0.75,
-      "maxWaypointRelativePos": 1.0999999999999999,
+      "maxWaypointRelativePos": 0.95,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.75,
         "maxAcceleration": 4.25,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -139,11 +139,22 @@
     },
     {
       "name": "Second Shoot Zone",
-      "minWaypointRelativePos": 4.6000000000000005,
-      "maxWaypointRelativePos": 5.1499999999999995,
+      "minWaypointRelativePos": 4.7,
+      "maxWaypointRelativePos": 4.949999999999999,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.75,
         "maxAcceleration": 4.25,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Collect Note 3",
+      "minWaypointRelativePos": 2.7,
+      "maxWaypointRelativePos": 3.3000000000000003,
+      "constraints": {
+        "maxVelocity": 1.5,
+        "maxAcceleration": 4.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
       }
@@ -224,14 +235,7 @@
       "command": {
         "type": "parallel",
         "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "PrepShoot"
-              }
-            }
-          ]
+          "commands": []
         }
       }
     },
@@ -268,6 +272,52 @@
           ]
         }
       }
+    },
+    {
+      "name": "Start Point At Speaker",
+      "waypointRelativePos": 4.65,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Point At Speaker",
+      "waypointRelativePos": 5.1499999999999995,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
     }
   ],
   "globalConstraints": {
@@ -277,8 +327,8 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": 28.839443906038632,
+    "velocity": 1.75,
+    "rotation": -25.0,
     "rotateFast": false
   },
   "reversed": false,

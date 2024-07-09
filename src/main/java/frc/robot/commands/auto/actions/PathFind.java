@@ -4,6 +4,8 @@
 
 package frc.robot.commands.auto.actions;
 
+import static edu.wpi.first.units.Units.Rotation;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
 
@@ -16,6 +18,7 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.logic.AutoState;
+import frc.robot.util.InstCmd;
 import frc.robot.util.zoning.LocalizationUtil;
 
 /** Add your docs here. */
@@ -38,6 +41,12 @@ public class PathFind {
     LocalizationUtil.blueFlipToRed(BLUE_MADTOWN_SHOT.getTranslation()),
     Rotation2d.fromDegrees(-178.0)
   );
+
+  public static final Pose2d BLUE_CLEAN_UP = new Pose2d(3.3, 5.5, Rotation2d.fromDegrees(180));
+  public static final Pose2d RED_CLEAN_UP = new Pose2d(LocalizationUtil.blueFlipToRed(BLUE_CLEAN_UP).getTranslation(), Rotation2d.fromDegrees(0));
+
+  public static final Pose2d BLUE_CENTER_SCORE = new Pose2d(2.6, 5.55, Rotation2d.fromDegrees(0));
+  public static final Pose2d RED_CENTER_SCORE = new Pose2d(LocalizationUtil.blueFlipToRed(BLUE_CENTER_SCORE).getTranslation(), Rotation2d.fromDegrees(180));
 
   private static Command pathfindToPose(Pose2d pose) {
     return AutoBuilder.pathfindToPose(
@@ -75,6 +84,22 @@ public class PathFind {
         pathfindToPose(RED_MADTOWN_SHOT),
         () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)
       )
+    );
+  }
+
+  public static Command toCleanUp() {
+    return new ConditionalCommand(
+      pathfindToPose(BLUE_CLEAN_UP),
+      pathfindToPose(RED_CLEAN_UP),
+      () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)
+    );
+  }
+
+  public static Command toCenterScore() {
+    return new ConditionalCommand(
+      pathfindToPose(BLUE_CENTER_SCORE),
+      pathfindToPose(RED_CENTER_SCORE), 
+      () -> RobotContainer.DRIVETRAIN.getAlliance().equals(Alliance.Blue)
     );
   }
 }

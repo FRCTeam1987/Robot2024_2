@@ -16,6 +16,12 @@
           "data": {
             "pathName": "source_5-4_a"
           }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
         }
       ]
     }

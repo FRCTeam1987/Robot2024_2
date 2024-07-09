@@ -8,24 +8,24 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_b"
+            "pathName": "amp_2-1_b_NoPoop"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "AutoCollectNote"
+            "name": "AutoAimAndShoot"
           }
         },
         {
-          "type": "named",
+          "type": "path",
           "data": {
-            "name": "PathFindToAmpShot"
+            "pathName": "amp_2-1_d_NoPoop"
           }
         }
       ]
     }
   },
-  "folder": "amp_2-1",
+  "folder": "amp_2-1_NoPoop",
   "choreoAuto": false
 }

@@ -12,6 +12,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "source_5-4_c"

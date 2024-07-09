@@ -3,34 +3,133 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.8324341616131152,
-        "y": 4.64670973981705
+        "x": 2.597654919777505,
+        "y": 4.283747167220774
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.7875340045384955,
-        "y": 6.88976237392579
+        "x": 2.840106600400011,
+        "y": 6.308679173758683
       },
       "isLocked": false,
-      "linkedName": "middle-3_blue_b_end"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.979106069612602,
-        "y": 4.1254717126043055
+        "x": 1.5641503072826486,
+        "y": 6.19689317522119
       },
       "prevControl": {
-        "x": 4.985873610346758,
-        "y": 3.7526231836317843
+        "x": 2.034912675697665,
+        "y": 6.1411866887958935
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": null
     }
   ],
-  "rotationTargets": [],
-  "constraintZones": [],
-  "eventMarkers": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Slow Shoot Zone",
+      "minWaypointRelativePos": 0.2,
+      "maxWaypointRelativePos": 0.4,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "Prep Shoot",
+      "waypointRelativePos": 0.05,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "PrepShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Point At Speaker",
+      "waypointRelativePos": 0.1,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Point At Speaker",
+      "waypointRelativePos": 0.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Shoot Note",
+      "waypointRelativePos": 0.25,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "DumbInstantShoot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 5.0,
     "maxAcceleration": 4.0,
@@ -39,13 +138,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0,
+    "rotation": 31.375814400329453,
     "rotateFast": false
   },
   "reversed": false,
   "folder": "middle-3",
   "previewStartingState": {
-    "rotation": -30.0,
+    "rotation": -26.661418594119592,
     "velocity": 0
   },
   "useDefaultConstraints": true

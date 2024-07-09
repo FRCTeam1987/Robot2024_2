@@ -52,7 +52,7 @@
         "y": 2.4531510266000858
       },
       "prevControl": {
-        "x": 6.550000000000001,
+        "x": 6.050000000000001,
         "y": 2.4531510266000858
       },
       "nextControl": null,
@@ -73,7 +73,7 @@
       "minWaypointRelativePos": 1.8,
       "maxWaypointRelativePos": 2.15,
       "constraints": {
-        "maxVelocity": 3.25,
+        "maxVelocity": 1.0,
         "maxAcceleration": 3.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 360.0
@@ -134,7 +134,7 @@
     },
     {
       "name": "Stop Poop Monitor",
-      "waypointRelativePos": 2.25,
+      "waypointRelativePos": 2.3000000000000003,
       "command": {
         "type": "parallel",
         "data": {
@@ -143,6 +143,12 @@
               "type": "named",
               "data": {
                 "name": "StopPoopMonitor"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopPoop"
               }
             }
           ]
@@ -160,23 +166,6 @@
               "type": "named",
               "data": {
                 "name": "FollowCollectNote"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Stop Poop",
-      "waypointRelativePos": 2.35,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StopPoop"
               }
             }
           ]

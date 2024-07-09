@@ -46,12 +46,12 @@ public class FieldZones {
       new Translation2d(LocalizationUtil.FIELD_LENGTH, LocalizationUtil.FIELD_WIDTH));
 
   public static final RectanglePoseArea STAGE_BLUE = new RectanglePoseArea(
-      new Translation2d(BLUE_WING_LINE_X - 3.0, 2.7),
-      new Translation2d(BLUE_WING_LINE_X, 5.6));
+      new Translation2d(2.9, 2.7),
+      new Translation2d(6.3, 6.15));
 
   public static final RectanglePoseArea STAGE_RED = new RectanglePoseArea(
-      new Translation2d(RED_WING_LINE_X, 2.7),
-      new Translation2d(RED_WING_LINE_X + 3.0, 5.6));
+      new Translation2d(10.5, 2.3),
+      new Translation2d(13.5, 5.7));
 
   public static final RectanglePoseArea YIELD_BLUE = new RectanglePoseArea(
       new Translation2d(BLUE_WING_LINE_X, 2.7),

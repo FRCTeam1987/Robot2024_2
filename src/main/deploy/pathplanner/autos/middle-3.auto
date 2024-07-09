@@ -24,15 +24,9 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "AutoAimAndShoot"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "middle-3_blue_b"
+            "pathName": "middle-3_blue_c"
           }
         },
         {
@@ -44,13 +38,43 @@
         {
           "type": "named",
           "data": {
+            "name": "PathFindToCenterScore"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
             "name": "AutoAimAndShoot"
           }
         },
         {
-          "type": "path",
+          "type": "named",
           "data": {
-            "pathName": "middle-3_blue_c"
+            "name": "PathFindToCleanUp"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToCenterScore"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
           }
         }
       ]

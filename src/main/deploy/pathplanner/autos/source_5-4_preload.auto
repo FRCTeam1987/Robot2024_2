@@ -23,6 +23,18 @@
               }
             ]
           }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToSourceShot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
         }
       ]
     }

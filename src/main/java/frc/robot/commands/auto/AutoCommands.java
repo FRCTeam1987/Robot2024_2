@@ -35,6 +35,7 @@ import frc.robot.commands.auto.routines.Amp_1_2;
 import frc.robot.commands.auto.routines.Amp_2_1;
 import frc.robot.commands.auto.routines.Madtown;
 import frc.robot.commands.auto.routines.Source_5_4;
+import frc.robot.commands.auto.routines.Source_5_4_No_Color;
 import frc.robot.commands.auto.routines._Source_5_4;
 import frc.robot.util.InstCmd;
 import frc.robot.util.Util;
@@ -57,6 +58,8 @@ public class AutoCommands {
       put("AutoCollectNote", new AutoCollectNote(() -> 3.0));
       put("PathFindToSourceShot", PathFind.toSourceShot());
       put("PathFindToAmpShot", PathFind.toAmpShot());
+      put("PathFindToCleanUp", PathFind.toCleanUp());
+      put("PathFindToCenterScore", PathFind.toCenterScore());
       put("WaitUntilHasNote", new WaitUntilCommand(SHOOTER::hasNote));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
@@ -73,10 +76,14 @@ public class AutoCommands {
       put("StopRotationOverrideSpeaker", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtSpeaker(false)));
       put("StartRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(true)));
       put("StopRotationOverrideNote", new InstCmd(() -> DRIVETRAIN.setPPShouldPointAtNote(false)));
-      put("AutoAimAndShoot", new AutoAimAndShoot());
+      put("AutoAimAndShoot", new SequentialCommandGroup(
+        new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(false)),
+        new AutoAimAndShoot(),
+        new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(true))
+      ));
       put("FlowShoot", new FlowShoot());
       put("StartLLPoseUpdate", new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(true)));
-      put("StopLLPoseUpdate", new InstCmd(/* () -> DRIVETRAIN.setShouldUpdatePoseFromVision(false) */));
+      put("StopLLPoseUpdate", new InstCmd(() -> DRIVETRAIN.setShouldUpdatePoseFromVision(false)));
       put("PoopIfSeesNote", new ConditionalCommand(
           new InstCmd(() -> setAutoState(AutoState.POOPING)).andThen(
               new WaitUntilDebounceCommand(SHOOTER::hasNote, 0.1, DebounceType.kFalling)),
@@ -118,6 +125,7 @@ public class AutoCommands {
         wrap(new Source_5_4(Alliance.Red)),
         AutoCommands::isBlueAlliance));
     autoChooser.addOption("_Source_5_4", new _Source_5_4());
+    autoChooser.addOption("Source_5_4_No_Color", wrap(new Source_5_4_No_Color()));
     autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }

@@ -14,12 +14,12 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_a"
+            "pathName": "amp_2-1_a_NoPoop"
           }
         }
       ]
     }
   },
-  "folder": "amp_2-1",
+  "folder": "amp_2-1_NoPoop",
   "choreoAuto": false
 }

@@ -6,9 +6,22 @@
     "data": {
       "commands": [
         {
-          "type": "path",
+          "type": "race",
           "data": {
-            "pathName": "amp_2-1_d"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "WaitUntilHasNote"
+                }
+              },
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "amp_2-1_d"
+                }
+              }
+            ]
           }
         },
         {

@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.66,
-        "y": 5.55
+        "x": 4.1,
+        "y": 6.2
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9875848440946686,
-        "y": 5.282841938293301
+        "x": 4.09051029003389,
+        "y": 7.726375465391991
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "amp_2-1_shoot"
     },
     {
       "anchor": {
-        "x": 1.755227775969649,
-        "y": 6.176969889089867
+        "x": 8.05,
+        "y": 7.47
       },
       "prevControl": {
-        "x": 1.3456517538251533,
-        "y": 5.890181670914344
+        "x": 6.382988782693236,
+        "y": 7.47
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "ano_2-1_NoPoop_2ndNote"
     }
   ],
   "rotationTargets": [],
@@ -38,14 +38,14 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 2.0,
-    "rotation": 34.77447770045451,
+    "velocity": 0,
+    "rotation": 0,
     "rotateFast": false
   },
   "reversed": false,
-  "folder": "middle-3",
+  "folder": "amp_2-1_NoPoop",
   "previewStartingState": {
-    "rotation": 0.0,
+    "rotation": 0,
     "velocity": 0
   },
   "useDefaultConstraints": true
