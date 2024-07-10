@@ -4,7 +4,6 @@
 
 package frc.robot;
 
-import java.util.Collections;
 import java.util.List;
 
 import edu.wpi.first.math.filter.SlewRateLimiter;
@@ -199,14 +198,10 @@ public class Constants {
                 public static final double INTAKE_RPM = -5000;
         }
 
-        public static final InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> // TODO Update Limelight
-                                                                                           // Constants with new
-                                                                                           // position
+        public static final InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble>
         DISTANCE_TO_PASS_RPM = // (Meters, Wrist Degrees)
                         new InterpolatingTreeMap<>();
-        public static final InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble> // TODO Update Limelight
-                                                                                           // Constants with new
-                                                                                           // position
+        public static final InterpolatingTreeMap<InterpolatingDouble, InterpolatingDouble>
         DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER = // (Meters, Wrist Degrees)
                         new InterpolatingTreeMap<>();
 

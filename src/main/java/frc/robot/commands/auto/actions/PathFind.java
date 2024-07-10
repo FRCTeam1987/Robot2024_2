@@ -4,8 +4,6 @@
 
 package frc.robot.commands.auto.actions;
 
-import static edu.wpi.first.units.Units.Rotation;
-
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.path.PathConstraints;
 
@@ -18,7 +16,6 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.RobotContainer;
 import frc.robot.commands.auto.logic.AutoState;
-import frc.robot.util.InstCmd;
 import frc.robot.util.zoning.LocalizationUtil;
 
 /** Add your docs here. */

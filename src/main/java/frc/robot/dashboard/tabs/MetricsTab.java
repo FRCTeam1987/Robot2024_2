@@ -8,7 +8,6 @@ import static frc.robot.RobotContainer.WRIST;
 import static frc.robot.RobotContainer.getLocalizationState;
 
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
-import frc.robot.RobotContainer;
 import frc.robot.dashboard.TabUtil;
 
 /** Add your docs here. */

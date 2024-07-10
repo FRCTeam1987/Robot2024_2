@@ -27,7 +27,6 @@ public class DriveToNote extends PIDCommand {
 
   /** Creates a new DriveToNote2. */
   public DriveToNote(final double initialVelocity) {
-    // FIXME probably mixing degrees and radians
     super(
         // The controller that the command will use
         new PIDController(7.0, 0.0, 0.0),

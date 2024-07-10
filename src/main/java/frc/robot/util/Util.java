@@ -18,7 +18,6 @@ import frc.robot.util.interpolable.InterpolatingDouble;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
 
-import java.util.Collections;
 import java.util.List;
 
 public class Util {

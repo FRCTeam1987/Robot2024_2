@@ -6,11 +6,8 @@ package frc.robot.commands.auto.routines;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
-import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.auto.actions.AutoAimAndShoot;
-import frc.robot.commands.auto.actions.PathFind;
 
 import static frc.robot.RobotContainer.POOP_MONITOR;
 import static frc.robot.RobotContainer.SHOOTER;
