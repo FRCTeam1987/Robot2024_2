@@ -130,7 +130,7 @@ public class Constants {
                 public static final double EXTENSION_CRUISE_VELOCITY = 65000;
                 public static final double EXTENSION_ALLOWABLE_ERROR = 0.275;
 
-                public static final double EXTENSION_CURRENT_LIMIT = 90.0;
+                public static final double EXTENSION_CURRENT_LIMIT = 60.0;
 
                 public static final double MINIMUM_EXTENSION_LENGTH_INCHES = 0.0;
                 public static final double MAXIMUM_EXTENSION_LENGTH_INCHES = 30.5;
