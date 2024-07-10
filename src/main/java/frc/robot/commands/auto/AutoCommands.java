@@ -35,7 +35,6 @@ import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.commands.auto.routines.Amp_1_2;
 import frc.robot.commands.auto.routines.Amp_2_1;
 import frc.robot.commands.auto.routines.Source_4_5;
-import frc.robot.commands.auto.routines.Source_5_4;
 import frc.robot.commands.auto.routines.Source_5_4_No_Color;
 import frc.robot.util.InstCmd;
 import frc.robot.util.Util;
@@ -98,9 +97,9 @@ public class AutoCommands {
     NamedCommands.registerCommands(namedCommands);
   }
 
-  private static Boolean isBlueAlliance() {
-    return DRIVETRAIN.getAlliance().equals(Alliance.Blue);
-  }
+  // private static Boolean isBlueAlliance() {
+  //   return DRIVETRAIN.getAlliance().equals(Alliance.Blue);
+  // }
 
   private static Command wrap(final Command autoCommand) {
     return new ParallelCommandGroup(
@@ -121,11 +120,11 @@ public class AutoCommands {
     //     wrap(new Madtown(Alliance.Red)),
     //     AutoCommands::isBlueAlliance));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    autoChooser.addOption("Source 5-4", new ConditionalCommand(
-        wrap(new Source_5_4(Alliance.Blue)),
-        wrap(new Source_5_4(Alliance.Red)),
-        AutoCommands::isBlueAlliance));
-    autoChooser.addOption("Source_5_4_No_Color", wrap(new Source_5_4_No_Color()));
+    // autoChooser.addOption("Source 5-4", new ConditionalCommand(
+    //     wrap(new Source_5_4(Alliance.Blue)),
+    //     wrap(new Source_5_4(Alliance.Red)),
+    //     AutoCommands::isBlueAlliance));
+    autoChooser.addOption("Source_5-4", wrap(new Source_5_4_No_Color()));
     autoChooser.addOption("Source 4-5", wrap(new Source_4_5()));
     return autoChooser;
   }
