@@ -3,10 +3,11 @@
   "robotLength": 0.92,
   "holonomicMode": true,
   "pathFolders": [
+    "source_4-5",
     "_source_5-4",
     "amp_1-2",
-    "amp_2-1_NoPoop",
     "amp_2-1",
+    "amp_2-1_NoPoop",
     "madtown",
     "middle-3",
     "source_5-4",
@@ -15,10 +16,11 @@
     "split-3"
   ],
   "autoFolders": [
-    "amp_2-1_NoPoop",
+    "source_4-5",
     "_source_5-4",
     "amp_1-2",
     "amp_2-1",
+    "amp_2-1_NoPoop",
     "madtown",
     "middle-3",
     "source_5-4",

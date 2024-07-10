@@ -35,6 +35,7 @@ import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.commands.auto.routines.Amp_1_2;
 import frc.robot.commands.auto.routines.Amp_2_1;
 import frc.robot.commands.auto.routines.Madtown;
+import frc.robot.commands.auto.routines.Source_4_5;
 import frc.robot.commands.auto.routines.Source_5_4;
 import frc.robot.commands.auto.routines.Source_5_4_No_Color;
 import frc.robot.commands.auto.routines._Source_5_4;
@@ -121,14 +122,12 @@ public class AutoCommands {
     //     wrap(new Madtown(Alliance.Red)),
     //     AutoCommands::isBlueAlliance));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    // autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial"));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
         wrap(new Source_5_4(Alliance.Blue)),
         wrap(new Source_5_4(Alliance.Red)),
         AutoCommands::isBlueAlliance));
-    // autoChooser.addOption("_Source_5_4", new _Source_5_4());
     autoChooser.addOption("Source_5_4_No_Color", wrap(new Source_5_4_No_Color()));
-    // autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
+    autoChooser.addOption("Source 4-5", wrap(new Source_4_5()));
     return autoChooser;
   }
 }
