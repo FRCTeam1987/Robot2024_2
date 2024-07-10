@@ -114,7 +114,7 @@
     },
     {
       "name": "Shoot Note",
-      "waypointRelativePos": 0.25,
+      "waypointRelativePos": 0.3,
       "command": {
         "type": "parallel",
         "data": {
