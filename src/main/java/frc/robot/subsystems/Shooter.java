@@ -43,8 +43,8 @@ public class Shooter extends SubsystemBase {
     // Peak output of 10 volts
     SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
     SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimitEnable = true;
-    SHOOTER_CONFIG.Voltage.PeakForwardVoltage = 11;
-    SHOOTER_CONFIG.Voltage.PeakReverseVoltage = -11;
+    SHOOTER_CONFIG.Voltage.PeakForwardVoltage = 10;
+    SHOOTER_CONFIG.Voltage.PeakReverseVoltage = -10;
 
     final TalonFXConfiguration FEEDER_CFG = new TalonFXConfiguration();
     FEEDER_CFG.Slot0.kP = 0.15;

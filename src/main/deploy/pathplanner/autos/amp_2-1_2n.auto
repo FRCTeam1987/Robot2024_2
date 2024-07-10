@@ -8,7 +8,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "amp_2-1_b"
+            "pathName": "amp_2-1_c"
           }
         },
         {
@@ -21,6 +21,18 @@
           "type": "named",
           "data": {
             "name": "PathFindToAmpShot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
           }
         }
       ]

@@ -8,40 +8,56 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.077568782220733,
-        "y": 7.639028742851706
+        "x": 2.047356994781574,
+        "y": 7.697065046546181
       },
-      "isLocked": false,
+      "isLocked": true,
       "linkedName": "amp_race_start"
     },
     {
       "anchor": {
-        "x": 2.883763127769311,
-        "y": 7.694986878110331
+        "x": 2.9,
+        "y": 7.7
       },
       "prevControl": {
-        "x": 1.8837631277693112,
-        "y": 7.694986878110331
+        "x": 1.9,
+        "y": 7.7
       },
       "nextControl": {
-        "x": 3.6837631277693115,
-        "y": 7.694986878110331
+        "x": 4.15,
+        "y": 7.7
       },
       "isLocked": true,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 4.3,
-        "y": 7.25
+        "x": 3.982078112643016,
+        "y": 6.899685423976526
       },
       "prevControl": {
-        "x": 3.650480947161671,
-        "y": 7.625
+        "x": 3.7454231100917648,
+        "y": 7.340133388857131
       },
       "nextControl": {
-        "x": 5.166025403784439,
-        "y": 6.75
+        "x": 4.218733115194266,
+        "y": 6.459237459095919
+      },
+      "isLocked": true,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.870233770546898,
+        "y": 6.423942530394426
+      },
+      "prevControl": {
+        "x": 5.13401338296115,
+        "y": 6.567049276926835
+      },
+      "nextControl": {
+        "x": 6.619337258567307,
+        "y": 6.278331562816876
       },
       "isLocked": true,
       "linkedName": null
@@ -57,19 +73,19 @@
       },
       "nextControl": {
         "x": 8.050677235469054,
-        "y": 6.4
+        "y": 6.275
       },
       "isLocked": true,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.050677235469054,
-        "y": 7.47
+        "x": 7.2,
+        "y": 6.75
       },
       "prevControl": {
-        "x": 5.800677235469054,
-        "y": 7.47
+        "x": 7.66181094054795,
+        "y": 6.483373329159927
       },
       "nextControl": null,
       "isLocked": true,
@@ -78,28 +94,44 @@
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 1.3,
+      "waypointRelativePos": 1.2,
       "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 4.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 2,
+      "rotationDegrees": 20.0,
       "rotateFast": false
     },
     {
       "waypointRelativePos": 3,
       "rotationDegrees": 0,
       "rotateFast": false
-    },
-    {
-      "waypointRelativePos": 2.0,
-      "rotationDegrees": 20.0,
-      "rotateFast": true
     }
   ],
   "constraintZones": [
     {
       "name": "Shoot Preload Zone",
       "minWaypointRelativePos": 1.55,
-      "maxWaypointRelativePos": 2.1,
+      "maxWaypointRelativePos": 2.3000000000000003,
       "constraints": {
         "maxVelocity": 1.0,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Slow Collect Note 4 Zone",
+      "minWaypointRelativePos": 3.75,
+      "maxWaypointRelativePos": 4.25,
+      "constraints": {
+        "maxVelocity": 2.0,
         "maxAcceleration": 4.0,
         "maxAngularVelocity": 540.0,
         "maxAngularAcceleration": 720.0
@@ -143,7 +175,7 @@
     },
     {
       "name": "Start Point At Speaker",
-      "waypointRelativePos": 1.75,
+      "waypointRelativePos": 1.7000000000000002,
       "command": {
         "type": "parallel",
         "data": {
@@ -153,6 +185,12 @@
               "data": {
                 "name": "StartRotationOverrideSpeaker"
               }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
             }
           ]
         }
@@ -160,7 +198,7 @@
     },
     {
       "name": "Shoot Preload",
-      "waypointRelativePos": 2.1,
+      "waypointRelativePos": 2.05,
       "command": {
         "type": "parallel",
         "data": {
@@ -177,7 +215,7 @@
     },
     {
       "name": "Stop Point At Speaker",
-      "waypointRelativePos": 2.15,
+      "waypointRelativePos": 2.4,
       "command": {
         "type": "parallel",
         "data": {
@@ -187,28 +225,11 @@
               "data": {
                 "name": "StopRotationOverrideSpeaker"
               }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Start Poop",
-      "waypointRelativePos": 2.6,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StartPoop"
-              }
             },
             {
               "type": "named",
               "data": {
-                "name": "StartPoopMonitor"
+                "name": "StartLLPoseUpdate"
               }
             }
           ]
@@ -216,31 +237,8 @@
       }
     },
     {
-      "name": "Stop Poop",
-      "waypointRelativePos": 3.75,
-      "command": {
-        "type": "parallel",
-        "data": {
-          "commands": [
-            {
-              "type": "named",
-              "data": {
-                "name": "StopPoop"
-              }
-            },
-            {
-              "type": "named",
-              "data": {
-                "name": "StopPoopMonitor"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Collect Note 1",
-      "waypointRelativePos": 3.8,
+      "name": "Collect Note 2",
+      "waypointRelativePos": 3.55,
       "command": {
         "type": "parallel",
         "data": {
@@ -249,6 +247,23 @@
               "type": "named",
               "data": {
                 "name": "FollowCollectNote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Vision Updates",
+      "waypointRelativePos": 1.3,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
               }
             }
           ]
@@ -263,7 +278,7 @@
     "maxAngularAcceleration": 720.0
   },
   "goalEndState": {
-    "velocity": 0.0,
+    "velocity": 2.0,
     "rotation": 0,
     "rotateFast": false
   },

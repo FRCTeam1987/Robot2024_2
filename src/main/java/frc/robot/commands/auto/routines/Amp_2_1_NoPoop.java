@@ -9,7 +9,6 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-import static frc.robot.RobotContainer.POOP_MONITOR;
 import static frc.robot.RobotContainer.SHOOTER;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more

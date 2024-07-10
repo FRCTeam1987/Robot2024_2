@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj2.command.ConditionalCommand;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitUntilCommand;
+import frc.robot.commands.auto.actions.AimAwayFromSpeaker;
 import frc.robot.commands.auto.actions.AutoAimAndShoot;
 import frc.robot.commands.auto.actions.AutoCollectNote;
 import frc.robot.commands.auto.actions.FlowShoot;
@@ -89,6 +90,7 @@ public class AutoCommands {
               new WaitUntilDebounceCommand(SHOOTER::hasNote, 0.1, DebounceType.kFalling)),
           new InstCmd(),
               VISION::hasTargets));
+      put("AimAwayFromSpeaker", new AimAwayFromSpeaker());
     }
   });
 
@@ -114,19 +116,19 @@ public class AutoCommands {
     autoChooser.setDefaultOption("Do Nothing", new InstCmd());
     autoChooser.addOption("Amp 1-2", wrap(new Amp_1_2()));
     autoChooser.addOption("Amp 2-1", wrap(new Amp_2_1()));
-    autoChooser.addOption("Madtown", new ConditionalCommand(
-        wrap(new Madtown(Alliance.Blue)),
-        wrap(new Madtown(Alliance.Red)),
-        AutoCommands::isBlueAlliance));
+    // autoChooser.addOption("Madtown", new ConditionalCommand(
+    //     wrap(new Madtown(Alliance.Blue)),
+    //     wrap(new Madtown(Alliance.Red)),
+    //     AutoCommands::isBlueAlliance));
     autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
-    autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial"));
+    // autoChooser.addOption("Source 5-4 Default", AutoBuilder.buildAuto("source_5-4_initial"));
     autoChooser.addOption("Source 5-4", new ConditionalCommand(
         wrap(new Source_5_4(Alliance.Blue)),
         wrap(new Source_5_4(Alliance.Red)),
         AutoCommands::isBlueAlliance));
-    autoChooser.addOption("_Source_5_4", new _Source_5_4());
+    // autoChooser.addOption("_Source_5_4", new _Source_5_4());
     autoChooser.addOption("Source_5_4_No_Color", wrap(new Source_5_4_No_Color()));
-    autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
+    // autoChooser.addOption("Split 3", wrap(AutoBuilder.buildAuto("split-3")));
     return autoChooser;
   }
 }

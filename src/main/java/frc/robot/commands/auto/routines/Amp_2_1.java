@@ -23,17 +23,9 @@ public class Amp_2_1 extends SequentialCommandGroup {
     addCommands(
       AutoBuilder.buildAuto("amp_2-1_begin"),
       new ConditionalCommand(
-        AutoBuilder.buildAuto("amp_2-1_2y1y"),
-        new ConditionalCommand(
-          AutoBuilder.buildAuto("amp_2-1_2y1n"),
-          new ConditionalCommand(
-            AutoBuilder.buildAuto("amp_2-1_2n1y"),
-            AutoBuilder.buildAuto("amp_2-1_2n1n"),
-            () -> !POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
-          ),
-          () -> POOP_MONITOR.hasPooped() && !SHOOTER.hasNote()
-        ),
-        () -> POOP_MONITOR.hasPooped() && SHOOTER.hasNote()
+        AutoBuilder.buildAuto("amp_2-1_2y"),
+        AutoBuilder.buildAuto("amp_2-1_2n"),
+        SHOOTER::hasNote
       ),
       AutoBuilder.buildAuto("amp_2-1_end")
     );
