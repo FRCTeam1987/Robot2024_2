@@ -32,27 +32,27 @@
     },
     {
       "anchor": {
-        "x": 8.05,
+        "x": 8.1,
         "y": 0.87
       },
       "prevControl": {
-        "x": 8.05,
+        "x": 8.1,
         "y": 0.37
       },
       "nextControl": {
-        "x": 8.05,
-        "y": 1.52
+        "x": 8.1,
+        "y": 1.37
       },
       "isLocked": true,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 8.05,
+        "x": 8.1,
         "y": 2.4531510266000858
       },
       "prevControl": {
-        "x": 6.050000000000001,
+        "x": 5.85,
         "y": 2.4531510266000858
       },
       "nextControl": null,
@@ -63,8 +63,13 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 2.0,
-      "rotationDegrees": 0,
+      "rotationDegrees": 5.0,
       "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 2.25,
+      "rotationDegrees": 20.0,
+      "rotateFast": true
     }
   ],
   "constraintZones": [
@@ -166,6 +171,40 @@
               "type": "named",
               "data": {
                 "name": "FollowCollectNote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Vision Updates",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Vision Updates",
+      "waypointRelativePos": 1.0499999999999998,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
               }
             }
           ]

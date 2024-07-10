@@ -170,7 +170,7 @@ public class Constants {
                 public static final double FEEDER_RETRACT_VOLTS = -2;
 
                 public static final double SHOOTER_RPM = 4500;
-                public static final double SHOOTER_POOP_RPM = 700;
+                public static final double SHOOTER_POOP_RPM = 650;
                 public static final double SHOOTER_RPM_CLOSERANGE = 3500; // NEEDS to be smaller
                 public static final double SHOOTER_LOB_RPM = 3000; // NEEDS to be smaller
                 public static final double SHOOTER_IDLE_SHOOTING_RPM = 3000; // NEEDS to be smaller

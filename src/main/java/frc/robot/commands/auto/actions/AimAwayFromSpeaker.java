@@ -25,7 +25,7 @@ public class AimAwayFromSpeaker extends ProfiledPIDCommand {
             0,
             0,
             // The motion profile constraints
-            new TrapezoidProfile.Constraints(MaxAngularRate * 0.9, MaxAngularRate * 0.75)),
+            new TrapezoidProfile.Constraints(MaxAngularRate * 1.5, MaxAngularRate * 0.75)),
         // This should return the measurement
         () -> DRIVETRAIN.getPose().getRotation().getRadians(),
         // This should return the goal (can also be a constant)
