@@ -20,7 +20,8 @@ public class AutoAimAndShoot extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
         new ParallelDeadlineGroup(
-            new WaitUntilCommand(() -> Util.isPointedAtSpeaker() && RobotContainer.SHOOTER.isShooterAtSetpoint())
+            new WaitUntilCommand(() -> (Util.isPointedAtSpeaker() && RobotContainer.SHOOTER.isShooterAtSetpoint())
+              || !RobotContainer.SHOOTER.hasNote()) // Don't bother aiming if there's not a note in the robot.
                 .withTimeout(0.5),
             new AimAtSpeaker()),
         new InstantShoot());
