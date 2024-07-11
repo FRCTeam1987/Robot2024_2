@@ -120,7 +120,13 @@ public class AutoCommands {
     //     wrap(new Madtown(Alliance.Blue)),
     //     wrap(new Madtown(Alliance.Red)),
     //     AutoCommands::isBlueAlliance));
-    autoChooser.addOption("Middle 3", wrap(AutoBuilder.buildAuto("middle-3")));
+    autoChooser.addOption("Middle 3", wrap(new SequentialCommandGroup(
+      new InstCmd(() -> {
+        DRIVETRAIN.setShouldUpdatePoseFromVision(false);
+        setAutoState(AutoState.SHOOT_PREP);
+      }),
+      AutoBuilder.buildAuto("middle-3")
+    )));
     // autoChooser.addOption("Source 5-4", new ConditionalCommand(
     //     wrap(new Source_5_4(Alliance.Blue)),
     //     wrap(new Source_5_4(Alliance.Red)),

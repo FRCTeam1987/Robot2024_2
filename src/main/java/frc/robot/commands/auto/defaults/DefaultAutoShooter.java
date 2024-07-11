@@ -19,6 +19,12 @@ public class DefaultAutoShooter extends Command {
     addRequirements(SHOOTER);
   }
 
+  @Override
+  public void initialize() {
+    SHOOTER.stopFeeder();
+    SHOOTER.stopShooter();
+  }
+
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
@@ -53,6 +59,10 @@ public class DefaultAutoShooter extends Command {
         SHOOTER.setFeederVoltage(FEEDER_SHOOT_VOLTS);
         SHOOTER.setRPMShoot(SHOOTER_RPM);
         break;
+      case SHOOT_PREP:
+        SHOOTER.stopFeeder();
+        SHOOTER.setRPMShoot(SHOOTER_RPM);
+        break;
       case INSTANT_SUB_PREP:
         SHOOTER.setShooterVoltage(18.0);
         break;
@@ -74,7 +84,6 @@ public class DefaultAutoShooter extends Command {
           }
         } else {
           if (SHOOTER.isRearBroken()) {
-
             SHOOTER.setFeederVoltage(FEEDER_FEEDFWD_VOLTS_SLOW);
           }
           SHOOTER.setRPMShootNoSpin(SHOOTER_POOP_RPM);

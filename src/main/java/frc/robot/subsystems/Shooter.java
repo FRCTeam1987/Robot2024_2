@@ -66,6 +66,8 @@ public class Shooter extends SubsystemBase {
     FEEDER.getConfigurator().apply(FEEDER_CFG);
     FEEDER.setInverted(true);
     FEEDER.setNeutralMode(NeutralModeValue.Brake);
+    stopFeeder();
+    stopShooter();
   }
 
   public double getError() {
