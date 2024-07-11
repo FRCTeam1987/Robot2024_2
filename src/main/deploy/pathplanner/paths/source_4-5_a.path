@@ -105,7 +105,7 @@
     },
     {
       "name": "Poop Preload",
-      "waypointRelativePos": 0.7,
+      "waypointRelativePos": 0.8,
       "command": {
         "type": "parallel",
         "data": {

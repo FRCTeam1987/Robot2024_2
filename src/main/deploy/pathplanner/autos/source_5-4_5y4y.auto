@@ -12,6 +12,12 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.06
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "AutoAimAndShoot"
@@ -33,6 +39,12 @@
           "type": "named",
           "data": {
             "name": "PathFindToSourceShot"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.06
           }
         },
         {
