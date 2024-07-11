@@ -36,7 +36,6 @@ public class DriveToNote extends PIDCommand {
         () -> 0.0,
         // This uses the output
         output -> {
-          System.out.println(output);
           if (RobotContainer.SHOOTER.isRearBroken()) {
             RobotContainer.DRIVETRAIN.setControl(swerveRequest.withSpeeds(new ChassisSpeeds()));
             return;

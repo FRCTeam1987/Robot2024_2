@@ -30,15 +30,28 @@
           }
         },
         {
-          "type": "named",
+          "type": "deadline",
           "data": {
-            "name": "PathFindToAmpShot"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "AutoAimAndShoot"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "WaitUntilDoesNotHaveNote"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "PathFindToAmpShot"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "AutoAimAndShoot"
+                }
+              }
+            ]
           }
         }
       ]

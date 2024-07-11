@@ -33,15 +33,15 @@
     {
       "anchor": {
         "x": 4.5,
-        "y": 7.1
+        "y": 7.0
       },
       "prevControl": {
         "x": 3.7501614372381478,
-        "y": 7.115560520403886
+        "y": 7.015560520403886
       },
       "nextControl": {
         "x": 5.499784750349137,
-        "y": 7.079252639461484
+        "y": 6.979252639461484
       },
       "isLocked": false,
       "linkedName": null
@@ -111,7 +111,7 @@
   "constraintZones": [
     {
       "name": "Slow Shoot Zone",
-      "minWaypointRelativePos": 1.3,
+      "minWaypointRelativePos": 1.25,
       "maxWaypointRelativePos": 1.85,
       "constraints": {
         "maxVelocity": 0.6,
@@ -215,7 +215,7 @@
     },
     {
       "name": "Start Vision Update",
-      "waypointRelativePos": 1.3,
+      "waypointRelativePos": 1.25,
       "command": {
         "type": "parallel",
         "data": {
@@ -232,7 +232,7 @@
     },
     {
       "name": "Start Point At Speaker",
-      "waypointRelativePos": 1.4,
+      "waypointRelativePos": 1.35,
       "command": {
         "type": "parallel",
         "data": {

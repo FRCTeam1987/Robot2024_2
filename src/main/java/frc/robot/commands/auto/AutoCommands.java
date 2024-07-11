@@ -61,6 +61,7 @@ public class AutoCommands {
       put("PathFindToCleanUp", PathFind.toCleanUp());
       put("PathFindToCenterScore", PathFind.toCenterScore());
       put("WaitUntilHasNote", new WaitUntilCommand(SHOOTER::hasNote));
+      put("WaitUntilDoesNotHaveNote", new WaitUntilCommand(() -> !SHOOTER.hasNote()));
       put("StartPoopMonitor", POOP_MONITOR.StartPoopMonitorCommand());
       put("StopPoopMonitor", POOP_MONITOR.StopPoopMonitorCommand());
       put("StartWatchForNote", new InstCmd(() -> SHOULD_WATCH_FOR_NOTE = true));
