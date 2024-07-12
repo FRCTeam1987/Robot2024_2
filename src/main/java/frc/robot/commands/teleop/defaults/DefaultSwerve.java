@@ -5,6 +5,8 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.controller.ProfiledPIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.trajectory.TrapezoidProfile;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.Constants;
@@ -51,8 +53,16 @@ public class DefaultSwerve extends Command {
   @Override
   public void initialize() {
     new Trigger(() -> getScoreMode() == ScoreMode.DEFENSE)
-        .onTrue(new InstCmd(() -> DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_DEFENSE)))
-        .onFalse(new InstCmd(() -> DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_NORMAL)));
+        .onTrue(new InstCmd(() -> {
+          DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_DEFENSE);
+          DriverStation.reportWarning("==== increase amps", false);
+          SmartDashboard.putString("amp limit", "defense");
+        }))
+        .onFalse(new InstCmd(() -> {
+          DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_NORMAL);
+          DriverStation.reportWarning("==== decrease amps", false);
+          SmartDashboard.putString("amp limit", "normal");
+        }));
   }
 
   @Override

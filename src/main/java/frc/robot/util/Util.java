@@ -41,6 +41,8 @@ public class Util {
   public static final List<Pose2d> AMP_TAGS = List.of(TAG_6_POSE, TAG_5_POSE);
   public static final double DEADBAND = 0.05;
 
+  private static double distanceOffset = 0.0;
+
   public static Pose2d getAllianceSpeaker() {
     // return alliance == DriverStation.Alliance.Blue ? TAG_7_POSE : TAG_4_POSE;
     return RobotContainer.DRIVETRAIN.getAlliance() == DriverStation.Alliance.Blue
@@ -84,7 +86,16 @@ public class Util {
 
   public static double getInterpolatedWristAngleSpeaker() {
     return Constants.DISTANCE_TO_WRISTANGLE_RELATIVE_SPEAKER.getInterpolated(
-        new InterpolatingDouble(RobotContainer.getLocalizationState().speakerDistance())).value;
+        new InterpolatingDouble(RobotContainer.getLocalizationState().speakerDistance() + distanceOffset)).value;
+  }
+
+  public static void incrementDistanceOffset(double incrementValue) {
+    distanceOffset = distanceOffset + incrementValue;
+    System.out.println("Current distanceOffset: " + incrementValue);
+  }
+
+  public double getDistanceOffset() {
+    return distanceOffset;
   }
 
   public static boolean isValidShot() {

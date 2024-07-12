@@ -41,8 +41,8 @@ public class Constants {
         }
 
         public static class Drive {
-                public static final double DRIVE_MOTOR_AMPS_NORMAL = 80;
-                public static final double DRIVE_MOTOR_AMPS_DEFENSE = 100;
+                public static final double DRIVE_MOTOR_AMPS_NORMAL = 60;
+                public static final double DRIVE_MOTOR_AMPS_DEFENSE = DRIVE_MOTOR_AMPS_NORMAL + 20.0;
         }
 
         public static class IDs {
@@ -188,7 +188,7 @@ public class Constants {
 
                 public static final double SUBWOOFER_SHOT_RPM = 2750;
 
-                public static final double TRAP_RPM_SPEED = 480;
+                public static final double TRAP_RPM_SPEED = 350; //480
         }
 
         public static class Intake {

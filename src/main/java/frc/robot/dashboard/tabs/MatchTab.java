@@ -12,12 +12,14 @@ import static frc.robot.RobotContainer.getScoreMode;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 import frc.robot.commands.auto.AutoCommands;
 import frc.robot.commands.teleop.stateless.recovery.AutoHomeElevator;
 import frc.robot.commands.teleop.stateless.recovery.AutoHomeWrist;
 import frc.robot.commands.teleop.stateless.recovery.ForceZeroAll;
 import frc.robot.commands.teleop.stateless.recovery.ReverseIntake;
 import frc.robot.dashboard.TabUtil;
+import frc.robot.util.Util;
 
 /** Add your docs here. */
 public class MatchTab {
@@ -35,6 +37,8 @@ public class MatchTab {
     tab.add("Force Zero", new ForceZeroAll());
     tab.addString("State | Score | Drive", () -> getRobotState() + " | " + getScoreMode() + " | " + getDriveMode());
     tab.addString("Auto State", () -> getAutoState().toString());
+    tab.add("Increase distance 10cm", new InstantCommand(() -> Util.incrementDistanceOffset(0.1)));
+    tab.add("Decrease distance 10cm", new InstantCommand(() -> Util.incrementDistanceOffset(-0.1)));
   }
 
   public Command getSelectedAuto() {
