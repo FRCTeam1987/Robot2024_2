@@ -41,7 +41,7 @@ public class Shooter extends SubsystemBase {
     // Rotation per second
     SHOOTER_CONFIG.Slot0.kS = 0.05; // Add 0.05 V output to overcome static friction
     // Peak output of 10 volts
-    SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
+    SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimit = 40;
     SHOOTER_CONFIG.CurrentLimits.StatorCurrentLimitEnable = true;
     SHOOTER_CONFIG.Voltage.PeakForwardVoltage = 10;
     SHOOTER_CONFIG.Voltage.PeakReverseVoltage = -10;

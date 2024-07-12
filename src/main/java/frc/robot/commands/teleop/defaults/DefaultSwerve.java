@@ -54,13 +54,13 @@ public class DefaultSwerve extends Command {
   public void initialize() {
     new Trigger(() -> getScoreMode() == ScoreMode.DEFENSE)
         .onTrue(new InstCmd(() -> {
-          DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_DEFENSE);
-          DriverStation.reportWarning("==== increase amps", false);
+          // DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_DEFENSE);
+          // DriverStation.reportWarning("==== increase amps", false);
           SmartDashboard.putString("amp limit", "defense");
         }))
         .onFalse(new InstCmd(() -> {
-          DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_NORMAL);
-          DriverStation.reportWarning("==== decrease amps", false);
+          // DRIVETRAIN.configDriveAmps(Constants.Drive.DRIVE_MOTOR_AMPS_NORMAL);
+          // DriverStation.reportWarning("==== decrease amps", false);
           SmartDashboard.putString("amp limit", "normal");
         }));
   }

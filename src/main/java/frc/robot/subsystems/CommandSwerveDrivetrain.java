@@ -115,6 +115,7 @@ public class CommandSwerveDrivetrain extends SwerveDrivetrain implements Subsyst
         var status = StatusCode.OK;
         CurrentLimitsConfigs cfg = new CurrentLimitsConfigs();
         cfg.StatorCurrentLimit = amps;
+        cfg.StatorCurrentLimitEnable = true;
         for (var module : Modules) {
             var moduleStatus = module.getDriveMotor().getConfigurator().apply(cfg);
             if (status.isOK()) {
