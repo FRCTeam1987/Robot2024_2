@@ -16,6 +16,7 @@ import static frc.robot.RobotContainer.DRIVETRAIN;
 public class ReLocalizeSub extends InstantCommand {
   public ReLocalizeSub() {
     // Use addRequirements() here to declare subsystem dependencies.
+    ignoringDisable(true);
   }
 
   // Called when the command is initially scheduled.
