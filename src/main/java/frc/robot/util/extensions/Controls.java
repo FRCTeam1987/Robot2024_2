@@ -50,7 +50,7 @@ public class Controls extends RobotContainer {
                 DRIVER_CONTROLLER
                                 .leftBumper().onTrue(
                                                 new ConditionalCommand(
-                                                                new IntakeNoteState(),
+                                                                new IntakeNoteState().andThen(new AsyncRumble(DRIVER_CONTROLLER.getHID(), RumbleType.kBothRumble, 1.0, 500L)),
                                                                 new AsyncRumble(DRIVER_CONTROLLER.getHID(),
                                                                                 RumbleType.kBothRumble, 1.0, 400L),
                                                                 () -> !SHOOTER.isCenterBroken()
