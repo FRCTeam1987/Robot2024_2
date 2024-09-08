@@ -96,6 +96,7 @@ public class RobotContainer {
 
   public void teleopInit() {
     configureDefaultCommands();
+    System.out.println("teleopInit");
   }
 
   public void configureDefaultCommands() {
