@@ -132,9 +132,14 @@ public class DefaultShooter extends Command {
                                             RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
                                             localizationState.speakerAngle().getDegrees(),
                                             25.0)) {
-                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                                        if (localizationState.speakerDistance() > 3) {
+                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
+                                        } else {
+                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 800);
+                                        }
+                                        
                                     } else {
-                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 1800);
+                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 2000);
                                     }
 
                                 } else {

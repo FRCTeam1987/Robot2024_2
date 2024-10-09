@@ -30,4 +30,9 @@ public class DefaultState extends SequentialCommandGroup {
           setScoreMode(ScoreMode.SPEAKER);
         }));
   }
+
+  @Override
+  public boolean runsWhenDisabled() {
+    return true;
+  }
 }

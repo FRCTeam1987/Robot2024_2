@@ -35,6 +35,7 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Semaphore;
 import frc.robot.subsystems.Vision;
 import frc.robot.subsystems.Wrist;
+import frc.robot.util.DrivingDistanceTracker;
 import frc.robot.util.extensions.Controls;
 import frc.robot.util.zoning.FieldZones;
 import frc.robot.util.zoning.LocalizationState;
@@ -82,6 +83,9 @@ public class RobotContainer {
   public static final SwerveRequest.RobotCentric forwardStraight = new SwerveRequest.RobotCentric()
       .withDriveRequestType(DriveRequestType.OpenLoopVoltage);
   public static final SwerveRequest.PointWheelsAt point = new SwerveRequest.PointWheelsAt();
+
+
+  public static final DrivingDistanceTracker tracker = new DrivingDistanceTracker();
 
   /* Path follower */
   // public Command runAuto = DRIVETRAIN.getAutoPath("Tests");
@@ -159,6 +163,7 @@ public class RobotContainer {
   public void robotPeriodic() {
     DRIVETRAIN.updatePoseFromVision();
     updateLocalizationState();
+    tracker.update(DRIVETRAIN.getPose().getTranslation());
   }
 
   public String getMode() {

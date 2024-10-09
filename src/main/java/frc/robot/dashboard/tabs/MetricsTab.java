@@ -6,6 +6,7 @@ import static frc.robot.RobotContainer.INTAKE;
 import static frc.robot.RobotContainer.SHOOTER;
 import static frc.robot.RobotContainer.WRIST;
 import static frc.robot.RobotContainer.getLocalizationState;
+import static frc.robot.RobotContainer.tracker;
 
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.dashboard.TabUtil;
@@ -28,5 +29,6 @@ public class MetricsTab {
         tab.addDouble("Int Top RPM", INTAKE::getRPMTop);
         tab.addDouble("Int Bot RPM", INTAKE::getRPMBottom);
         tab.addString("Zone", () -> getLocalizationState().fieldZone().toString());
+        tab.addDouble("Distance Driven", tracker::getDistanceDriven);
     }
 }

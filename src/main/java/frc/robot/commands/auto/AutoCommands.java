@@ -33,6 +33,7 @@ import frc.robot.commands.auto.defaults.DefaultAutoWrist;
 import frc.robot.commands.auto.logic.AutoState;
 import frc.robot.commands.auto.routines.Amp_1_2;
 import frc.robot.commands.auto.routines.Amp_2_1;
+import frc.robot.commands.auto.routines.DriveLoops;
 import frc.robot.commands.auto.routines.Source_4_5;
 import frc.robot.commands.auto.routines.Source_5_4_No_Color;
 import frc.robot.util.InstCmd;
@@ -132,6 +133,7 @@ public class AutoCommands {
     //     AutoCommands::isBlueAlliance));
     autoChooser.addOption("Source_5-4", wrap(new Source_5_4_No_Color()));
     autoChooser.addOption("Source 4-5", wrap(new Source_4_5()));
+    autoChooser.addOption("Drive Loops", DriveLoops.get());
     return autoChooser;
   }
 }
