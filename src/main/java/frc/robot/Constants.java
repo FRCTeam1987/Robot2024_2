@@ -19,10 +19,15 @@ public class Constants {
 
         public static class Limiters {
                 public static final double TRANSLATION_SLEW_RATE = 2.5;
+                public static final double TRANSLATION_SLEW_RATE_CLOSE = 1.5;
                 public static final SlewRateLimiter TRANSLATION_X_SLEW_RATE = new SlewRateLimiter(
                                 Constants.Limiters.TRANSLATION_SLEW_RATE);
                 public static final SlewRateLimiter TRANSLATION_Y_SLEW_RATE = new SlewRateLimiter(
                                 Constants.Limiters.TRANSLATION_SLEW_RATE);
+                public static final SlewRateLimiter TRANSLATION_X_SLEW_RATE_CLOSE = new SlewRateLimiter(
+                                Constants.Limiters.TRANSLATION_SLEW_RATE_CLOSE);
+                public static final SlewRateLimiter TRANSLATION_Y_SLEW_RATE_CLOSE = new SlewRateLimiter(
+                                Constants.Limiters.TRANSLATION_SLEW_RATE_CLOSE);
         }
 
         public static class Limelight {

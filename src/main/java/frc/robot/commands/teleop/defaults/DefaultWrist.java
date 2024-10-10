@@ -102,6 +102,8 @@ public class DefaultWrist extends Command {
                   } else {
                     WRIST.setDegrees(12.0);
                   }
+                } else if (SCORE_MODE == ScoreMode.AMP) {
+                  WRIST.setDegrees(12.0);
                 }
                 break;
               case OPPONENT_YIELD:

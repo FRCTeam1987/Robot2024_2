@@ -128,18 +128,31 @@ public class DefaultShooter extends Command {
                             case ALLIANCE_STAGE:
                             case ALLIANCE_HOME:
                                 if (SCORE_MODE == ScoreMode.SPEAKER) {
-                                    if (Util.isWithinTolerance(
+                                    if (!SHOOTER.hasNote() && localizationState.speakerDistance() > 3.25) {
+                                        SHOOTER.setFeederVoltage(0.0);
+                                        SHOOTER.setShooterVoltage(0.0);
+                                    } else if (Util.isWithinTolerance(
                                             RobotContainer.DRIVETRAIN.getPose().getRotation().getDegrees(),
                                             localizationState.speakerAngle().getDegrees(),
                                             25.0)) {
                                         if (localizationState.speakerDistance() > 3) {
                                             SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM);
                                         } else {
-                                            SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 800);
+                                            double magic = Constants.Shooter.SHOOTER_RPM - 800;
+                                            if (SHOOTER.getRPMLeader() > magic + 50) {
+                                                SHOOTER.setShooterVoltage(0.0);
+                                            } else {
+                                                SHOOTER.setRPMShoot(magic);
+                                            }
                                         }
                                         
                                     } else {
-                                        SHOOTER.setRPMShoot(Constants.Shooter.SHOOTER_RPM - 2000);
+                                            double magic = Constants.Shooter.SHOOTER_RPM - 2000;
+                                            if (SHOOTER.getRPMLeader() > magic + 50) {
+                                                SHOOTER.setShooterVoltage(0.0);
+                                            } else {
+                                                SHOOTER.setRPMShoot(magic);
+                                            }
                                     }
 
                                 } else {

@@ -64,14 +64,24 @@ public class DefaultSwerve extends Command {
         }));
   }
 
+  private boolean  isClose(final double ampDistance) {
+    return ampDistance < 1.5;
+  }
+
   @Override
   public void execute() {
+    final LocalizationState LOCAL_STATE = RobotContainer.getLocalizationState();
+    final double xSlew = Constants.Limiters.TRANSLATION_X_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftY());
+    final double xSlewClose = Constants.Limiters.TRANSLATION_X_SLEW_RATE_CLOSE.calculate(-DRIVER_CONTROLLER.getLeftY());
+    final double ySlew = Constants.Limiters.TRANSLATION_Y_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftX());
+    final double ySlewClose = Constants.Limiters.TRANSLATION_Y_SLEW_RATE_CLOSE.calculate(-DRIVER_CONTROLLER.getLeftX());
+    final double raisedElevatorScalar = RobotContainer.ELEVATOR.getLengthInches() > 6 ? 0.375 : 1;
     final double X_PERCENTAGE = Util
-        .squareValue(Constants.Limiters.TRANSLATION_X_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftY()))
-        * TunerConstants.kSpeedAt12VoltsMps;
+        .squareValue(isClose(LOCAL_STATE.ampPassDistance()) && getScoreMode() == ScoreMode.AMP ? xSlewClose : xSlew)
+        * TunerConstants.kSpeedAt12VoltsMps * raisedElevatorScalar;
     final double Y_PERCENTAGE = Util
-        .squareValue(Constants.Limiters.TRANSLATION_Y_SLEW_RATE.calculate(-DRIVER_CONTROLLER.getLeftX()))
-        * TunerConstants.kSpeedAt12VoltsMps;
+        .squareValue(isClose(LOCAL_STATE.ampPassDistance()) && getScoreMode() == ScoreMode.AMP ? ySlewClose : ySlew)
+        * TunerConstants.kSpeedAt12VoltsMps * raisedElevatorScalar;
     double ROT;
     double AUTO_ROT = 0.0;
     double CARDINAL_ROT = 0.0;
@@ -81,8 +91,6 @@ public class DefaultSwerve extends Command {
       DRIVETRAIN.setControl(RobotContainer.brake);
       return;
     }
-
-    final LocalizationState LOCAL_STATE = RobotContainer.getLocalizationState();
 
     switch (RobotContainer.getLocalizationState().fieldZone()) {
       case ALLIANCE_WING:
@@ -141,7 +149,7 @@ public class DefaultSwerve extends Command {
           case AUTOMATIC -> AUTO_ROT;
           // ROT = Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
           case CARDINAL_LOCKING -> CARDINAL_ROT;
-          default -> Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5;
+          default -> Util.squareValue(-DRIVER_CONTROLLER.getRightX()) * Math.PI * 3.5 * (raisedElevatorScalar * 1.5);
       };
 
     DRIVETRAIN
