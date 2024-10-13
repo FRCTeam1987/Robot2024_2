@@ -1,0 +1,151 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 2.597654919777505,
+        "y": 4.283747167220774
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 2.840106600400011,
+        "y": 6.308679173758683
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.5641503072826486,
+        "y": 6.19689317522119
+      },
+      "prevControl": {
+        "x": 2.034912675697665,
+        "y": 6.1411866887958935
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.3,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Slow Shoot Zone",
+      "minWaypointRelativePos": 0.15,
+      "maxWaypointRelativePos": 0.4,
+      "constraints": {
+        "maxVelocity": 0.75,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "Prep Shoot",
+      "waypointRelativePos": 0.05,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "PrepShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Point At Speaker",
+      "waypointRelativePos": 0.1,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Point At Speaker",
+      "waypointRelativePos": 0.45,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Shoot Note",
+      "waypointRelativePos": 0.3,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "DumbInstantShoot"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 0,
+    "rotation": 31.375814400329453,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "middle-5",
+  "previewStartingState": {
+    "rotation": -26.661418594119592,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}

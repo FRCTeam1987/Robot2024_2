@@ -1,0 +1,91 @@
+{
+  "version": 1.0,
+  "startingPose": {
+    "position": {
+      "x": 1.367536726441503,
+      "y": 5.55
+    },
+    "rotation": 0
+  },
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "middle-4_blue_a"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "middle-4_blue_c"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "ConditionalAutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToCenterScore"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.04
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AimAwayFromSpeaker"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoCollectNote"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "PathFindToCenterScore"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.1
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "AutoAimAndShoot"
+          }
+        }
+      ]
+    }
+  },
+  "folder": "middle-4",
+  "choreoAuto": false
+}

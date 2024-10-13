@@ -1,0 +1,341 @@
+{
+  "version": 1.0,
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 1.367536726441503,
+        "y": 5.55
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 1.6185367264415031,
+        "y": 5.55
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.8933165895845683,
+        "y": 5.55
+      },
+      "prevControl": {
+        "x": 2.127426572171435,
+        "y": 5.551195210220436
+      },
+      "nextControl": {
+        "x": 3.4324998335326544,
+        "y": 5.549158577198811
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.65,
+        "y": 6.502001117572837
+      },
+      "prevControl": {
+        "x": 4.694279148432429,
+        "y": 6.71497298268034
+      },
+      "nextControl": {
+        "x": 6.826995666249849,
+        "y": 6.239720597216358
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 8.021274545297933,
+        "y": 5.746667088530937
+      },
+      "prevControl": {
+        "x": 8.033425619657777,
+        "y": 5.996371616707538
+      },
+      "nextControl": {
+        "x": 8.009981306782635,
+        "y": 5.51459108343564
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 5.65,
+        "y": 6.3465532292754405
+      },
+      "prevControl": {
+        "x": 6.603031590585118,
+        "y": 6.1572468659811825
+      },
+      "nextControl": {
+        "x": 4.6969684094148825,
+        "y": 6.5358595925696985
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 2.6133387326815165,
+        "y": 5.55
+      },
+      "prevControl": {
+        "x": 3.521962134038714,
+        "y": 5.49594910954237
+      },
+      "nextControl": {
+        "x": 1.6151033767773468,
+        "y": 5.609381598352316
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 1.66219619705727,
+        "y": 4.67887541638155
+      },
+      "prevControl": {
+        "x": 1.331909216953292,
+        "y": 4.89001388248365
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": null
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 3.0,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    },
+    {
+      "waypointRelativePos": 5,
+      "rotationDegrees": 0,
+      "rotateFast": false
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "First Shoot Zone",
+      "minWaypointRelativePos": 0.75,
+      "maxWaypointRelativePos": 0.95,
+      "constraints": {
+        "maxVelocity": 0.75,
+        "maxAcceleration": 4.25,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Second Shoot Zone",
+      "minWaypointRelativePos": 4.7,
+      "maxWaypointRelativePos": 4.949999999999999,
+      "constraints": {
+        "maxVelocity": 0.5,
+        "maxAcceleration": 4.25,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    },
+    {
+      "name": "Collect Note 3",
+      "minWaypointRelativePos": 2.7,
+      "maxWaypointRelativePos": 3.3000000000000003,
+      "constraints": {
+        "maxVelocity": 1.5,
+        "maxAcceleration": 4.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0
+      }
+    }
+  ],
+  "eventMarkers": [
+    {
+      "name": "Shoot Preload",
+      "waypointRelativePos": 0.6000000000000001,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "DumbInstantShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Flow First Note",
+      "waypointRelativePos": 0.8,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "FlowShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Collect Second Note",
+      "waypointRelativePos": 2.5,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "FollowCollectNote"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Shoot Second Note",
+      "waypointRelativePos": 4.85,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "InstantShoot"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Prep Shoot",
+      "waypointRelativePos": 0.35,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    },
+    {
+      "name": "Start Vision Update",
+      "waypointRelativePos": 1.6,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Vision Update",
+      "waypointRelativePos": 0,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Start Point At Speaker",
+      "waypointRelativePos": 4.65,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StartRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StopLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Stop Point At Speaker",
+      "waypointRelativePos": 5.1499999999999995,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": [
+            {
+              "type": "named",
+              "data": {
+                "name": "StopRotationOverrideSpeaker"
+              }
+            },
+            {
+              "type": "named",
+              "data": {
+                "name": "StartLLPoseUpdate"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 5.0,
+    "maxAcceleration": 4.0,
+    "maxAngularVelocity": 540.0,
+    "maxAngularAcceleration": 720.0
+  },
+  "goalEndState": {
+    "velocity": 1.75,
+    "rotation": -25.0,
+    "rotateFast": false
+  },
+  "reversed": false,
+  "folder": "middle-4",
+  "previewStartingState": {
+    "rotation": 0,
+    "velocity": 0
+  },
+  "useDefaultConstraints": true
+}
