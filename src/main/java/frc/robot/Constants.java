@@ -198,7 +198,7 @@ public class Constants {
 
         public static class Intake {
                 public static final double INTAKE_COLLECT_VOLTS = -8; // 6
-                public static final double INTAKE_COLLECT_SLOW_VOLTS = -6;
+                public static final double INTAKE_COLLECT_SLOW_VOLTS = -7;
                 public static final double INTAKE_COLLECT_VOLTS_MANUAL = -8; // 6 //-9
                 public static final double INTAKE_RPM = -5000;
         }
